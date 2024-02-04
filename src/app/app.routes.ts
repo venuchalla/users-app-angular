@@ -12,8 +12,9 @@ import { UserComponent } from './pages/user/user.component';
           ),
       },
  */
+//component: HomeComponent 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo:'csscourseapp',pathMatch:'full'},
   {
     path: 'csscourseapp',
     children: [
