@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './pages/user/user.component';
+import { CounterComponent } from './pages/counter/counter.component';
 
 /**
  *  {
@@ -12,9 +13,9 @@ import { UserComponent } from './pages/user/user.component';
           ),
       },
  */
-//component: HomeComponent 
+//component: HomeComponent
 export const routes: Routes = [
-  { path: '', redirectTo:'csscourseapp',pathMatch:'full'},
+  { path: '', redirectTo: 'csscourseapp', pathMatch: 'full' },
   {
     path: 'csscourseapp',
     children: [
@@ -26,6 +27,10 @@ export const routes: Routes = [
           ),
       },
     ],
+  },
+  {
+    path: 'counter',
+    component:CounterComponent
   },
   { path: 'user', component: UserComponent },
   { path: '**', component: PageNotFoundComponent },
