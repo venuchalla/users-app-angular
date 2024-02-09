@@ -20,6 +20,7 @@ const cssRoutes: Routes = [
             (m) => m.NatoursModule
           ),*/
       },
+      
       {
         path: 'nexter',
         component: NexterComponent,
