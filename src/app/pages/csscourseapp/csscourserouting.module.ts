@@ -9,7 +9,7 @@ import { CourseapphomeComponent } from '../../components/courseapphome/courseapp
 const cssRoutes: Routes = [
   {
     path: '',
-    component: CsscourseappComponenst,
+    component: CsscourseappComponent,
     children: [
       { path: '', component: CourseapphomeComponent },
       {
