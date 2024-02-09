@@ -14,13 +14,15 @@ import { CounterComponent } from './pages/counter/counter.component';
 
 
 @NgModule({
-  declarations: [AppComponent,PageNotFoundComponent,UserComponent,CounterComponent],
+  declarations: [AppComponent,UserComponent],
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({count:counterReducer})
+    StoreModule.forRoot({count:counterReducer}),
+    CounterComponent,
+    PageNotFoundComponent
   ],
   providers:appConfig.providers,
   bootstrap:[AppComponent]

@@ -15,7 +15,7 @@ import { CounterComponent } from './pages/counter/counter.component';
  */
 //component: HomeComponent
 export const routes: Routes = [
-  { path: '', redirectTo: 'csscourseapp', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   {
     path: 'csscourseapp',
     children: [
