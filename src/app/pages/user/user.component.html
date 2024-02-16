@@ -1,1 +1,9 @@
-<p>user works!</p>
+<p>User Login</p>
+
+<button (click)="openIframe()" *ngIf="!showIframe">Sign In</button>
+<button (click)="closeIframe()" *ngIf="showIframe">Close Iframe</button>
+<ng-container *ngIf="showIframe">
+    <iframe [src]="trustedUrl" WIDTH = '90%' HEIGHT= '800' >
+    </iframe>
+</ng-container>
+
