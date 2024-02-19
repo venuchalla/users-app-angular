@@ -8,16 +8,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class UserComponent {
   showIframe: boolean = false;
-  trustedUrl : any;
-  private sanitizer = inject(DomSanitizer)
-  constructor(){
-    this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl("")
+  trustedUrl: any;
+  private sanitizer = inject(DomSanitizer);
+  constructor() {
+    this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
   }
   public openIframe() {
-    console.log("user clicked on button");
-    this.showIframe=true;
+    console.log('user clicked on button');
+    this.showIframe = true;
   }
-  closeIframe(){
-    this.showIframe=false;
+  closeIframe() {
+    this.showIframe = false;
   }
 }
