@@ -1,19 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import './app/scss/variables';
-@import './app/scss/button';
-
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-  }
-  html{
-    font-size: 62.5%;
-  }
-  body {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    line-height: 1.7;
-    color: $color-grey-dark;
-    padding: 0.8rem;
-  }
+@import './app/scss/bass/bass';
+@import './app/scss/bass/typography.scss';
+@import './app/scss/bass/utilities';
+//@import './app/scss/layouts/grid';
+//@import './app/scss/components/composition';
