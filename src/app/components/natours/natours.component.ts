@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NatoursRoutingModule } from './natours-routing.module';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -9,4 +10,8 @@ import { NatoursRoutingModule } from './natours-routing.module';
   templateUrl: './natours.component.html',
   styleUrl: './natours.component.scss',
 })
-export class NatoursComponent {}
+export class NatoursComponent {
+  constructor(private titleService : Title){
+    titleService.setTitle("Natours Project")
+  }
+}

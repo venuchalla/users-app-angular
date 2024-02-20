@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,4 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class CourseapphomeComponent {
 
+  constructor(private titleService : Title){
+    titleService.setTitle("CSS Course App")
+  }
 }

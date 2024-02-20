@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user',
@@ -10,7 +10,8 @@ export class UserComponent {
   showIframe: boolean = false;
   trustedUrl: any;
   private sanitizer = inject(DomSanitizer);
-  constructor() {
+  constructor(private titleService: Title) {
+    titleService.setTitle("User App")
     this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
   }
   public openIframe() {
