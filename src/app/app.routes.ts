@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './pages/user/user.component';
@@ -20,6 +20,7 @@ export const routes: Routes = [
     path: 'csscourseapp',
     children: [
       {
+        title:"CSS Course App",
         path: '',
         loadChildren: () =>
           import('./pages/csscourseapp/csscourserouting.module').then(
@@ -27,6 +28,15 @@ export const routes: Routes = [
           ),
       },
     ],
+    canActivate:[function(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+      console.log( route , "can activate guard ActivatedRouteSnapshot")
+      console.log(state ,"can activate guard state")
+      return true;
+    }],
+    canDeactivate:[function(){
+      
+    }],
+    canMatch:[]
   },
   {
     path: 'counter',
