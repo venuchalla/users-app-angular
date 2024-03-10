@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DomSanitizer, Title } from '@angular/platform-browser';
+import { UserloginComponent } from '@app/components/userlogin/userlogin.component';
 
 @Component({
   selector: 'app-user',
@@ -12,7 +13,7 @@ export class UserComponent {
   private sanitizer = inject(DomSanitizer);
   constructor(private titleService: Title) {
     titleService.setTitle("User App")
-    this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
+    this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:3000/auth');
   }
   public openIframe() {
     console.log('user clicked on button');

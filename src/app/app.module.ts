@@ -10,6 +10,7 @@ import { UserComponent } from '@pages/user/user.component';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from '@pages/counter/counter.reducer';
 import { CounterComponent } from '@pages/counter/counter.component';
+import { UserloginComponent } from './components/userlogin/userlogin.component';
 
 
 
@@ -22,7 +23,8 @@ import { CounterComponent } from '@pages/counter/counter.component';
     AppRoutingModule,
     StoreModule.forRoot({count:counterReducer}),
     CounterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserloginComponent
   ],
   providers:appConfig.providers,
   bootstrap:[AppComponent]
