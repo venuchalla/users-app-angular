@@ -1,8 +1,13 @@
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Routes,
+} from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './pages/user/user.component';
 import { CounterComponent } from './pages/counter/counter.component';
+import { LifeCycleExampleComponent } from './life-cycle-example/life-cycle-example/life-cycle-example.component';
 
 /**
  *  {
@@ -20,7 +25,7 @@ export const routes: Routes = [
     path: 'csscourseapp',
     children: [
       {
-        title:"CSS Course App",
+        title: 'CSS Course App',
         path: '',
         loadChildren: () =>
           import('./pages/csscourseapp/csscourserouting.module').then(
@@ -28,20 +33,24 @@ export const routes: Routes = [
           ),
       },
     ],
-    canActivate:[function(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-      console.log( route , "can activate guard ActivatedRouteSnapshot")
-      console.log(state ,"can activate guard state")
-      return true;
-    }],
-    canDeactivate:[function(){
-      
-    }],
-    canMatch:[]
+    canActivate: [
+      function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        console.log(route, 'can activate guard ActivatedRouteSnapshot');
+        console.log(state, 'can activate guard state');
+        return true;
+      },
+    ],
+    canDeactivate: [function () {}],
+    canMatch: [],
   },
   {
     path: 'counter',
-    component:CounterComponent
+    component: CounterComponent,
   },
   { path: 'user', component: UserComponent },
+  {
+    path: 'lifecycleMethods',
+    component:LifeCycleExampleComponent,
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
