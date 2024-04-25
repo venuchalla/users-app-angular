@@ -1,5 +1,5 @@
 import { BooklistService } from './booklist.service';
-import { CommonModule, NgFor } from '@angular/common';
+import {  NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { books } from './books.model';
 import { HttpClient } from '@angular/common/http';
