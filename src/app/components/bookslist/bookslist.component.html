@@ -1,1 +1,12 @@
 <p>bookslist works!</p>
+<div>
+   <!-- <li *ngFor = "let b in booksList">
+        <span>{{b.id}}</span>
+      <span>{{b.volumeInfo}}</span>
+    </li>-->
+    <ul>
+        @for (c of booksList; track c) {
+          <li>{{c.id}}- {{c.author}}</li>
+        }
+      </ul>
+</div>

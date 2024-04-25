@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { counterReducer } from '@pages/counter/counter.reducer';
 import { CounterComponent } from '@pages/counter/counter.component';
 import { UserloginComponent } from './components/userlogin/userlogin.component';
+import {HttpClientModule } from '@angular/common/http';
 
 
 
@@ -24,7 +25,8 @@ import { UserloginComponent } from './components/userlogin/userlogin.component';
     StoreModule.forRoot({count:counterReducer}),
     CounterComponent,
     PageNotFoundComponent,
-    UserloginComponent
+    UserloginComponent,
+    HttpClientModule
   ],
   providers:appConfig.providers,
   bootstrap:[AppComponent]

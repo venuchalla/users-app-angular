@@ -1,10 +1,12 @@
 
 
 export interface books {
-    id: String,
-    volumeInfo:{
-        id:String
-        authors: Array<String>
-    }
+    id?: Number ,
+    title:String,
+    author:String,
+    publication_year:Number,
+    genre:Array<String>
+   description :String,
+   cover_image:String
 
 }
