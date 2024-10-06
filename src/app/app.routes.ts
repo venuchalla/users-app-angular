@@ -8,6 +8,8 @@ import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './pages/user/user.component';
 import { CounterComponent } from './pages/counter/counter.component';
 import { LifeCycleExampleComponent } from './life-cycle-example/life-cycle-example/life-cycle-example.component';
+import { RadiooptionselectorComponent } from './pages/radiooptionselector/radiooptionselector.component';
+import { DialogboxComponent } from './pages/dialogbox/dialogbox.component';
 
 /**
  *  {
@@ -51,6 +53,12 @@ export const routes: Routes = [
   {
     path: 'lifecycleMethods',
     component:LifeCycleExampleComponent,
+  },
+  {path: "radiobuttondemo",
+    component:RadiooptionselectorComponent
+  },
+  {path: "dialogdemo",
+    component:DialogboxComponent
   },
   { path: '**', component: PageNotFoundComponent },
 ];

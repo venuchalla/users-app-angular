@@ -12,6 +12,7 @@ import { counterReducer } from '@pages/counter/counter.reducer';
 import { CounterComponent } from '@pages/counter/counter.component';
 import { UserloginComponent } from './components/userlogin/userlogin.component';
 import {HttpClientModule } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 

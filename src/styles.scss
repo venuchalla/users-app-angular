@@ -4,3 +4,5 @@
 @import './app/scss/bass/utilities';
 //@import './app/scss/layouts/grid';
 //@import './app/scss/components/composition';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
