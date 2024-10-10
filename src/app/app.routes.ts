@@ -10,6 +10,10 @@ import { CounterComponent } from './pages/counter/counter.component';
 import { LifeCycleExampleComponent } from './life-cycle-example/life-cycle-example/life-cycle-example.component';
 import { RadiooptionselectorComponent } from './pages/radiooptionselector/radiooptionselector.component';
 import { DialogboxComponent } from './pages/dialogbox/dialogbox.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { EmptyPageLayoutComponent } from './layouts/empty-page-layout/empty-page-layout.component';
+import { SimplePageLayoutComponent } from './layouts/simple-page-layout/simple-page-layout.component';
+import { FullPageLayoutComponent } from './layouts/full-page-layout/full-page-layout.component';
 
 /**
  *  {
@@ -22,9 +26,20 @@ import { DialogboxComponent } from './pages/dialogbox/dialogbox.component';
  */
 //component: HomeComponent
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: HomeComponent,
+      },
+    ],
+  },
   {
     path: 'csscourseapp',
+    component: MainLayoutComponent,
     children: [
       {
         title: 'CSS Course App',
@@ -47,18 +62,25 @@ export const routes: Routes = [
   },
   {
     path: 'counter',
-    component: CounterComponent,
+    component: SimplePageLayoutComponent,
+    children: [{ path: '', pathMatch: 'full', component: CounterComponent }],
   },
-  { path: 'user', component: UserComponent },
+  {
+    path: 'user',
+    component: FullPageLayoutComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: UserComponent,
+      },
+    ],
+  },
   {
     path: 'lifecycleMethods',
-    component:LifeCycleExampleComponent,
+    component: LifeCycleExampleComponent,
   },
-  {path: "radiobuttondemo",
-    component:RadiooptionselectorComponent
-  },
-  {path: "dialogdemo",
-    component:DialogboxComponent
-  },
+  { path: 'radiobuttondemo', component: RadiooptionselectorComponent },
+  { path: 'dialogdemo', component: DialogboxComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

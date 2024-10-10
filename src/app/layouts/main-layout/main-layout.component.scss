@@ -1,0 +1,16 @@
+@import '../../scss/abstracts/layout';
+:host{
+    @extend .layout-host;
+    .main-layout_top-container{
+        @extend .top-container;
+    }
+    .main-layout__header{
+        @extend .header;
+    }
+    .main-layout__main{
+        @extend .main;
+    }
+    .main-layout__footer{
+        @extend .footer;
+    }
+}

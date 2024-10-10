@@ -1,8 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-@import './app/scss/bass/bass';
-@import './app/scss/bass/typography.scss';
-@import './app/scss/bass/utilities';
+@import "./app/scss/bass/bass";
+@import "./app/scss/bass/typography.scss";
+@import "./app/scss/bass/utilities";
 //@import './app/scss/layouts/grid';
 //@import './app/scss/components/composition';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  width: 100%;
+  min-width: 374px;
+  margin: 0;
+  //need to remove
+  padding: 0px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

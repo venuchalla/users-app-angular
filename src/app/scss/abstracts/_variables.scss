@@ -18,13 +18,79 @@ $color-grey-dark-3: #333;
 
 $color-white: #fff;
 $color-black: #000;
+$color-grey : #929ba9;
+$color-blue : #0079c1;
+
+$color-cerulean :#73C3EB;
+
 
 
 // FONT
 $default-font-size: 1.6rem;
+$font-size-xxxxlarge : 4.4rem;
+$font-size-xxxlarge : 3.6rem;
+$font-size-xxlarge : 2.8rem;
+$font-size-xlarge : 2.4rem;
+$font-size-large : 2.2rem;
+$font-size-medium : 1.8rem;
+$font-size-small : 1.6rem;
+$font-size-xsmall : 1.4rem;
+$font-size-xxsmall : 1.2rem;
+$font-size-xxxsmall : 1.0rem;
+
 
 
 // GRID
 $grid-width: 114rem;
 $gutter-vertical: 8rem;
 $gutter-horizontal: 8rem;
+
+$cta-button-width:160px;
+$radio-button-width : 100px;
+$card-shadow :0px 2px 1px -1px rgba(0,0,0,0.10), 0px 1px 1px 0px, rgba(0,0,0,0.06),0px 1px 3px 0px rgba(0,0,0,0.08);
+
+$main-section-max-width :1120px;
+$main-section-content-max-width: calc($main-section-max-width/2) + 6px;
+//Screen size
+
+$xsm-screen-min:0px;
+$xsm-screen-max:374px;
+$sm-screen-min : 375px;
+$sm-screen-max :599px;
+$md-screen-min :600px;
+$md-screen-max :767px;
+$lg-screen-min:768px;
+$lg-screen-max : 1023px;
+$xl-screen-min: 1024px;
+$xl-screen-max:1279px;
+$xxl-screen-min:1280px;
+$default-screeno-max:1280px;
+
+//spacing
+$spacing-none:0;
+$spacing-xxxxsmall:4px;
+$spacing-xxxsmall:8px;
+$spacing-xxsmall:16px;
+$spacing-xsmall: 24px;
+$spacing-small :32px;
+$spacing-medium : 40px;
+$spacing-large: 48px;
+$spacing-xlarge:80px;
+$spacing-xxlarge:120px;
+
+//size
+$size-zero:0;
+$size-xxxxmall:4px;
+$size-xxxsmall:8px;
+$size-xxsmall:16px;
+$size-xsmall:24px;
+$size-small:32px;
+$size-xmedium :40px;
+$size-xxmedium :48px;
+$size-medium :56px;
+$size-large:64px;
+$size-xlarge:80px;
+$size-xxlarge:112px;
+$size-xxxlarge:136px;
+$size-grand:152px;
+$size-xxxgrand:1096px;

@@ -1,0 +1,41 @@
+@import "_variables";
+.layout-host{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+.page-wrapper{
+    display: block;
+    margin: 0;
+    //margin: 0 $size-xxsmall;
+   
+    box-sizing: border-box;
+}
+.top-container{
+    display: block;
+    
+}
+.section-container{
+    display: block;
+   // max-width: $main-section-max-width;
+}
+.header{
+    @extend .section-container;
+    margin: 0 auto;
+}
+
+.main{
+@extend .section-container;
+margin: 0 auto $spacing-large auto;
+//need to check
+ max-width: calc(100% - 32px);
+}
+.footer{
+ display: block;
+ width :100%;
+ position: relative;
+ bottom: 0;
+}

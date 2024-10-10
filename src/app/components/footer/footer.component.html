@@ -1,0 +1,20 @@
+<div class="footer-container">
+  <div class="footer-section flex-column">
+    <div id="links-section" class="links">
+      <span *ngFor="let link of links">
+        <a
+          href="{{ link.url }}"
+          class="bold"
+          target="_blank"
+          rel="noopener noreferrer"
+          >{{ link.key }}</a
+        >
+      </span>
+    </div>
+    <div [id]="footerId">
+      <ng-container *ngIf="DynamicContent$ | async as content">
+        <div [innerHTML]="content"></div>
+      </ng-container>
+    </div>
+  </div>
+</div>
