@@ -13,4 +13,8 @@
     .main-layout__footer{
         @extend .footer;
     }
+    .banner{
+        display: block;
+        text-align: center;
+    }
 }

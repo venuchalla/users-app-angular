@@ -1,33 +1,32 @@
-@import '../../scss/abstracts/variables';
+@import "../../scss/abstracts/variables";
 
-:host{
-    background: $color-blue;
+:host {
+  background: $color-blue;
+  display: flex;
+  flex: 2 1 auto;
+  justify-content: center;
+  align-items: center;
+  height: $size-large;
+  padding: 0 $size-small;
+  .logo {
     display: flex;
-    flex :2 1 auto;
-    justify-content: center;
-    align-items: center;
-    height: $size-large;
-    padding: 0 $size-small;
-    .logo{
-        display: flex;
-        height: $size-small;
-    }
-    .header-container{
-        display: flex;
-        justify-content: space-between;
-    }
+    height: $size-small;
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    .img-section{
-
-    }
-    .text-section{
-        color: $color-white;
-    }
+  .img-section {
+  //  background-color: $color-white;
+  }
+  .text-section {
+    color: $color-white;
+  }
 }
 
-
-@media only screen and (min-width :$md-screen-min) {
-   :host{
+@media only screen and (min-width: $md-screen-min) {
+  :host {
     padding: 0;
-   } 
+  }
 }
