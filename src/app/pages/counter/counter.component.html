@@ -8,4 +8,12 @@
   <button (click)="decrement()">Decrement</button>
   <br />
   <button (click)="reset()">Reset Counter</button>
+  <p>Example for directive usage : </p>
+  <div>
+    <label>Enter your text to show the reverse string :</label>
+    <input type="text" id="name" [(ngModel)] = "rText"/>
+  </div>
+
+  <p> your text is : {{rText | reverse }}</p>
+  
 </div>

@@ -1,6 +1,9 @@
-import { createAction } from "@ngrx/store";
+import { createAction } from '@ngrx/store';
 
+export const storeName = '[Count]';
 
-export const increment = createAction('[Counter] Increment');
-export const decrement = createAction('[Counter] Decrement');
-export const reset = createAction('[Counter] Reset')
+export const CounterActions = {
+  increment: createAction('[Counter] Increment'),
+  reset: createAction('[Counter] Reset'),
+  decrement: createAction('[Counter] Decrement'),
+};

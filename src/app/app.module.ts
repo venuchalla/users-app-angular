@@ -18,12 +18,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 @NgModule({
   declarations: [AppComponent,UserComponent],
+  //StoreModule.forRoot({}), it moved to app config providers
   imports: [
     CommonModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({count:counterReducer}),
     CounterComponent,
     PageNotFoundComponent,
     UserloginComponent,

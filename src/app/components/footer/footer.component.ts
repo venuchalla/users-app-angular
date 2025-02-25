@@ -19,12 +19,18 @@ export class FooterComponent implements OnInit {
   links = [{key : "legal", url :""},
     {key : "security", url :""}
     ,{key : "privacy", url :""}]
-  constructor(private domSanitizer:DomSanitizer){
+  constructor(private domSanitizer:DomSanitizer,private http : HttpClient){
     
   }
   ngOnInit(): void { 
-      let html = this.domSanitizer.bypassSecurityTrustHtml("<p> dynamic footer</p>")
-      this.DynamicContent$= of(html);
+    //src/assets/content/footer/footer.html
+    this.http.get('assets/content/footer/footer.html', { responseType: 'text' })
+        .subscribe(html => {
+          console.log(html)
+          this.DynamicContent$= of(html);
+        });
+     //let html = this.domSanitizer.bypassSecurityTrustHtml("<p> dynamic footer</p>")
+      
 }
 
 }
