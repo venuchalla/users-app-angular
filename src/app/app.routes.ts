@@ -16,6 +16,7 @@ import { SimplePageLayoutComponent } from './layouts/simple-page-layout/simple-p
 import { FullPageLayoutComponent } from './layouts/full-page-layout/full-page-layout.component';
 import { provideStore } from '@ngrx/store';
 import { counterReducer } from './pages/counter/counter.reducer';
+import { CardapplicationComponent } from './pages/cardapplication/cardapplication.component';
 
 /**
  *  {
@@ -38,6 +39,17 @@ export const routes: Routes = [
         component: HomeComponent,
       },
     ],
+  },{
+    path:'app',
+    component:EmptyPageLayoutComponent,
+    children:[
+      {
+        path : '',
+        pathMatch:'full',
+        component:CardapplicationComponent
+      }
+    ]
+
   },
   {
     path: 'csscourseapp',

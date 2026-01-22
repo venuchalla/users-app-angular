@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of, startWith } from 'rxjs';
 import { CounterActions, storeName } from './counter.actions';
@@ -19,17 +19,17 @@ import { ReversePipe } from '@app/diectives/reverse.pipe';
 export class CounterComponent {
   //counter$: Observable<CounterState>;
   count$: Observable<Number>;
-  rText : String ;
+  rText : String ="" ;
+  showReverseTxt : boolean = false;
 
   constructor(private store: Store<RootState>, private titleService: Title) {
-    this.rText=""
     titleService.setTitle('Counter App');
     this.count$ = this.store.select((state) => state.counter.count);
     //this.count$ = store.select((c) => {return c.count})
     //this.counter$.subscribe(c => this.count = c.count)
+
     
   }
-
   increment() {
     this.store.dispatch(CounterActions.increment());
   }
@@ -40,5 +40,10 @@ export class CounterComponent {
 
   reset() {
     this.store.dispatch(CounterActions.reset());
+  }
+  onChangeHandler(event : any){
+    console.log("event --> :"+ event.target.value)
+    this.showReverseTxt = this.rText.length > 1 ? true : false; 
+    console.log(this.showReverseTxt)
   }
 }
