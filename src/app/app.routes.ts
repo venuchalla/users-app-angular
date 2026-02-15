@@ -1,3 +1,4 @@
+import { RadiobuttonComponent } from './components/radiobutton/radiobutton.component';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
@@ -97,5 +98,7 @@ export const routes: Routes = [
   },
   { path: 'radiobuttondemo', component: RadiooptionselectorComponent },
   { path: 'dialogdemo', component: DialogboxComponent },
+   {path: 'radiooptionselector', component: RadiobuttonComponent},
   { path: '**', component: PageNotFoundComponent },
+ 
 ];

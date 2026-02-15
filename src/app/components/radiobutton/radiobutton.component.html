@@ -1,0 +1,25 @@
+
+<mat-card class="card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Radio Button Demo</mat-card-title>
+      <mat-card-subtitle>Radio Button component using material ui</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <label>Residence Type</label>
+        <mat-radio-group class="custom-radio-group" [value] ="residenceType">
+            @for (item of radioOptions; track $index) {
+                <mat-radio-button name = "ResidencyType" class="custom-radio" [value]="item.value" 
+                (click)="toggleResidenceType(item.value)" >
+                    {{item.viewValue}}
+                </mat-radio-button>
+            }
+          </mat-radio-group>
+          @if (residenceType) {
+           
+                    <p class="selectedvalue">Your Residence Type is:  {{residenceType}}</p>
+            
+          
+          }
+    </mat-card-content> 
+</mat-card>

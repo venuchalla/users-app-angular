@@ -1,0 +1,51 @@
+.card{
+  display: flex;
+  
+}
+::ng-deep .custom-radio-group {
+  display: flex;
+  gap: 12px;
+
+}
+
+::ng-deep .custom-radio {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hide default circle */
+::ng-deep .custom-radio .mdc-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Remove default label spacing */
+::ng-deep .custom-radio .mdc-form-field {
+  margin: 0;
+   width: 100%;
+}
+
+/* Selected state */
+::ng-deep .custom-radio.mat-mdc-radio-checked {
+  background-color: #1976d2;
+  color: white;
+  border-color: #1976d2;
+}
+
+
+::ng-deep .custom-radio .mdc-label {
+  color: #1976d2;
+}
+
+::ng-deep .custom-radio.mat-mdc-radio-checked .mdc-label {
+  color: white;
+}
+
+.selectedvalue {
+  margin-top: 20px;
+  font-size: 16px;
+}
