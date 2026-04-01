@@ -13,6 +13,7 @@ import { CounterComponent } from '@pages/counter/counter.component';
 import { UserloginComponent } from './components/userlogin/userlogin.component';
 import {HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -27,7 +28,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     CounterComponent,
     PageNotFoundComponent,
     UserloginComponent,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers:appConfig.providers,
   bootstrap:[AppComponent]

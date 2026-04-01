@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+ @Input() prdocutNames: string[] = ['Angular', 'React']
+  @Input() logoUrl: string = '../../../assets/icons/v.png'
 
 }

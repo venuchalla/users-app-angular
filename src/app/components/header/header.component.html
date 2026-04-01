@@ -1,9 +1,8 @@
 <div class="container header-container">
-  <img
-    aria-hidden="true"
-    alt=""
-    src="../../../assets/icons/v.png"
-    class="logo img-section"
-  />
-  <div class="text-section">Test App</div>
+  <img aria-hidden="true" alt="" [src]="logoUrl" class="logo img-section" />
+  <div class="text-section">
+    @for (pName of prdocutNames; track $index) {
+      <div class="content">{{ pName }}</div>
+    }
+  </div>
 </div>

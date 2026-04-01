@@ -10,7 +10,10 @@ import {
 } from '@angular/material/card';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { RadioOption } from './radiooption';
-
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatButton } from '@angular/material/button';
+import { BottomsheetComponent } from '../bottomsheet/bottomsheet.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
   selector: 'app-radiobutton',
   standalone: true,
@@ -22,7 +25,7 @@ import { RadioOption } from './radiooption';
     MatCardContent,
     MatRadioGroup,
     MatRadioButton,
-    FormsModule,
+    FormsModule
   ],
   templateUrl: './radiobutton.component.html',
   styleUrl: './radiobutton.component.scss',
@@ -30,8 +33,7 @@ import { RadioOption } from './radiooption';
 export class RadiobuttonComponent implements OnInit {
   residenceType: string = '';
   radioOptions: RadioOption[] = [];
-  constructor(private radioService: RadioService) {
-  }
+  constructor(private radioService: RadioService,private bottomSheet: MatBottomSheet) {}
   ngOnInit(): void {
     // You can set a default value for residenceType if needed
     this.residenceType = 'rent'; // Default to 'Rent'
@@ -50,4 +52,7 @@ export class RadiobuttonComponent implements OnInit {
       this.residenceType = value; // Select the new option
     }
   }
+  openSheet() {
+  this.bottomSheet.open(BottomsheetComponent);
+}
 }

@@ -1,6 +1,24 @@
-<p>cardapplication works!</p>
-<mat-card appearance="outlined" class="card">
-    <mat-card-header>header</mat-card-header>
-    <mat-card-content>content</mat-card-content>
-    <mat-card-footer> footer</mat-card-footer>
-</mat-card>
+<div class="layout-container">
+<app-header class = "appheader">
+    <mat-toolbar color="primary">Card Application</mat-toolbar>
+  </app-header>
+<div class="content">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Card Title</mat-card-title>
+      <mat-card-subtitle>Card Subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://via.placeholder.com/400x200" alt="Card Image">
+    <mat-card-content>
+      <p>This is some content inside the card. You can add more details here.</p>
+    </mat-card-content>
+    <mat-card-actions>  
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+  <app-footer class="footer">
+    <mat-toolbar color="accent">Card Application</mat-toolbar>
+  </app-footer>
+</div>
