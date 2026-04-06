@@ -39,28 +39,6 @@ constructor(private booklistService: BooklistService,private router: Router, ) {
     this.subscription = this.Store.select(selectBooks).subscribe((books) => {
       console.log('BookslistComponent received books from store:==', books);
       this.loading = false;
-      const booksListR = [
-        {
-          author: 'Harper Lee',
-          cover_image: 'https://fakeimg.pl/667x1000/cc6600',
-          description:
-            'A classic novel depicting racial injustice in the American South.',
-          genre: ['Fiction', 'Classic'],
-          id: 1,
-          publication_year: 1960,
-          title: 'To Kill a Mockingbird',
-        },
-        {
-          author: 'Harper Lee',
-          cover_image: 'https://fakeimg.pl/667x1000/cc6600',
-          description:
-            'A classic novel depicting racial injustice in the American South.',
-          genre: ['Fiction', 'Classic'],
-          id: 3,
-          publication_year: 1960,
-          title: 'To Kill a Mockingbird',
-        },
-      ];
       this.booksList = books;
     });
   }
