@@ -13,14 +13,13 @@ import { Store } from '@ngrx/store';
 export class CsscourseappComponent {
   constructor(
     private router: Router,
-    private RootState: Store<RootState>,
+    private Store: Store<RootState>,
   ) {
     
   }
   ngOnInit() {
    console.log('CsscourseappComponent initialized router:', this.router);
-    console.log('CsscourseappComponent initialized RootState:', this.RootState);
-    this.RootState.subscribe((state) => {
+    this.Store.subscribe((state) => {
       console.log('Current RootState:', state);
     }); }
   natours() {

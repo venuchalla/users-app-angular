@@ -5,7 +5,7 @@ import { NgFor } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { book } from './book.model';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterState } from '@angular/router';
 import { BooksActions } from './books.actions';
 import { Observable, of, Subscription } from 'rxjs';
 
@@ -23,16 +23,14 @@ export class BookslistComponent implements OnInit, OnDestroy {
   loading = true;
   constructor(
     private router: Router,
-    private Store: Store,
-  ) {}
-  /*
-constructor(private booklistService: BooklistService,private router: Router, ) {}
- ngOninit for http call without storing the resonse in ngrx store
-  ngOnInit(): void {
-    this.booklistService
-      .getBooks()
-      .subscribe((book : book[]) => (this.booksList = book));
-  }*/
+    private Store: Store
+  ) {
+      console.log('BookslistComponent constructor called' )
+      this.Store.subscribe((state) => {
+        console.log('BookslistComponent current store state:', state);
+      });
+  }
+  
   ngOnInit(): void {
     console.log('BookslistComponent initialized');
     this.Store.dispatch(BooksActions.loadBooks());
