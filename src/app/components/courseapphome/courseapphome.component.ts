@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-courseapphome',
@@ -11,7 +11,11 @@ import { RouterLink } from '@angular/router';
 })
 export class CourseapphomeComponent {
 
-  constructor(private titleService : Title){
+  constructor(private titleService : Title,private router: Router){
    // titleService.setTitle("CSS Course App")
+  }
+
+   gotoHome(){
+    this.router.navigate(['home'])
   }
 }

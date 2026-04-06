@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { CounterState } from './counter.reducer';
 import { RootState } from '@app/state';
 import { FormsModule } from '@angular/forms';
-import { ReversePipe } from '@app/diectives/reverse.pipe';
+import { ReversePipe } from '@app/diectives/reverse/reverse.pipe';
 
 @Component({
   selector: 'app-counter',

@@ -1,6 +1,6 @@
 
 
-export interface books {
+export interface book {
     id?: Number ,
     title:String,
     author:String,

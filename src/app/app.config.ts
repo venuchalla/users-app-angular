@@ -1,15 +1,22 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, RouterState } from '@angular/router';
 import { StoreModule, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { provideRouterStore } from '@ngrx/router-store';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { routes } from './app.routes';
 import { AppRoutingModule } from './app-routing.module';
 import { counterReducer } from './pages/counter/counter.reducer';
 import { reducers } from './state';
+import { BooksEffects } from './components/bookslist/books.effects';
 
 export const appConfig: ApplicationConfig = {
   //provideRouter(routes),//provideStore()
-  //provideEffects() provideRouterStore()
-  providers: [provideStore(reducers)],
+   //provideRouterStore()
+  providers: [
+    
+    provideRouter(routes),
+    provideStore(reducers),
+    provideEffects([BooksEffects]),
+    provideRouterStore()
+  ],
 };

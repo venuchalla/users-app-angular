@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { books } from './books.model';
+import { book } from './book.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of, tap } from 'rxjs';
 
@@ -11,7 +11,8 @@ export class BooklistService {
 
   //https://freetestapi.com/api/v1/books
   getBooks(){
-    /*const booksList: books[] = [
+    console.log("getBooks service called");
+    const booksList: book[] = [
       {
         id: 1,
         title: 'To Kill a Mockingbird',
@@ -22,12 +23,23 @@ export class BooklistService {
           'A classic novel depicting racial injustice in the American South.',
         cover_image: 'https://fakeimg.pl/667x1000/cc6600'
       },
-    ];*/
-    return this.httpClient.get<books[]>('https://freetestapi.com/api/v1/books').pipe(
+      {
+        id: 2,
+        title: 'To Kill a Mockingbird',
+        author: 'Harper Lee',
+        publication_year: 1962,
+        genre: ['Fiction', 'Classic'],
+        description:
+          'A classic novel depicting racial injustice in the American South.',
+        cover_image: 'https://fakeimg.pl/667x1000/cc6600'
+      },
+    ];
+    /*return this.httpClient.get<book[]>('https://freetestapi.com/api/v1/books').pipe(
       tap(_ => this.log('fetched heroes')),
-      catchError(this.handleError<books[]>('getHeroes', []))
-    )
-    
+      catchError(this.handleError<book[]>('getHeroes', []))
+    )*/
+
+    return of(booksList);
   }
   /**
    * Handle Http operation that failed.
@@ -53,4 +65,6 @@ export class BooklistService {
   private log(message: string) {
     console.log(message)
   }
+
+ 
 }

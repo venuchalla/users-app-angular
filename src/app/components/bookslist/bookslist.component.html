@@ -1,12 +1,22 @@
 <p>bookslist works!</p>
 <div>
-   <!-- <li *ngFor = "let b in booksList">
+  <!-- <li *ngFor = "let b in booksList">
         <span>{{b.id}}</span>
       <span>{{b.volumeInfo}}</span>
     </li>-->
+  @if (loading) {
+    <p>Loading books...</p>
+  } @else {
     <ul>
-        @for (c of booksList; track c) {
-          <li> {{c.id}} - {{c.author}} - {{c.title}} - {{c.cover_image}} </li>
-        }
-      </ul>
+      @for (c of booksList; track c) {
+        <li>
+          {{ c.id }} - {{ c.author }} - {{ c.title }} - {{ c.cover_image }}
+        </li>
+      }
+    </ul>
+  }
+
+  <button (click)="goToCourseApp()">GOTOCOURSEAPP</button>
+
+  <button (click)="gotoHome()">HOME</button>
 </div>

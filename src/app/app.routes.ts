@@ -18,6 +18,7 @@ import { FullPageLayoutComponent } from './layouts/full-page-layout/full-page-la
 import { provideStore } from '@ngrx/store';
 import { counterReducer } from './pages/counter/counter.reducer';
 import { CardapplicationComponent } from './pages/cardapplication/cardapplication.component';
+import { BookslistComponent } from './components/bookslist/bookslist.component';
 
 /**
  *  {
@@ -74,6 +75,11 @@ export const routes: Routes = [
     ],
     canDeactivate: [function () {}],
     canMatch: [],
+    data: {
+      title: 'CSS Course App (developer custom data)',
+    },
+    title: 'CSS Course App',
+  providers: [],
   },
   {
     path: 'counter',
@@ -99,6 +105,8 @@ export const routes: Routes = [
   { path: 'radiobuttondemo', component: RadiooptionselectorComponent },
   { path: 'dialogdemo', component: DialogboxComponent },
    {path: 'radiooptionselector', component: RadiobuttonComponent},
+   {path: 'bookslist', component: BookslistComponent},
+   {path: 'home', component: HomeComponent},
   { path: '**', component: PageNotFoundComponent },
  
 ];

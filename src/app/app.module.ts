@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent,UserComponent],
   //StoreModule.forRoot({}), it moved to app config providers
+  
   imports: [
     CommonModule,
     BrowserModule,

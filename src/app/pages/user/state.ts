@@ -6,7 +6,7 @@ export const UserActions = {
   update: createAction('[Update] User'),
 };
 
-export interface User{
+export interface User {
     firstName: String;
     lastName : String;
 }
