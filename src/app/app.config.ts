@@ -13,7 +13,6 @@ export const appConfig: ApplicationConfig = {
   //provideRouter(routes),//provideStore()
    //provideRouterStore()
   providers: [
-    
     provideRouter(routes),
     provideStore(reducers),
     provideEffects([BooksEffects]),
