@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { counterReducer } from './pages/counter/counter.reducer';
 import { reducers } from './state';
 import { BooksEffects } from './components/bookslist/books.effects';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   //provideRouter(routes),//provideStore()
    //provideRouterStore()
   providers: [
+    provideHttpClient(),
     provideRouter(routes),
     provideStore(reducers),
     provideEffects([BooksEffects]),

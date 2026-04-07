@@ -15,8 +15,6 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { EmptyPageLayoutComponent } from './layouts/empty-page-layout/empty-page-layout.component';
 import { SimplePageLayoutComponent } from './layouts/simple-page-layout/simple-page-layout.component';
 import { FullPageLayoutComponent } from './layouts/full-page-layout/full-page-layout.component';
-import { provideStore } from '@ngrx/store';
-import { counterReducer } from './pages/counter/counter.reducer';
 import { CardapplicationComponent } from './pages/cardapplication/cardapplication.component';
 import { BookslistComponent } from './components/bookslist/bookslist.component';
 

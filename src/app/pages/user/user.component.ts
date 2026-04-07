@@ -9,6 +9,7 @@ import { User } from './state';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
+  imports:[UserloginComponent],
   styleUrl: './user.component.scss',
 })
 export class UserComponent {

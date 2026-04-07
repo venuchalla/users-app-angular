@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
-  declarations: [AppComponent,UserComponent],
+  declarations: [AppComponent],
   //StoreModule.forRoot({}), it moved to app config providers
   
   imports: [
@@ -30,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PageNotFoundComponent,
     UserloginComponent,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    UserComponent
   ],
   providers:appConfig.providers,
   bootstrap:[AppComponent]
