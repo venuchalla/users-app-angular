@@ -1,7 +1,7 @@
 import { selectBooks } from './books.selector';
 import { Store } from '@ngrx/store';
 import { BooklistService } from './booklist.service';
-import { NgFor } from '@angular/common';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { book } from './book.model';
 import { HttpClient } from '@angular/common/http';

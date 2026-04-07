@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 import { from, Observable, of } from 'rxjs';

@@ -1,13 +1,19 @@
 <p>User Login</p>
 <app-userlogin></app-userlogin>
-<div *ngIf="false">
-    <button (click)="openIframe()" *ngIf="!showIframe">Sign In</button>
-    <button (click)="closeIframe()" *ngIf="showIframe">Close Iframe</button>
-    <ng-container *ngIf="showIframe">
-        <iframe [src]="trustedUrl" WIDTH = '90%' HEIGHT= '800' >
-        </iframe>
-    </ng-container>
-</div>
+@if (false) {
+  <div>
+    @if (!showIframe) {
+      <button (click)="openIframe()">Sign In</button>
+    }
+    @if (showIframe) {
+      <button (click)="closeIframe()">Close Iframe</button>
+    }
+    @if (showIframe) {
+      <iframe [src]="trustedUrl" WIDTH = '90%' HEIGHT= '800' >
+      </iframe>
+    }
+  </div>
+}
 
 
 
