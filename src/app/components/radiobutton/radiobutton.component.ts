@@ -14,6 +14,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatButton } from '@angular/material/button';
 import { BottomsheetComponent } from '../bottomsheet/bottomsheet.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FirstLetterUpperCasePipe } from '@app/pipes/fUpperCase/FirstLetterUpperCase.pipe';
 @Component({
   selector: 'app-radiobutton',
   standalone: true,
@@ -25,7 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardContent,
     MatRadioGroup,
     MatRadioButton,
-    FormsModule
+    FormsModule,
+    FirstLetterUpperCasePipe
+
   ],
   templateUrl: './radiobutton.component.html',
   styleUrl: './radiobutton.component.scss',

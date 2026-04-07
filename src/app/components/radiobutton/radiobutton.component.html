@@ -16,7 +16,7 @@
           [value]="item.value"
           (click)="toggleResidenceType(item.value)"
         >
-          {{ item.viewValue }}
+          {{ item.viewValue | fUpperCase }}
         </mat-radio-button>
       }
     </mat-radio-group>
@@ -27,10 +27,11 @@
     <div class="sheet-content">
       <h3>iPhone Style Bottom Sheet</h3>
       <p>This slides from bottom</p>
-      <button mat-raised-button color="primary">Confirm</button>
-    </div>
-    <button mat-raised-button color="accent" (click)="openSheet()">
+      <!--<button mat-raised-button color="primary">Confirm</button>-->
+       <button mat-raised-button color="accent" (click)="openSheet()">
   Open Bottom Sheet
 </button>
+    </div>
+   
   </mat-card-content>
 </mat-card>

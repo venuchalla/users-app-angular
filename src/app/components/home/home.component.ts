@@ -6,7 +6,7 @@ import { BookslistComponent } from '../bookslist/bookslist.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink,BookslistComponent],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
