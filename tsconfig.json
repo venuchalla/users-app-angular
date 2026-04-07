@@ -14,7 +14,7 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
@@ -23,12 +23,12 @@
       "ES2022",
       "dom"
     ],
-    "baseUrl": "src",
+    "rootDir": "./src",
     "paths": {
-      "@app/*":["app/*"],
-      "@pages/*":["app/pages/*"],
-      "@components/*":["app/components/*"],
-      "@scss/*":["app/scss/*"]
+      "@app/*":["./src/app/*"],
+      "@pages/*":["./src/app/pages/*"],
+      "@components/*":["./src/app/components/*"],
+      "@scss/*":["./src/app/scss/*"]
     }
   },
   "angularCompilerOptions": {

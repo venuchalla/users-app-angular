@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-csscourseapp',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet],
   templateUrl: './csscourseapp.component.html',
   styleUrl: './csscourseapp.component.scss',
 })
