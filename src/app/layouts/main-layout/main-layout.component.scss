@@ -1,20 +1,26 @@
-@import '../../scss/abstracts/layout';
-:host{
-    @extend .layout-host;
-    .main-layout_top-container{
-        @extend .top-container;
-    }
-    .main-layout__header{
-        @extend .header;
-    }
-    .main-layout__main{
-        @extend .main;
-    }
-    .main-layout__footer{
-        @extend .footer;
-    }
-    .banner{
-        display: block;
-        text-align: center;
-    }
+@use '../../scss/abstracts/layout' as layout;
+
+:host {
+  @include layout.layout-host;
+
+  .main-layout_top-container {
+    @include layout.top-container;
+  }
+
+  .main-layout__header {
+    @include layout.header;
+  }
+
+  .main-layout__main {
+    @include layout.main;
+  }
+
+  .main-layout__footer {
+    @include layout.footer;
+  }
+
+  .banner {
+    display: block;
+    text-align: center;
+  }
 }

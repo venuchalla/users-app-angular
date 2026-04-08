@@ -18,9 +18,9 @@ export class CsscourseappComponent {
     
   }
   ngOnInit() {
-   console.log('CsscourseappComponent initialized router:', this.router);
+   //console.log('CsscourseappComponent initialized router:', this.router);
     this.Store.subscribe((state) => {
-      console.log('Current RootState:', state);
+      //console.log('Current RootState:', state);
     }); }
   natours() {
     this.router.navigate(['csscourseapp', 'natours']);

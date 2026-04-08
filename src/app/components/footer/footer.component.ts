@@ -26,7 +26,7 @@ export class FooterComponent implements OnInit {
     //src/assets/content/footer/footer.html
     this.http.get('assets/content/footer/footer.html', { responseType: 'text' })
         .subscribe(html => {
-          console.log(html)
+         console.log(html)
           this.DynamicContent$= of(html);
         });
      //let html = this.domSanitizer.bypassSecurityTrustHtml("<p> dynamic footer</p>")

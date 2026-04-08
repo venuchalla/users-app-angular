@@ -1,4 +1,4 @@
-@import '../../../app/scss/abstracts/variables';
+@use '../../../app/scss/abstracts/variables' as var;
 :host {
  // padding: 0px 16px 16px 0px;
 }
@@ -12,7 +12,7 @@
 .content {
   flex: 1;             /* Take all remaining space */
   background: #f5f7fa;
-  background-color: $color-white;
+  background-color: var.$color-white;
 }
 
 .footer {

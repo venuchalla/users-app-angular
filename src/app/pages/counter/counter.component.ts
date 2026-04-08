@@ -19,7 +19,7 @@ import { ReversePipe } from '@app/pipes/reverse/reverse.pipe';
 export class CounterComponent {
   //counter$: Observable<CounterState>;
   count$: Observable<Number>;
-  rText : String ="" ;
+  rText : string ="" ;
   showReverseTxt : boolean = false;
 
   constructor(private store: Store<RootState>, private titleService: Title) {

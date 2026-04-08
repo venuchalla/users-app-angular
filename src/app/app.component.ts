@@ -28,7 +28,7 @@ export class AppComponent {
     private adobeService: AdobeserviceService,
     Title: Title,
   ) {
-    console.log('AppComponent initialized router:', this.router);
+   // console.log('AppComponent initialized router:', this.router);
     this.router.events
       .pipe(
         filter(
@@ -36,7 +36,7 @@ export class AppComponent {
         ),
       )
       .subscribe((event) => {
-        console.log('NavigationEnd event:', event);
+        //console.log('NavigationEnd event:', event);
         this.adobeService.trackEvent('NavigationEnd', {
           page: { url: event.url, name: Title.getTitle() },
         });

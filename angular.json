@@ -32,6 +32,14 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["src/app/scss"]
+            },
+            "server": "src/main.server.ts",
+            "outputMode": "server",
+            "security": {
+              "allowedHosts": ["localhost", "127.0.0.1", "0.0.0.0"]
+            },
+            "ssr": {
+              "entry": "src/server.ts"
             }
           },
           "configurations": {
@@ -45,7 +53,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "25kb"
                 }
               ],
               "outputHashing": "all"

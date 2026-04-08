@@ -20,11 +20,11 @@ export class BooksEffects {
   );*/
 
   loadBooks$ = createEffect(() =>{
-    console.log('BooksEffects initialized, actions$ stream:', this.actions$);
+    //console.log('BooksEffects initialized, actions$ stream:', this.actions$);
     return this.actions$.pipe(
       ofType(BooksActions.loadBooks),
       mergeMap(() => {
-        console.log('BooksActions.loadBooks action received, calling BooklistService.getBooks()');
+        //console.log('BooksActions.loadBooks action received, calling BooklistService.getBooks()');
         return this.BooklistService.getBooks().pipe(
           map((books) => {
             console.log('BooklistService.getBooks() returned:', books);

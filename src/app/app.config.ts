@@ -8,16 +8,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { counterReducer } from './pages/counter/counter.reducer';
 import { reducers } from './state';
 import { BooksEffects } from './components/bookslist/books.effects';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch} from '@angular/common/http';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   //provideRouter(routes),//provideStore()
    //provideRouterStore()
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideRouter(routes),
+
     provideStore(reducers),
     provideEffects([BooksEffects]),
-    provideRouterStore()
+    provideRouterStore(), provideClientHydration(withEventReplay())
   ],
 };
