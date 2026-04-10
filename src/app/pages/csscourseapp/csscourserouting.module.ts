@@ -8,38 +8,30 @@ import { CourseapphomeComponent } from '../../components/courseapphome/courseapp
 import { CssCourseAppRoutingService } from './csscourseapprouting.service';
 
 const cssRoutes: Routes = [
- // {
-   // path: '',
-   // component: CsscourseappComponent,
-   // children: [
-      { path: '', component: CourseapphomeComponent },
-      {
-        path: 'natours',
-        component: NatoursComponent,
-      },
-      
-      {
-        path: 'nexter',
-        component: NexterComponent,
-      },
-      {
-        path: 'trillo',
-        component: TrilloComponent,
-      },
-  //  ],
- // },
+  { path: '', 
+    component: CourseapphomeComponent },
+  {
+    path: 'natours',
+    component: NatoursComponent,
+  },
+
+  {
+    path: 'nexter',
+    component: NexterComponent,
+  },
+  {
+    path: 'trillo',
+    component: TrilloComponent,
+  },
 ];
-
-
+// Note: The actual routes will be loaded dynamically by the service, so we can keep this array empty or with a default route.
 @NgModule({
-  imports: [RouterModule.forChild([{ path: '', component: CourseapphomeComponent }])],
+  imports: [RouterModule.forChild(cssRoutes)],
   providers: [CssCourseAppRoutingService],
   exports: [],
 })
 export class CssCourseAppRoutingModule {
   constructor(private routingService: CssCourseAppRoutingService) {
-    this.routingService.loadChildRoutse();
-    
+   //this.routingService.loadChildRoutse();
   }
-
 }

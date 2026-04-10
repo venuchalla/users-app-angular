@@ -1,4 +1,3 @@
-import { RenderMode } from '@angular/ssr';
 import { RadiobuttonComponent } from './components/radiobutton/radiobutton.component';
 import {
   ActivatedRouteSnapshot,
@@ -40,17 +39,17 @@ export const routes: Routes = [
         component: HomeComponent,
       },
     ],
-  },{
-    path:'app',
-    component:EmptyPageLayoutComponent,
-    children:[
+  },
+  {
+    path: 'app',
+    component: EmptyPageLayoutComponent,
+    children: [
       {
-        path : '',
-        pathMatch:'full',
-        component:CardapplicationComponent
-      }
-    ]
-
+        path: '',
+        pathMatch: 'full',
+        component: CardapplicationComponent,
+      },
+    ],
   },
   {
     path: 'csscourseapp',
@@ -78,12 +77,12 @@ export const routes: Routes = [
       title: 'CSS Course App (developer custom data)',
     },
     title: 'CSS Course App',
-  providers: [],
+    providers: [],
   },
   {
     path: 'counter',
     component: SimplePageLayoutComponent,
-    providers:[],
+    providers: [],
     children: [{ path: '', pathMatch: 'full', component: CounterComponent }],
   },
   {
@@ -103,9 +102,8 @@ export const routes: Routes = [
   },
   { path: 'radiobuttondemo', component: RadiooptionselectorComponent },
   { path: 'dialogdemo', component: DialogboxComponent },
-   {path: 'radiooptionselector', component: RadiobuttonComponent},
-   {path: 'bookslist', component: BookslistComponent},
-   {path: 'home', component: HomeComponent},
+  { path: 'radiooptionselector', component: RadiobuttonComponent },
+  { path: 'bookslist', component: BookslistComponent },
+  { path: 'home', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent },
- 
 ];

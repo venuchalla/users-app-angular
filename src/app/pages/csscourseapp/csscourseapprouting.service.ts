@@ -8,6 +8,7 @@ export class CssCourseAppRoutingService {
 
   getPaths() {
     return of([
+       { path: '', component: 'CourseapphomeComponent' },
       { path: 'natours', component: 'NatoursComponent' },
       { path: 'nexter', component: 'NexterComponent' },
       { path: 'trillo', component: 'TrilloComponent' },
@@ -15,44 +16,49 @@ export class CssCourseAppRoutingService {
   }
 
   private getLazyComponent(moduleName: ModuleKey) {
+
     return CSSCOURSE_COMPONENTS[moduleName];
   }
   loadChildRoutse(): void {
     this.getPaths().subscribe((routes) => {
-      console.log('Received routes from service:', routes);
-      const cssCourseApproutes: Route[] = routes.map((route) => {
+    const dynamicRoutes: Route[] = routes.map((route) => ({
+      path: route.path,
+      loadComponent: this.getLazyComponent(route.component as any),
+    }));
+
+    const updatedConfig = this.router.config.map((r) => {
+      if (r.path === 'csscourseapp') {
         return {
-          path: route.path,
-          loadChildren: () =>
-            this.getLazyComponent(route.component as ModuleKey)().then(
-              (comp) => {
-                console.log(`Loaded component for path "${route.path}":`, comp);
-                return comp;
-              },
-            ),
+          ...r,
+          children: [
+            ...(r.children || []),
+            ...dynamicRoutes
+          ]
         };
-      });
-      console.log('Mapped Routes:', cssCourseApproutes);
-      const currentConfig = this.router.config;
-      console.log('Current Router Config before update:', currentConfig);
-      this.router.resetConfig([...currentConfig, ...cssCourseApproutes]);
-      console.log('Updated Router Config:', this.router.config);
+      }
+      return r;
+    });
+
+    this.router.resetConfig(updatedConfig);
     });
   }
 }
 
-export const CSSCOURSE_COMPONENTS = {
+const CSSCOURSE_COMPONENTS = {
   NatoursComponent: () =>
-    import('../../components/natours/natours.component').then(
-      (m) => m.NatoursComponent,
-    ),
+    import('../../components/natours/natours.component')
+      .then((m) => m.NatoursComponent),
+
   NexterComponent: () =>
-    import('../../components/nexter/nexter.component').then(
-      (m) => m.NexterComponent,
-    ),
+    import('../../components/nexter/nexter.component')
+      .then((m) => m.NexterComponent),
+
   TrilloComponent: () =>
-    import('../../components/trillo/trillo.component').then(
-      (m) => m.TrilloComponent,
-    ),
+    import('../../components/trillo/trillo.component')
+      .then((m) => m.TrilloComponent),
+      CourseapphomeComponent: () =>
+    import('../../components/courseapphome/courseapphome.component')
+      .then((m) => m.CourseapphomeComponent)
 };
-type ModuleKey = keyof typeof CSSCOURSE_COMPONENTS;
+
+type ModuleKey =| 'NatoursComponent'| 'NexterComponent'| 'TrilloComponent'| 'CourseapphomeComponent';
