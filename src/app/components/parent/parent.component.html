@@ -1,0 +1,23 @@
+<div>
+  <h2>Parent Component</h2>
+
+  <section>
+    <div>
+      <p>Name: {{ inputValue}}</p>
+      <fieldset>
+        <legend></legend>
+        parent input field : <input type="text" [(ngModel)]="inputValue" (input)="onInputChange()"/>
+      </fieldset>
+      <p>data passed to child:{{childData}} </p>
+      <p>data passed to child output():{{ppData}} </p>
+    </div>
+  </section>
+
+  <section>
+    <div>
+       <app-child [name]="inputValue" [cdata]="inputValue" (pdata)="onChildDataReceived($event)" (pout)="onChildOutputReceived($event)"></app-child>
+    </div>
+  </section>
+
+ 
+</div>

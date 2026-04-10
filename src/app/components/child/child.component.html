@@ -1,0 +1,15 @@
+<div>
+  <h2>Child Component</h2>
+
+
+  <div>
+    <p> data passed from parent: {{ name }}</p>
+    <p> data passed from parent: input() {{ cdata() }}</p>
+  </div>
+  <fieldset>
+    <legend></legend>
+    child input field : <input type="text" [(ngModel)]="childData" (input)="onInputChange($event)"/>    
+      
+    <p> child input value: {{ childData }}</p>
+  </fieldset>
+</div>
