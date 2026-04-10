@@ -4,7 +4,8 @@ import { CssCourseAppRoutingModule } from "./csscourserouting.module";
 
 
 @NgModule({
-    imports:[CssCourseAppRoutingModule,NatoursRoutingModule]
+    imports:[CssCourseAppRoutingModule]
+    
 })
 
 export class CssCourseAppModule{

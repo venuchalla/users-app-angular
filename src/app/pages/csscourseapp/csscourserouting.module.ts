@@ -5,20 +5,17 @@ import { NexterComponent } from '../../components/nexter/nexter.component';
 import { TrilloComponent } from '../../components/trillo/trillo.component';
 import { NatoursComponent } from '../../components/natours/natours.component';
 import { CourseapphomeComponent } from '../../components/courseapphome/courseapphome.component';
+import { CssCourseAppRoutingService } from './csscourseapprouting.service';
 
 const cssRoutes: Routes = [
-  {
-    path: '',
-    component: CsscourseappComponent,
-    children: [
+ // {
+   // path: '',
+   // component: CsscourseappComponent,
+   // children: [
       { path: '', component: CourseapphomeComponent },
       {
         path: 'natours',
         component: NatoursComponent,
-        /* loadChildren: () =>
-          import('../../components/natours/natours.module').then(
-            (m) => m.NatoursModule
-          ),*/
       },
       
       {
@@ -29,12 +26,20 @@ const cssRoutes: Routes = [
         path: 'trillo',
         component: TrilloComponent,
       },
-    ],
-  },
+  //  ],
+ // },
 ];
 
+
 @NgModule({
-  imports: [RouterModule.forChild(cssRoutes)],
-  exports: [RouterModule],
+  imports: [RouterModule.forChild([{ path: '', component: CourseapphomeComponent }])],
+  providers: [CssCourseAppRoutingService],
+  exports: [],
 })
-export class CssCourseAppRoutingModule {}
+export class CssCourseAppRoutingModule {
+  constructor(private routingService: CssCourseAppRoutingService) {
+    this.routingService.loadChildRoutse();
+    
+  }
+
+}
