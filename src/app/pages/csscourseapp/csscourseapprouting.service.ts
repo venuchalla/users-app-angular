@@ -1,6 +1,6 @@
-import { Route, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CssCourseAppRoutingService {
@@ -8,57 +8,85 @@ export class CssCourseAppRoutingService {
 
   getPaths() {
     return of([
-       { path: '', component: 'CourseapphomeComponent' },
+      { path: '', component: 'CourseapphomeComponent' },
       { path: 'natours', component: 'NatoursComponent' },
       { path: 'nexter', component: 'NexterComponent' },
-      { path: 'trillo', component: 'TrilloComponent' },
+     { path: 'trillo', component: 'TrilloComponent' },
     ]);
   }
 
   private getLazyComponent(moduleName: ModuleKey) {
-
     return CSSCOURSE_COMPONENTS[moduleName];
   }
-  loadChildRoutse(): void {
+
+  getChildRoutes(): Observable<void> {
     this.getPaths().subscribe((routes) => {
-    const dynamicRoutes: Route[] = routes.map((route) => ({
-      path: route.path,
-      loadComponent: this.getLazyComponent(route.component as any),
-    }));
-
-    const updatedConfig = this.router.config.map((r) => {
-      if (r.path === 'csscourseapp') {
-        return {
-          ...r,
-          children: [
-            ...(r.children || []),
-            ...dynamicRoutes
-          ]
-        };
+      const appRoutes = [...this.router.config];
+      const parentRoute = appRoutes.find((r) => r.path === 'csscourseapp');
+    
+      const lazyRoute = parentRoute?.children?.find((r) => r.loadChildren);
+      console.log('Found lazy route:', lazyRoute);
+      if (!lazyRoute) {
+       console.warn('Target lazy route not found');
+       return;
       }
-      return r;
-    });
 
-    this.router.resetConfig(updatedConfig);
+      const dynamicRoutes: Route[] = routes.map((route) => ({
+        path: route.path,
+        //pathMatch: 'full',
+        loadComponent: this.getLazyComponent(route.component as any),
+        canActivate :[function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+          console.log(route, 'can activate guard ActivatedRouteSnapshot');
+          return true;
+        }]
+      }));
+      if (!parentRoute) {
+        console.warn('Parent route not found');
+        return;
+      }
+      //parentRoute.children = [...dynamicRoutes];
+
+      lazyRoute.children = dynamicRoutes;
+      const updatedConfig = [...appRoutes];
+      // const updatedConfig = this.router.config.map((r) => {
+      //   if (r.path === 'csscourseapp') {
+      //      return {
+      //      ...r,
+      //     children: [...(r.children || []), ...dynamicRoutes],
+      //   };
+      // }
+      // return r;
+      // });
+      console.log('Updated Router Config:', updatedConfig);
+      this.router.resetConfig(updatedConfig);
     });
+    return of(void 0);
   }
 }
 
 const CSSCOURSE_COMPONENTS = {
   NatoursComponent: () =>
-    import('../../components/natours/natours.component')
-      .then((m) => m.NatoursComponent),
+    import('../../components/natours/natours.component').then(
+      (m) => m.NatoursComponent,
+    ),
 
   NexterComponent: () =>
-    import('../../components/nexter/nexter.component')
-      .then((m) => m.NexterComponent),
+    import('../../components/nexter/nexter.component').then(
+      (m) => m.NexterComponent,
+    ),
 
   TrilloComponent: () =>
-    import('../../components/trillo/trillo.component')
-      .then((m) => m.TrilloComponent),
-      CourseapphomeComponent: () =>
-    import('../../components/courseapphome/courseapphome.component')
-      .then((m) => m.CourseapphomeComponent)
+    import('../../components/trillo/trillo.component').then(
+      (m) => m.TrilloComponent,
+    ),
+  CourseapphomeComponent: () =>
+    import('../../components/courseapphome/courseapphome.component').then(
+      (m) => m.CourseapphomeComponent,
+    ),
 };
 
-type ModuleKey =| 'NatoursComponent'| 'NexterComponent'| 'TrilloComponent'| 'CourseapphomeComponent';
+type ModuleKey =
+  | 'NatoursComponent'
+  | 'NexterComponent'
+  | 'TrilloComponent'
+  | 'CourseapphomeComponent';

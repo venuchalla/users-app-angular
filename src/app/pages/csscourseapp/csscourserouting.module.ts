@@ -24,9 +24,14 @@ const cssRoutes: Routes = [
     component: TrilloComponent,
   },
 ];
+const cssRoutes1: Routes = [
+  { path: '', 
+    component: CourseapphomeComponent 
+  },
+];
 // Note: The actual routes will be loaded dynamically by the service, so we can keep this array empty or with a default route.
 @NgModule({
-  imports: [RouterModule.forChild(cssRoutes)],
+  imports: [RouterModule.forChild(cssRoutes1)],
   providers: [CssCourseAppRoutingService],
   exports: [],
 })
