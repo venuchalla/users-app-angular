@@ -17,17 +17,9 @@ import { SimplePageLayoutComponent } from './layouts/simple-page-layout/simple-p
 import { FullPageLayoutComponent } from './layouts/full-page-layout/full-page-layout.component';
 import { CardapplicationComponent } from './pages/cardapplication/cardapplication.component';
 import { BookslistComponent } from './components/bookslist/bookslist.component';
+import { CsscourseappComponent } from './pages/csscourseapp/csscourseapp.component';
+import { CssCourseAppGuard } from './pages/csscourseapp/csscourseapp.gurard';
 
-/**
- *  {
-        path: 'natours',
-        loadChildren: () =>
-          import('./components/natours/natours.module').then(
-            (m) => m.NatoursModule
-          ),
-      },
- */
-//component: HomeComponent
 export const routes: Routes = [
   {
     path: '',
@@ -56,11 +48,11 @@ export const routes: Routes = [
     component: EmptyPageLayoutComponent,
     children: [
       {
-        title: 'CSS Course App',
         path: '',
+        pathMatch: 'prefix',
         loadChildren: () =>
           import('./pages/csscourseapp/csscourserouting.module').then(
-            (m) => m.CssCourseAppRoutingModule
+            (m) => m.CssCourseAppRoutingModule,
           ),
       },
     ],
@@ -72,11 +64,11 @@ export const routes: Routes = [
       },
     ],
     canDeactivate: [function () {}],
-    canMatch: [],
+    canMatch: [CssCourseAppGuard],
     data: {
       title: 'CSS Course App (developer custom data)',
     },
-    title: 'CSS Course App',
+    title: 'CSS Course App useing title property',
     providers: [],
   },
   {
