@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { provideRouter, RouterModule, RouterOutlet } from '@angular/router';
 import { routes } from './onboarding.routes';
 
@@ -8,7 +8,8 @@ import { routes } from './onboarding.routes';
   imports: [RouterOutlet,RouterModule],
   providers:[],
   templateUrl: './onboarding.component.html',
-  styleUrl: './onboarding.component.scss',
+  styleUrls: ['./onboarding.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class OnboardingComponent {
 
