@@ -95,6 +95,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'onboarding',
+    title:'On Boarding Application',
     component:EmptyPageLayoutComponent,
     loadChildren: () =>
       import('./pages/onboarding/onboarding.routes').then((m) => m.routes),

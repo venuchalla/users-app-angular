@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+
+  --clr-bg:      #f8f6f1;
+  --clr-surface: #ffffff;
+  --clr-border:  #e8e3d9;
+  --clr-text:    #1a1714;
+  --clr-muted:   #8a8278;
+  --clr-primary: #1a1714;
+  --clr-accent:  #c8622a;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Shared Page Styles ── */
+.page {
+  padding: 0.5rem 0;
+}
+
+.hero-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--clr-text);
+  margin-bottom: 0.75rem;
+}
+
+.page-desc {
+  color: var(--clr-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Form Fields ── */
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.field-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--clr-muted);
+}
+
+.field-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--clr-text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+}
+
+.field-input:focus {
+  border-color: var(--clr-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--clr-accent) 15%, transparent);
+}
+
+.field-input::placeholder { color: var(--clr-muted); opacity: 0.7; }
+
+/* ── Buttons ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  outline: none;
+}
+
+.btn svg { width: 1rem; height: 1rem; }
+
+.btn-primary {
+  background: var(--clr-accent);
+  color: #fff;
+  margin-left: auto;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--clr-accent) 35%, transparent);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--clr-accent) 85%, #000);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--clr-accent) 40%, transparent);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--clr-muted);
+  border: 1px solid var(--clr-border);
+}
+
+.btn-ghost:hover {
+  background: var(--clr-surface);
+  color: var(--clr-text);
+  border-color: var(--clr-text);
+}

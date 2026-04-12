@@ -1,5 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { FlowService } from '../flow/flow.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-summary',
@@ -10,6 +12,7 @@ import { FlowService } from '../flow/flow.service';
 export class SummaryComponent {
 
    private flow = inject(FlowService);
+   private router = inject(Router)
  
   private profileData = computed(() => this.flow.getFormData('profile') as any);
   private prefData = computed(() => this.flow.getFormData('preferences') as any);
@@ -27,5 +30,7 @@ export class SummaryComponent {
   });
  
   restart() { this.flow.resetFlow(); }
-  launch() { alert('Navigating to dashboard!'); }
+  launch() { alert('Navigating to dashboard!');
+    this.router.navigate(['onboarding'])
+   }
 }

@@ -47,7 +47,7 @@ export class FlowService {
   constructor(private http: HttpClient, private router: Router) {}
 
   loadConfig(): Observable<FlowConfig> {
-    return this.http.get<FlowConfig>('/assets/flow-config.json').pipe(
+    return this.http.get<FlowConfig>('/assets/flow/flow-config.json').pipe(
       tap(config => {
         this._config.set(config);
         this._state.update(s => ({
