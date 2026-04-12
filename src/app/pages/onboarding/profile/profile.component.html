@@ -1,0 +1,44 @@
+<p>profile works!</p>
+<div class="page">
+      <div class="hero-icon">👤</div>
+      <h1 class="page-title">Your Profile</h1>
+      <p class="page-desc">Tell us a bit about yourself so we can tailor things for you.</p>
+ 
+      <div class="form-grid">
+        <div class="field">
+          <label class="field-label">First Name *</label>
+          <input class="field-input" type="text" placeholder="Jane" [(ngModel)]="form().firstName" />
+        </div>
+        <div class="field">
+          <label class="field-label">Last Name *</label>
+          <input class="field-input" type="text" placeholder="Doe" [(ngModel)]="form().lastName" />
+        </div>
+        <div class="field full-span">
+          <label class="field-label">Work Email *</label>
+          <input class="field-input" type="email" placeholder="jane@company.com" [(ngModel)]="form().email" />
+        </div>
+        <div class="field full-span">
+          <label class="field-label">Role</label>
+          <select class="field-input" [(ngModel)]="form().role">
+            <option value="">Select your role...</option>
+            @for (r of roles; track r) {
+              <option [value]="r">{{ r }}</option>
+            }
+          </select>
+        </div>
+        <div class="field full-span">
+          <label class="field-label">Company</label>
+          <input class="field-input" type="text" placeholder="Acme Corp" [(ngModel)]="form().company" />
+        </div>
+      </div>
+ 
+      <div class="actions">
+        <button class="btn btn-ghost" (click)="back()">← Back</button>
+        <button class="btn btn-primary" [disabled]="!isValid()" (click)="next()">
+          Continue
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>

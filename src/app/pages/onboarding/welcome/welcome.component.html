@@ -1,0 +1,30 @@
+<p>welcome works!</p>
+ <div class="page">
+      <div class="hero-icon">🚀</div>
+      <h1 class="page-title">Welcome aboard!</h1>
+      <p class="page-desc">
+        We're thrilled to have you here. This quick setup takes less than 2 minutes
+        and helps us personalise your experience right from the start.
+      </p>
+ 
+      <div class="feature-list">
+        @for (feat of features; track feat.icon) {
+          <div class="feature-item">
+            <span class="feat-icon">{{ feat.icon }}</span>
+            <div>
+              <div class="feat-title">{{ feat.title }}</div>
+              <div class="feat-desc">{{ feat.desc }}</div>
+            </div>
+          </div>
+        }
+      </div>
+ 
+      <div class="actions">
+        <button class="btn btn-primary" (click)="next()">
+          Get Started
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>

@@ -19,6 +19,7 @@ import { CardapplicationComponent } from './pages/cardapplication/cardapplicatio
 import { BookslistComponent } from './components/bookslist/bookslist.component';
 import { CsscourseappComponent } from './pages/csscourseapp/csscourseapp.component';
 import { CssCourseAppGuard } from './pages/csscourseapp/csscourseapp.gurard';
+import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 
 export const routes: Routes = [
   {
@@ -46,16 +47,11 @@ export const routes: Routes = [
   {
     path: 'csscourseapp',
     component: EmptyPageLayoutComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'prefix',
-        loadChildren: () =>
-          import('./pages/csscourseapp/csscourserouting.module').then(
-            (m) => m.CssCourseAppRoutingModule,
-          ),
-      },
-    ],
+    loadChildren: () =>
+      import('./pages/csscourseapp/csscourserouting.module').then(
+        (m) => m.CssCourseAppRoutingModule,
+      ),
+
     canActivate: [
       function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         console.log(route, 'can activate guard ActivatedRouteSnapshot');
@@ -97,5 +93,12 @@ export const routes: Routes = [
   { path: 'radiooptionselector', component: RadiobuttonComponent },
   { path: 'bookslist', component: BookslistComponent },
   { path: 'home', component: HomeComponent },
+  {
+    path: 'onboarding',
+    component:EmptyPageLayoutComponent,
+    loadChildren: () =>
+      import('./pages/onboarding/onboarding.routes').then((m) => m.routes),
+  },
+
   { path: '**', component: PageNotFoundComponent },
 ];

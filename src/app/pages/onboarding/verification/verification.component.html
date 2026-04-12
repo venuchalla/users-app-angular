@@ -1,0 +1,56 @@
+<p>verifiation works!</p>
+ <div class="page">
+      <div class="hero-icon">⚙️</div>
+      <h1 class="page-title">Your Preferences</h1>
+      <p class="page-desc">Customise your experience. You can always change these later.</p>
+ 
+      <div class="pref-section">
+        <h3 class="pref-heading">Notifications</h3>
+        <div class="toggle-list">
+          @for (n of notifications; track n.key) {
+            <label class="toggle-item">
+              <div class="toggle-info">
+                <span class="toggle-label">{{ n.label }}</span>
+                <span class="toggle-desc">{{ n.desc }}</span>
+              </div>
+              <div class="toggle-switch" [class.on]="prefs()[n.key]" (click)="toggle(n.key)">
+                <div class="toggle-thumb"></div>
+              </div>
+            </label>
+          }
+        </div>
+      </div>
+ 
+      <div class="pref-section">
+        <h3 class="pref-heading">Theme</h3>
+        <div class="theme-chips">
+          @for (t of themes; track t.value) {
+            <button
+              class="chip"
+              [class.active]="prefs()['theme'] === t.value"
+              (click)="setTheme(t.value)"
+            >{{ t.label }}</button>
+          }
+        </div>
+      </div>
+ 
+      <div class="pref-section">
+        <h3 class="pref-heading">Weekly digest</h3>
+        <select class="field-input" [ngModel]="prefs()['digest']" (ngModelChange)="setPref('digest', $event)">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="never">Never</option>
+        </select>
+      </div>
+ 
+      <div class="actions">
+        <button class="btn btn-ghost" (click)="back()">← Back</button>
+        <button class="btn btn-ghost" (click)="skip()">Skip</button>
+        <button class="btn btn-primary" (click)="next()">
+          Save & Continue
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>

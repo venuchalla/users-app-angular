@@ -1,0 +1,41 @@
+<p>summary works!</p>
+ <div class="page complete-page">
+      <div class="confetti-ring">
+        <div class="check-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+      </div>
+ 
+      <h1 class="page-title">You're all set, {{ firstName() }}!</h1>
+      <p class="page-desc">
+        Your account is fully configured. Here's a summary of what we've set up for you.
+      </p>
+ 
+      <div class="summary-card">
+        <div class="summary-row">
+          <span class="summary-label">Name</span>
+          <span class="summary-value">{{ fullName() }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Email</span>
+          <span class="summary-value">{{ email() }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Role</span>
+          <span class="summary-value">{{ role() || '—' }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Theme</span>
+          <span class="summary-value">{{ theme() }}</span>
+        </div>
+      </div>
+ 
+      <div class="actions">
+        <button class="btn btn-ghost" (click)="restart()">Start Over</button>
+        <button class="btn btn-primary" (click)="launch()">
+          Launch Dashboard 🚀
+        </button>
+      </div>
+    </div>

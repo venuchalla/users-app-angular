@@ -1,0 +1,44 @@
+complete-page { text-align: center; }
+    .confetti-ring {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--clr-accent) 15%, transparent);
+      border: 3px solid var(--clr-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .check-circle {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--clr-accent);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+    }
+    .check-circle svg { width: 1.8rem; height: 1.8rem; }
+    .summary-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: 0.875rem;
+      overflow: hidden;
+      margin: 1.75rem 0;
+      text-align: left;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid var(--clr-border);
+      font-size: 0.9rem;
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-label { color: var(--clr-muted); font-weight: 500; }
+    .summary-value { color: var(--clr-text); font-weight: 600; font-family: var(--font-mono); }
+    .complete-page .actions { justify-content: center; gap: 1rem; }

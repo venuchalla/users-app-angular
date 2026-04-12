@@ -22,7 +22,14 @@ export class CssCourseAppRoutingService {
   getChildRoutes(): Observable<void> {
     this.getPaths().subscribe((routes) => {
       const appRoutes = [...this.router.config];
+      console.log("app routes :",appRoutes)
       const parentRoute = appRoutes.find((r) => r.path === 'csscourseapp');
+      console.log('Parent route before update:', parentRoute);
+       if (!parentRoute) {
+        console.warn('Parent route not found');
+        //return;
+      }
+      
     
       const lazyRoute = parentRoute?.children?.find((r) => r.loadChildren);
       console.log('Found lazy route:', lazyRoute);
@@ -30,6 +37,7 @@ export class CssCourseAppRoutingService {
        console.warn('Target lazy route not found');
        return;
       }
+
 
       const dynamicRoutes: Route[] = routes.map((route) => ({
         path: route.path,
@@ -40,13 +48,10 @@ export class CssCourseAppRoutingService {
           return true;
         }]
       }));
-      if (!parentRoute) {
-        console.warn('Parent route not found');
-        return;
-      }
+      
       //parentRoute.children = [...dynamicRoutes];
 
-      lazyRoute.children = dynamicRoutes;
+     // lazyRoute.children = dynamicRoutes;
       const updatedConfig = [...appRoutes];
       // const updatedConfig = this.router.config.map((r) => {
       //   if (r.path === 'csscourseapp') {
@@ -58,7 +63,7 @@ export class CssCourseAppRoutingService {
       // return r;
       // });
       console.log('Updated Router Config:', updatedConfig);
-      this.router.resetConfig(updatedConfig);
+      //this.router.resetConfig(updatedConfig);
     });
     return of(void 0);
   }

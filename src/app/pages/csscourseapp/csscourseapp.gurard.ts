@@ -14,8 +14,9 @@ export class CssCourseAppGuard implements CanMatch {
     this.cssCourseAppRoutingService = cssCourseAppRoutingServiced;
   }
   canMatch(): Observable<boolean | UrlTree> {
-    console.log('CssCourseAppGuard canMatch called');
+    
     if (this.loaded) return of(true);
+    console.log('CssCourseAppGuard canMatch called');
     return this.cssCourseAppRoutingService.getChildRoutes().pipe(
       tap(() => {
         this.loaded = true;

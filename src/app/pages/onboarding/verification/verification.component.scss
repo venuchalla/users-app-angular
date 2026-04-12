@@ -1,0 +1,66 @@
+.pref-section { margin: 1.5rem 0; }
+    .pref-heading {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--clr-muted);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .toggle-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .toggle-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.875rem 1rem;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: 0.65rem;
+      cursor: pointer;
+      gap: 1rem;
+    }
+    .toggle-info { flex: 1; }
+    .toggle-label { display: block; font-weight: 500; font-size: 0.9rem; color: var(--clr-text); }
+    .toggle-desc { display: block; font-size: 0.8rem; color: var(--clr-muted); margin-top: 0.1rem; }
+    .toggle-switch {
+      width: 44px;
+      height: 24px;
+      border-radius: 12px;
+      background: var(--clr-border);
+      position: relative;
+      flex-shrink: 0;
+      transition: background 0.25s;
+    }
+    .toggle-switch.on { background: var(--clr-accent); }
+    .toggle-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.25s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .toggle-switch.on .toggle-thumb { transform: translateX(20px); }
+    .theme-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .chip {
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      border: 1px solid var(--clr-border);
+      background: var(--clr-surface);
+      color: var(--clr-muted);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .chip.active {
+      border-color: var(--clr-accent);
+      background: color-mix(in srgb, var(--clr-accent) 12%, transparent);
+      color: var(--clr-accent);
+      font-weight: 600;
+    }
+    .chip:hover:not(.active) { border-color: var(--clr-primary); color: var(--clr-primary); }
+ 

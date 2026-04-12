@@ -7,7 +7,7 @@ import { CssCourseAppRoutingModule } from "./csscourserouting.module";
     
 })
 
-export class CssCourseAppModule{
+export class CssCourseAppModule {
     
 constructor(){
     console.log('CssCourseAppModule loaded');
