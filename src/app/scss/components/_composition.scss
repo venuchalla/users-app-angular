@@ -1,4 +1,5 @@
-@import "../abstracts/mixins";
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
 .composition {
     position: relative;
 

@@ -11,21 +11,21 @@ $colour-grey-dark: #777;
 */
 
 
-@import "../../scss/abstracts/variables";
-//@import"../../scss/bass/typography";
-@import "../../scss/abstracts/mixins";
-@import "../../scss/layouts/header";
-@import "../../scss/layouts/footer";
-@import "../../scss/layouts/grid";
-@import "../../scss/layouts/navigation";
-@import "../../scss/components/feature-box";
-@import "../../scss/components/button";
-@import "../../scss/components/form";
-@import "../../scss/components/card";
-@import "../../scss/components/story";
-@import "../../scss/components/bg-video";
-@import "../../scss/components/popup";
-@import "../../scss/components/composition";
+@use "../../scss/abstracts/variables" as *;
+//@use "../../scss/bass/typography" as *;
+@use "../../scss/abstracts/mixins" as *;
+@use "../../scss/layouts/header" as header;
+@use "../../scss/layouts/footer" as footer;
+@use "../../scss/layouts/grid" as grid;
+@use "../../scss/layouts/navigation" as navigation;
+@use "../../scss/components/feature-box" as feature-box;
+@use "../../scss/components/button" as button;
+@use "../../scss/components/form" as form;
+@use "../../scss/components/card" as card;
+@use "../../scss/components/story" as story;
+@use "../../scss/components/bg-video" as bg-video;
+@use "../../scss/components/popup" as popup;
+@use "../../scss/components/composition" as composition;
 
 .section-about {
   background-color: $color-grey-light-1;

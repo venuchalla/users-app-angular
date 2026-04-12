@@ -10,6 +10,7 @@ import { reducers } from './state';
 import { BooksEffects } from './components/bookslist/books.effects';
 import { provideHttpClient, withFetch} from '@angular/common/http';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   //provideRouter(routes),//provideStore()
@@ -17,9 +18,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withFetch()),
     provideRouter(routes),
-
     provideStore(reducers),
     provideEffects([BooksEffects]),
-    provideRouterStore(), provideClientHydration(withEventReplay())
+    provideRouterStore(),
+     provideClientHydration(withEventReplay()),
+     environment.providers
   ],
 };

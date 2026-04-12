@@ -1,4 +1,4 @@
-@import "../../scss/abstracts/variables";
+@use "../../scss/abstracts/variables" as *;
 
 :host {
   background: $color-blue;
