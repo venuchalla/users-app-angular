@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 
@@ -19,53 +19,23 @@ export class CssCourseAppRoutingService {
     return CSSCOURSE_COMPONENTS[moduleName];
   }
 
-  getChildRoutes(): Observable<void> {
-    this.getPaths().subscribe((routes) => {
-      const appRoutes = [...this.router.config];
-      console.log("app routes :",appRoutes)
-      const parentRoute = appRoutes.find((r) => r.path === 'csscourseapp');
-      console.log('Parent route before update:', parentRoute);
-       if (!parentRoute) {
-        console.warn('Parent route not found');
-        //return;
-      }
-      
-    
-      const lazyRoute = parentRoute?.children?.find((r) => r.loadChildren);
-      console.log('Found lazy route:', lazyRoute);
-      if (!lazyRoute) {
-       console.warn('Target lazy route not found');
-       return;
-      }
+  getChildRoutes(): Observable<Route[]> {
+    return new Observable((observer) => {
+      this.getPaths().subscribe((routes) => {
+        try {
+          const dynamicRoutes: Route[] = routes.map((route) => ({
+            path: route.path,
+            loadComponent: this.getLazyComponent(route.component as any),
+          }));
 
-
-      const dynamicRoutes: Route[] = routes.map((route) => ({
-        path: route.path,
-        //pathMatch: 'full',
-        loadComponent: this.getLazyComponent(route.component as any),
-        canActivate :[function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-          console.log(route, 'can activate guard ActivatedRouteSnapshot');
-          return true;
-        }]
-      }));
-      
-      //parentRoute.children = [...dynamicRoutes];
-
-     // lazyRoute.children = dynamicRoutes;
-      const updatedConfig = [...appRoutes];
-      // const updatedConfig = this.router.config.map((r) => {
-      //   if (r.path === 'csscourseapp') {
-      //      return {
-      //      ...r,
-      //     children: [...(r.children || []), ...dynamicRoutes],
-      //   };
-      // }
-      // return r;
-      // });
-      console.log('Updated Router Config:', updatedConfig);
-      //this.router.resetConfig(updatedConfig);
+          console.log('Generated dynamic routes:', dynamicRoutes);
+          observer.next(dynamicRoutes);
+          observer.complete();
+        } catch (error) {
+          observer.error(error);
+        }
+      });
     });
-    return of(void 0);
   }
 }
 

@@ -1,28 +1,13 @@
 import { Injectable } from '@angular/core';
-import { CssCourseAppRoutingService } from './csscourseapprouting.service';
 import { CanMatch, Router, UrlTree } from '@angular/router';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CssCourseAppGuard implements CanMatch {
-  private loaded = false;
-  private cssCourseAppRoutingService: CssCourseAppRoutingService;
-  constructor(
-    private cssCourseAppRoutingServiced: CssCourseAppRoutingService,
-    private router: Router,
-  ) {
-    this.cssCourseAppRoutingService = cssCourseAppRoutingServiced;
-  }
+  constructor(private router: Router) {}
+
   canMatch(): Observable<boolean | UrlTree> {
-    
-    if (this.loaded) return of(true);
     console.log('CssCourseAppGuard canMatch called');
-    return this.cssCourseAppRoutingService.getChildRoutes().pipe(
-      tap(() => {
-        this.loaded = true;
-      }),
-      map(() => true),
-      catchError(() => of(this.router.createUrlTree(['/home']))),
-    );
+    return of(true);
   }
 }
