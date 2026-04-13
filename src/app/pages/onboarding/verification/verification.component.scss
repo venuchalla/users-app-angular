@@ -1,9 +1,11 @@
+
+@use '../../../scss/abstracts/variables' as v;
 .pref-section { margin: 1.5rem 0; }
     .pref-heading {
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--clr-muted);
+      color: v.$clr-muted;
       font-weight: 600;
       margin-bottom: 0.75rem;
     }
@@ -13,8 +15,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 0.875rem 1rem;
-      background: var(--clr-surface);
-      border: 1px solid var(--clr-border);
+      background: v.$clr-surface;
+      border: 1px solid v.$clr-border;
       border-radius: 0.65rem;
       cursor: pointer;
       gap: 1rem;
@@ -26,12 +28,12 @@
       width: 44px;
       height: 24px;
       border-radius: 12px;
-      background: var(--clr-border);
+      background: v.$clr-border;
       position: relative;
       flex-shrink: 0;
       transition: background 0.25s;
     }
-    .toggle-switch.on { background: var(--clr-accent); }
+    .toggle-switch.on { background: v.$clr-accent; }
     .toggle-thumb {
       width: 18px;
       height: 18px;
@@ -48,19 +50,19 @@
     .chip {
       padding: 0.5rem 1.1rem;
       border-radius: 100px;
-      border: 1px solid var(--clr-border);
-      background: var(--clr-surface);
-      color: var(--clr-muted);
+      border: 1px solid v.$clr-border;
+      background: v.$clr-surface;
+      color: v.$clr-muted;
       font-size: 0.85rem;
       cursor: pointer;
       transition: all 0.2s;
       font-family: inherit;
     }
     .chip.active {
-      border-color: var(--clr-accent);
-      background: color-mix(in srgb, var(--clr-accent) 12%, transparent);
-      color: var(--clr-accent);
+      border-color: v.$clr-accent;
+      background: color-mix(in srgb, v.$clr-accent 12%, transparent);
+      color: v.$clr-accent;
       font-weight: 600;
     }
-    .chip:hover:not(.active) { border-color: var(--clr-primary); color: var(--clr-primary); }
+    .chip:hover:not(.active) { border-color: v.$clr-primary; color: v.$clr-primary; }
  

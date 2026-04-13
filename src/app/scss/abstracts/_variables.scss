@@ -96,17 +96,15 @@ $size-xxlarge:112px;
 $size-xxxlarge:136px;
 $size-grand:152px;
 $size-xxxgrand:1096px;
-:root {
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', 'Courier New', monospace;
 
- //== onboarding color
-  --clr-bg:      #f8f6f1;
-  --clr-surface: #ffffff;
-  --clr-border:  #e8e3d9;
-  --clr-text:    #1a1714;
-  --clr-muted:   #8a8278;
-  --clr-primary: #1a1714;
-  --clr-accent:  #c8622a;
-}
+$font-display: 'DM Serif Display', Georgia, serif;
+$font-body: 'DM Sans', sans-serif;
+$font-mono: 'DM Mono', 'Courier New', monospace;
+
+$clr-bg:      #f8f6f1;
+$clr-surface: #ffffff;
+$clr-border:  #e8e3d9;
+$clr-text:    #1a1714;
+$clr-muted:   #8a8278;
+$clr-primary: #1a1714;
+$clr-accent:  #c8622a;
