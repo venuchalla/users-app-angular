@@ -8,7 +8,7 @@ import { routes } from './onboarding.routes';
   imports: [RouterOutlet,RouterModule],
   providers:[],
   templateUrl: './onboarding.component.html',
-  styleUrls: ['./onboarding.component.scss'],
+  styleUrls: ['./onboarding.component.scss'], 
 })
 export class OnboardingComponent {
 
