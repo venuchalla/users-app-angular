@@ -1,0 +1,24 @@
+<ng-template #modalTemplate>
+  <div class="modal-page">
+    <div class="modal-page__backdrop" (click)="close()"></div>
+    <div class="modal-page__content">
+      <div class="modal-page__header">
+        <h2 *ngIf="modalTitle">{{ modalTitle }}</h2>
+        <button class="modal-page__close" type="button" aria-label="Close modal" (click)="close()">×</button>
+      </div>
+
+      <div class="modal-page__body">
+        <ng-container *ngIf="selectedPortal; else defaultBody">
+          <ng-template [cdkPortalOutlet]="selectedPortal"></ng-template>
+        </ng-container>
+
+        <ng-template #defaultBody>
+          <ng-container *ngIf="content; else projectedContent">{{ content }}</ng-container>
+          <ng-template #projectedContent>
+            <ng-content></ng-content>
+          </ng-template>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</ng-template>

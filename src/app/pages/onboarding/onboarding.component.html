@@ -2,4 +2,8 @@
   <div class="onboarding-content">
     <router-outlet></router-outlet>
   </div>
+  <app-modalpage #modalPage></app-modalpage>
+<button (click)="modalPage.openComponent(MyChildComponent, 'Title')">
+  Open modal
+</button>
 </div>

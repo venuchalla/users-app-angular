@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { BookslistComponent } from '../bookslist/bookslist.component';
 import { ParentComponent } from "../parent/parent.component";
+import { ModalpageChildComponent } from '@pages/modalpage/modalpage-child.component';
+import { ModalpageService } from '@app/services/modalpage.service';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +14,11 @@ import { ParentComponent } from "../parent/parent.component";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  constructor(private titleService: Title, private modalpageService: ModalpageService) {
+    titleService.setTitle("Home");
+  }
 
-  constructor(private titleService : Title){
-    titleService.setTitle("Home")
+  openModal() {
+    this.modalpageService.openComponent(ModalpageChildComponent, 'Modal Page Example');
   }
 }

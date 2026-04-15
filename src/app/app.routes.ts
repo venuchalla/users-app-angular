@@ -20,6 +20,8 @@ import { BookslistComponent } from './components/bookslist/bookslist.component';
 import { CsscourseappComponent } from './pages/csscourseapp/csscourseapp.component';
 import { CssCourseAppGuard } from './pages/csscourseapp/csscourseapp.gurard';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
+import { PortalexampleComponent } from './pages/portalexample/portalexample.component';
+import { ModalpageRouteComponent } from './pages/modalpage/modalpage-route.component';
 
 export const routes: Routes = [
   {
@@ -95,11 +97,18 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'onboarding',
-    title:'On Boarding Application',
-    component:EmptyPageLayoutComponent,
+    title: 'On Boarding Application',
+    component: EmptyPageLayoutComponent,
     loadChildren: () =>
       import('./pages/onboarding/onboarding.routes').then((m) => m.routes),
   },
-
+  {
+    path: 'portalexample',
+    component: EmptyPageLayoutComponent,
+    children: [
+      { path: '', pathMatch: 'full', component: PortalexampleComponent },
+    ],
+  },
+  { path: 'modalpage', component: ModalpageRouteComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
