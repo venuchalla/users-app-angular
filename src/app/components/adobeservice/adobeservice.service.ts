@@ -12,7 +12,7 @@ declare global {
 })
 export class AdobeserviceService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-
+console.log('AdobeserviceService initialized with platformId:', this.platformId);
   }
 
   push(adobeDCView: any) {

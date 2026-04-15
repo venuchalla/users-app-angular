@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { BookslistComponent } from '../bookslist/bookslist.component';
@@ -7,6 +7,7 @@ import { ModalpageChildComponent } from '@pages/modalpage/modalpage-child.compon
 import { ModalpageService } from '@app/services/modalpage.service';
 import { DialogService } from '@app/services/dialog.service';
 import { InputWithTooltipComponent } from "@app/Input/input-with-tooltip.component";
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -19,9 +20,14 @@ export class HomeComponent {
   constructor(
     private titleService: Title,
     private modalpageService: ModalpageService,
-    private dialogService: DialogService
-  ) {
+    private dialogService: DialogService,
+  @Inject(PLATFORM_ID) private platformId: Object) {
     titleService.setTitle("Home");
+    if (isPlatformBrowser(this.platformId)) {
+    (window as any).modalpageService =  modalpageService;
+     (window as any).dialogService =  dialogService;
+  }
+     
   }
 
   openModal() {
