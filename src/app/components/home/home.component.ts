@@ -5,11 +5,12 @@ import { BookslistComponent } from '../bookslist/bookslist.component';
 import { ParentComponent } from "../parent/parent.component";
 import { ModalpageChildComponent } from '@pages/modalpage/modalpage-child.component';
 import { ModalpageService } from '@app/services/modalpage.service';
+import { InputWithTooltipComponent } from "@app/Input/input-with-tooltip.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, ParentComponent],
+  imports: [RouterLink, ParentComponent, InputWithTooltipComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
