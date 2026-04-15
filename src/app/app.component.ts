@@ -33,8 +33,7 @@ import { ModalpageService } from './services/modalpage.service';
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild(CdkPortalOutlet) portalOutlet!: CdkPortalOutlet;
-  @ViewChild(ModalpageComponent) modalPage!: ModalpageComponent;
-  modalPageType = ModalpageComponent;
+  @ViewChild('modalPage') modalPage!: ModalpageComponent;
   constructor(
     private router: Router,
     private adobeService: AdobeserviceService,
