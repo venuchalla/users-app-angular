@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter, RouterState } from '@angular/router';
 import { StoreModule, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
@@ -8,9 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { counterReducer } from './pages/counter/counter.reducer';
 import { reducers } from './state';
 import { BooksEffects } from './components/bookslist/books.effects';
-import { provideHttpClient, withFetch} from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
@@ -23,7 +24,8 @@ export const appConfig: ApplicationConfig = {
     provideEffects([BooksEffects]),
     provideRouterStore(),
     provideAnimations(),
-     provideClientHydration(withEventReplay()),
-     environment.providers
+    importProvidersFrom(MatDialogModule),
+    provideClientHydration(withEventReplay()),
+    environment.providers
   ],
 };
