@@ -61,7 +61,15 @@ export const routes: Routes = [
         return true;
       },
     ],
-    canDeactivate: [function () {}],
+    canDeactivate: [function () {
+      console.log('can deactivate guard');
+      return true;  
+    }],
+    canActivateChild: [function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+      console.log(route, 'can activate child guard ActivatedRouteSnapshot');
+      console.log(state, 'can activate child guard state');
+      return true;
+    }],
     canMatch: [CssCourseAppGuard],
     data: {
       title: 'CSS Course App (developer custom data)',

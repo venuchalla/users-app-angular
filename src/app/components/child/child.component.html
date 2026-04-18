@@ -8,7 +8,7 @@
   </div>
   <fieldset>
     <legend></legend>
-    child input field : <input type="text" [(ngModel)]="childData" (input)="onInputChange($event)"/>    
+    child input field : <input type="text" [(ngModel)]="childData" appAdobeDirective fieldName="adobeChildInput" (input)="onInputChange($event)"/>    
       
     <p> child input value: {{ childData }}</p>
   </fieldset>
