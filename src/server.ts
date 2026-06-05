@@ -11,7 +11,9 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine({
-  allowedHosts: ['localhost', '127.0.0.1', '*.mydomain.com'],
+  // Allowlist hostnames/IPs for SSR fetches to prevent SSRF. Add any
+  // development IPs you need (e.g. your local dev machine) here.
+  allowedHosts: ['localhost', '127.0.0.1', '10.0.0.45', '*.mydomain.com'],
 });
 
 /**
