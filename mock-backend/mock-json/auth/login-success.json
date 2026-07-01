@@ -1,0 +1,4 @@
+{
+  "token": "mock-token-123",
+  "user": { "id": 1, "name": "mockuser" }
+}
