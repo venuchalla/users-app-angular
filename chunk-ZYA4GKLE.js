@@ -1,0 +1,1 @@
+import{Rb as n,Sb as i,lc as r,sb as o}from"./chunk-ULUS5VI7.js";var a=(()=>{class t{static{this.\u0275fac=function(e){return new(e||t)}}static{this.\u0275cmp=o({type:t,selectors:[["app-trillo"]],decls:2,vars:0,template:function(e,p){e&1&&(n(0,"p"),r(1,"trillo works!"),i())},encapsulation:2})}}return t})();export{a as TrilloComponent};

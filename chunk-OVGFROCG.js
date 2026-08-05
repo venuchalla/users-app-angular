@@ -1,0 +1,1 @@
+import{Rb as o,Sb as i,lc as r,sb as n}from"./chunk-ULUS5VI7.js";var s=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=n({type:e,selectors:[["app-nexter"]],decls:2,vars:0,template:function(t,m){t&1&&(o(0,"p"),r(1,"nexter works!"),i())},encapsulation:2})}}return e})();export{s as NexterComponent};

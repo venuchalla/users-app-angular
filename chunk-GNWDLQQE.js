@@ -1,0 +1,1 @@
+import{v as p}from"./chunk-7QKWQ6XU.js";import{Qb as n,sb as o}from"./chunk-ULUS5VI7.js";var c=(()=>{class e{static{this.\u0275fac=function(t){return new(t||e)}}static{this.\u0275cmp=o({type:e,selectors:[["app-empty-page-layout"]],decls:1,vars:0,template:function(t,i){t&1&&n(0,"router-outlet")},dependencies:[p],encapsulation:2})}}return e})();export{c as a};

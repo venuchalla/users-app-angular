@@ -1,0 +1,43 @@
+{
+  "flowId": "user-onboarding-v1",
+  "name": "Welcome Onboarding",
+  "startPage": "welcome",
+  "steps": [
+    {
+      "id": "step-welcome",
+      "currentPage": "welcome",
+      "nextPage": "profile",
+      "prevPage": null,
+      "label": "Welcome",
+      "description": "Introduction to the platform",
+      "canSkip": false
+    },
+    {
+      "id": "step-profile",
+      "currentPage": "profile",
+      "nextPage": "verification",
+      "prevPage": "welcome",
+      "label": "Your Profile",
+      "description": "Tell us about yourself",
+      "canSkip": false
+    },
+    {
+      "id": "step-verification",
+      "currentPage": "verification",
+      "nextPage": "summary",
+      "prevPage": "profile",
+      "label": "Verification",
+      "description": "Customize your experience",
+      "canSkip": true
+    },
+    {
+      "id": "step-summary",
+      "currentPage": "summary",
+      "nextPage": null,
+      "prevPage": "verification",
+      "label": "summary",
+      "description": "You are ready to go",
+      "canSkip": false
+    }
+  ]
+}
