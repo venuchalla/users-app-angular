@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Angular
         run: |
-          npm run build -- --configuration production --base-href /users-app-angular/
+          npm run build  --configuration production --base-href /users-app-angular/
 
       - name: Rename index.csr.html to index.html
         run: |
