@@ -9,6 +9,6 @@ import { Component, Input, input } from '@angular/core';
 })
 export class HeaderComponent {
  @Input() prdocutNames: string[] = ['Angular', 'React']
-  @Input() logoUrl: string = '/assets/icons/v.png'
+  @Input() logoUrl: string = 'assets/icons/v.png'
 
 }
