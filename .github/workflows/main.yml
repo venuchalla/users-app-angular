@@ -30,6 +30,10 @@ jobs:
         run: |
           npm run build -- --configuration production --base-href /users-app-angular/
 
+      - name: Rename index.csr.html to index.html
+        run: |
+          cp dist/users-app/browser/index.csr.html dist/users-app/browser/index.html
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
