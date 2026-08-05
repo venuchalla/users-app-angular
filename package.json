@@ -6,6 +6,7 @@
     "start": "ng serve",
     "start:local": "ng serve",
     "build": "ng build",
+    "build:ghpages": "ng build --configuration production --output-path=dist --base-href /users-app-angular/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:users-app": "node dist/users-app/server/server.mjs",
