@@ -21,7 +21,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build -- --base-href /users-app/
+      - run: npm run build -- --base-href /users-app-angular/
 
       - uses: peaceiris/actions-gh-pages@v4
         with:
