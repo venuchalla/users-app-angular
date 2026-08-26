@@ -22,6 +22,8 @@ import { CssCourseAppGuard } from './pages/csscourseapp/csscourseapp.gurard';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { PortalexampleComponent } from './pages/portalexample/portalexample.component';
 import { ModalpageRouteComponent } from './pages/modalpage/modalpage-route.component';
+import { OauthComponent } from './pages/oauth/oauth/oauth.component';
+import { CallbackComponent } from './pages/oauth/callback/callback.compnent';
 
 export const routes: Routes = [
   {
@@ -116,6 +118,14 @@ export const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', component: PortalexampleComponent },
     ],
+  },
+  {
+    path:'oauth',component: OauthComponent
+    
+  },
+  {
+    path: 'oauth/callback',
+    component: CallbackComponent
   },
   { path: 'modalpage', component: ModalpageRouteComponent },
   { path: '**', component: PageNotFoundComponent },
