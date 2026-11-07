@@ -71,6 +71,10 @@ export class CallbackComponent implements OnInit {
       'access_token',
       tokenResponse.access_token
     );
+    sessionStorage.setItem(
+      'id_token',
+      tokenResponse.id_token
+    );
 
     // 8. Clean up
     sessionStorage.removeItem('pkce_verifier');

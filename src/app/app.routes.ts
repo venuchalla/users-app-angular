@@ -126,16 +126,23 @@ export const routes: Routes = [
   },
   {
     path: 'oauth',
-    component: OauthComponent
+    component: EmptyPageLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: OauthComponent,
+      },
+      {
+        path: 'callback',
+        component: CallbackComponent
+      },
+      {
+        path: 'customer',
+        component: CustomerComponent
+      },
+    ],
   },
-  {
-    path: 'oauth/callback',
-    component: CallbackComponent
-  },
-  {
-    path: 'oauth/customer',
-    component: CustomerComponent
-  },
+
   { path: 'modalpage', component: ModalpageRouteComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

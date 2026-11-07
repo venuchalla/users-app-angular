@@ -3,7 +3,6 @@ import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-oauth',
-  imports: [],
   standalone: true,
   templateUrl: './oauth.component.html',
   styleUrl: './oauth.component.scss',

@@ -1,10 +1,68 @@
-<h1>
-    Oauth Practice example
-</h1>
+<main class="oauth-page">
+  <section class="auth-card" aria-labelledby="welcome-title">
+    <div class="welcome-panel">
+      <p class="eyebrow">
+        <span class="eyebrow-mark" aria-hidden="true">✓</span>
+        CUSTOMER PORTAL <span aria-hidden="true">/</span> SECURE SIGN-IN
+      </p>
 
-<p>
-    <button (click)="login()">
-  Sign In
-</button>
-      
-</p>
+      <h1 id="welcome-title">Your customer information, all in one place.</h1>
+      <p class="welcome-copy">
+        Sign in to view the profile details connected to your account and continue
+        to protected customer resources.
+      </p>
+
+      <ul class="benefits" aria-label="What you can access">
+        <li>
+          <span class="benefit-mark" aria-hidden="true">01</span>
+          <span>
+            <strong>Your profile</strong>
+            <small>See the customer details shared with this app.</small>
+          </span>
+        </li>
+        <li>
+          <span class="benefit-mark" aria-hidden="true">02</span>
+          <span>
+            <strong>A secure sign-in</strong>
+            <small>Authentication is handled by your identity provider.</small>
+          </span>
+        </li>
+      </ul>
+
+      <p class="security-note">
+        OAuth 2.0 with PKCE helps protect your sign-in flow.
+      </p>
+    </div>
+
+    <div class="signin-panel">
+      <div class="signin-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 3 19 6v5c0 4.7-2.9 8.2-7 10-4.1-1.8-7-5.3-7-10V6l7-3Z"
+            stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+          <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <p class="panel-eyebrow">WELCOME</p>
+      <h2>Sign in to continue</h2>
+      <p class="signin-copy">
+        Continue to your account. Once you approve access, you’ll return here to
+        see your customer information.
+      </p>
+
+      <button class="sign-in-button" type="button" (click)="login()">
+        <span>Continue to sign in</span>
+        <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
+          <path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <p class="redirect-note">
+        <span class="status-dot" aria-hidden="true"></span>
+        You’ll be securely redirected to sign in.
+      </p>
+    </div>
+  </section>
+</main>

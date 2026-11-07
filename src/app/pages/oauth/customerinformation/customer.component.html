@@ -1,4 +1,30 @@
-<h3>Customer Information</h3>
-<p> 
-    your authentication is successful. You can now access the protected resources.
-</p>
+@if (isLoading()) {
+<mat-spinner>
+  <p>Loading...</p>
+</mat-spinner>
+} @else if (errorMessage()) {
+<p>Error: {{ errorMessage() }}</p>
+} @else if (userProfile(); as profile) {
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Customer Information</mat-card-title>
+      <mat-card-subtitle>Your authentication is successful. You can now access the protected
+        resources.</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Customer Name: {{ profile.firstName }} {{ profile.lastName }}</p>
+    <p>Customer Email: {{ profile.email }}</p>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <section>
+    <div class="example-button-row">
+      <button matButton="filled">Log Out</button>
+      <button mat-raised-button color="primary" (click)="revokeToken()">Revoke Token</button>
+    </div>
+  </section>
+</mat-card>
+} @else {
+<p>No user profile available.</p>
+}

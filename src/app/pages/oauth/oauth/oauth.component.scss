@@ -1,0 +1,311 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
+}
+
+.oauth-page {
+  box-sizing: border-box;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(1rem, 4vw, 3rem);
+  place-items: center;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(119, 88, 190, 0.1), transparent 28rem),
+    #f7f5fa;
+}
+
+.auth-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+  width: min(100%, 62rem);
+  overflow: hidden;
+  border: 1px solid #e8e4ef;
+  border-radius: 1.5rem;
+  background: #fff;
+  box-shadow: 0 1.5rem 4rem rgba(42, 30, 70, 0.12);
+}
+
+.welcome-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(2rem, 5vw, 4rem);
+  color: #fff;
+  background: linear-gradient(145deg, #302052, #493276);
+}
+
+.welcome-panel::after {
+  position: absolute;
+  z-index: -1;
+  right: -7rem;
+  bottom: -10rem;
+  width: 22rem;
+  height: 22rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2.5rem rgba(255, 255, 255, 0.035),
+    0 0 0 5rem rgba(255, 255, 255, 0.025);
+  content: "";
+}
+
+.eyebrow,
+.panel-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.eyebrow {
+  color: #e2d8fa;
+}
+
+.eyebrow-mark {
+  display: grid;
+  width: 1.35rem;
+  height: 1.35rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  letter-spacing: 0;
+}
+
+.welcome-panel h1 {
+  max-width: 12ch;
+  margin: 2rem 0 1rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.welcome-copy {
+  max-width: 36rem;
+  margin: 0;
+  color: #e3dcef;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.benefits {
+  display: grid;
+  gap: 1.2rem;
+  margin: 2rem 0 1.8rem;
+  padding: 0;
+  list-style: none;
+}
+
+.benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.benefit-mark {
+  display: grid;
+  flex: 0 0 2.2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 0.7rem;
+  color: #eee8ff;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.benefits strong,
+.benefits small {
+  display: block;
+}
+
+.benefits strong {
+  margin: 0.05rem 0 0.25rem;
+  font-size: 0.95rem;
+}
+
+.benefits small {
+  color: #d3c9e6;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.security-note {
+  margin: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  color: #d3c9e6;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.signin-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+
+.signin-icon {
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: 2rem;
+  place-items: center;
+  border-radius: 1rem;
+  color: #6543aa;
+  background: #f0ebfa;
+}
+
+.signin-icon svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.panel-eyebrow {
+  color: #7654b5;
+}
+
+.signin-panel h2 {
+  margin: 0.55rem 0 0.75rem;
+  color: #211a2d;
+  font-size: clamp(1.55rem, 3vw, 1.9rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.signin-copy {
+  margin: 0;
+  color: #6f687a;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.sign-in-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 3.5rem;
+  margin-top: 1.75rem;
+  padding: 0.85rem 1.1rem 0.85rem 1.25rem;
+  border: 0;
+  border-radius: 0.7rem;
+  color: #fff;
+  background: #6543b4;
+  box-shadow: 0 0.45rem 1rem rgba(101, 67, 180, 0.2);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 650;
+  transition: background-color 160ms ease, box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.sign-in-button:hover {
+  transform: translateY(-1px);
+  background: #55359e;
+  box-shadow: 0 0.7rem 1.25rem rgba(101, 67, 180, 0.25);
+}
+
+.sign-in-button:focus-visible {
+  outline: 3px solid #bca9e6;
+  outline-offset: 3px;
+}
+
+.sign-in-button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.redirect-note {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+  color: #777181;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.status-dot {
+  flex: 0 0 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #48a67a;
+}
+
+@media (max-width: 700px) {
+  .auth-card {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 34rem;
+  }
+
+  .welcome-panel {
+    padding: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  .welcome-panel h1 {
+    max-width: 16ch;
+    margin-top: 1.4rem;
+    font-size: clamp(2rem, 8vw, 2.65rem);
+  }
+
+  .benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .benefits li {
+    gap: 0.65rem;
+  }
+
+  .benefit-mark {
+    flex-basis: 1.9rem;
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .signin-panel {
+    padding: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  .signin-icon {
+    margin-bottom: 1.3rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .oauth-page {
+    padding: 0.75rem;
+  }
+
+  .auth-card {
+    border-radius: 1.1rem;
+  }
+
+  .benefits {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sign-in-button {
+    transition: none;
+  }
+
+  .sign-in-button:hover {
+    transform: none;
+  }
+}
