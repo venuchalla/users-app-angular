@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-oauth',
@@ -8,15 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './oauth.component.scss',
 })
 export class OauthComponent {
-
-  private clientId = 'UDNJUXFjRUNIRjhGYVBNb2FvdFhVY3loN2pBZjpUUEEzSVF0ckJSeXlYUzY1Y0I2UXhzU2I3V0dWUlkj';
-
-  private redirectUri =
-    'https://localhost:4200/oauth/callback';
-
-  private authorizationEndpoint =
-    'https://api.descope.com/oauth2/v1/apps/authorize';
-
 
   async login(): Promise<void> {
 
@@ -44,10 +36,11 @@ export class OauthComponent {
 
     // 5. Build Descope authorization URL
     const params = new URLSearchParams({
-      client_id: this.clientId,
+      client_id: environment.oauth.clientId,
       response_type: 'code',
-      redirect_uri: this.redirectUri,
-      scope: 'full_access',
+      redirect_uri: environment.oauth.redirectUri,
+      scope: 'openid profile email',
+      //'full_access',
       state: state,
       code_challenge: challenge,
       code_challenge_method: 'S256'
@@ -55,7 +48,7 @@ export class OauthComponent {
 
     // 6. Redirect browser to Descope
     window.location.href =
-      `${this.authorizationEndpoint}?${params.toString()}`;
+      `${environment.oauth.authorizationEndpoint}?${params.toString()}`;
   }
 
 

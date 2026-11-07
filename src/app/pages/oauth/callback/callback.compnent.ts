@@ -1,23 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-callback',
   standalone: true,
-  template: `
-    <p>Signing you in...</p>
-  `
+  templateUrl:"./callback.component.html",
 })
 export class CallbackComponent implements OnInit {
-
-  private clientId = 'UDNJUXFjRUNIRjhGYVBNb2FvdFhVY3loN2pBZjpUUEEzSVF0ckJSeXlYUzY1Y0I2UXhzU2I3V0dWUlkj';
-
-  private redirectUri =
-    'https://localhost:4200/callback';
-
-  private tokenEndpoint =
-    'https://api.descope.com/oauth2/v1/apps/token';
-
 
   constructor(
     private route: ActivatedRoute,
@@ -87,7 +77,9 @@ export class CallbackComponent implements OnInit {
     sessionStorage.removeItem('oauth_state');
 
     // 9. Go to your application
-    await this.router.navigate(['/customer']);
+    await this.router.navigate(['../customer'], {
+  relativeTo: this.route
+});
 
   }
 
@@ -107,7 +99,7 @@ export class CallbackComponent implements OnInit {
 
     body.set(
       'client_id',
-      this.clientId
+      environment.oauth.clientId
     );
 
     body.set(
@@ -117,7 +109,7 @@ export class CallbackComponent implements OnInit {
 
     body.set(
       'redirect_uri',
-      this.redirectUri
+      environment.oauth.redirectUri
     );
 
     body.set(
@@ -128,7 +120,7 @@ export class CallbackComponent implements OnInit {
 
     const response =
       await fetch(
-        this.tokenEndpoint,
+        environment.oauth.tokenEndpoint,
         {
           method: 'POST',
 

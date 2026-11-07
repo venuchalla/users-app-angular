@@ -24,6 +24,7 @@ import { PortalexampleComponent } from './pages/portalexample/portalexample.comp
 import { ModalpageRouteComponent } from './pages/modalpage/modalpage-route.component';
 import { OauthComponent } from './pages/oauth/oauth/oauth.component';
 import { CallbackComponent } from './pages/oauth/callback/callback.compnent';
+import { CustomerComponent } from './pages/oauth/customerinformation/customer.component';
 
 export const routes: Routes = [
   {
@@ -63,15 +64,19 @@ export const routes: Routes = [
         return true;
       },
     ],
-    canDeactivate: [function () {
-      console.log('can deactivate guard');
-      return true;  
-    }],
-    canActivateChild: [function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      console.log(route, 'can activate child guard ActivatedRouteSnapshot');
-      console.log(state, 'can activate child guard state');
-      return true;
-    }],
+    canDeactivate: [
+      function () {
+        console.log('can deactivate guard');
+        return true;
+      },
+    ],
+    canActivateChild: [
+      function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        console.log(route, 'can activate child guard ActivatedRouteSnapshot');
+        console.log(state, 'can activate child guard state');
+        return true;
+      },
+    ],
     canMatch: [CssCourseAppGuard],
     data: {
       title: 'CSS Course App (developer custom data)',
@@ -120,12 +125,16 @@ export const routes: Routes = [
     ],
   },
   {
-    path:'oauth',component: OauthComponent
-    
+    path: 'oauth',
+    component: OauthComponent
   },
   {
     path: 'oauth/callback',
     component: CallbackComponent
+  },
+  {
+    path: 'oauth/customer',
+    component: CustomerComponent
   },
   { path: 'modalpage', component: ModalpageRouteComponent },
   { path: '**', component: PageNotFoundComponent },
