@@ -1,13 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
 import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-callback',
   standalone: true,
-  templateUrl:"./callback.component.html",
+  imports: [
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatProgressBarModule,
+    MatListModule
+  ],
+  templateUrl: './callback.component.html',
 })
 export class CallbackComponent implements OnInit {
+  readonly isProcessing = signal(true);
+  readonly errorMessage = signal<string | null>(null);
 
   constructor(
     private route: ActivatedRoute,
@@ -31,11 +45,13 @@ export class CallbackComponent implements OnInit {
 
     if (error) {
       console.error('Login failed:', error);
+      this.showError('Sign-in was declined or could not be completed.');
       return;
     }
 
     if (!code) {
       console.error('Authorization code not found');
+      this.showError('The authorization response did not include a sign-in code.');
       return;
     }
 
@@ -45,6 +61,7 @@ export class CallbackComponent implements OnInit {
 
     if (!state || state !== savedState) {
       console.error('Invalid OAuth state');
+      this.showError('The sign-in response could not be verified. Please try again.');
       return;
     }
 
@@ -54,37 +71,35 @@ export class CallbackComponent implements OnInit {
 
     if (!verifier) {
       console.error('PKCE verifier not found');
+      this.showError('The secure sign-in session has expired. Please try again.');
       return;
     }
 
-    // 6. Exchange authorization code
-    const tokenResponse =
-      await this.exchangeCodeForToken(
-        code,
-        verifier
-      );
+    try {
+      const tokenResponse =
+        await this.exchangeCodeForToken(code, verifier);
 
-    console.log('Token response:', tokenResponse);
+      sessionStorage.setItem('access_token', tokenResponse.access_token);
+      sessionStorage.setItem('id_token', tokenResponse.id_token);
+      sessionStorage.removeItem('pkce_verifier');
+      sessionStorage.removeItem('oauth_state');
 
-    // 7. Store access token for now
-    sessionStorage.setItem(
-      'access_token',
-      tokenResponse.access_token
-    );
-    sessionStorage.setItem(
-      'id_token',
-      tokenResponse.id_token
-    );
+      await this.router.navigate(['../customer'], {
+        relativeTo: this.route
+      });
+    } catch (error) {
+      console.error('OAuth callback processing failed:', error);
+      this.showError('We could not complete sign-in. Please return to the sign-in page and try again.');
+    }
+  }
 
-    // 8. Clean up
-    sessionStorage.removeItem('pkce_verifier');
-    sessionStorage.removeItem('oauth_state');
+  returnToSignIn(): void {
+    this.router.navigate(['/oauth']);
+  }
 
-    // 9. Go to your application
-    await this.router.navigate(['../customer'], {
-  relativeTo: this.route
-});
-
+  private showError(message: string): void {
+    this.isProcessing.set(false);
+    this.errorMessage.set(message);
   }
 
 
@@ -139,14 +154,6 @@ export class CallbackComponent implements OnInit {
 
 
     if (!response.ok) {
-
-      const error =
-        await response.text();
-
-      console.error(
-        'Token exchange failed:',
-        error
-      );
 
       throw new Error(
         'Unable to get access token'

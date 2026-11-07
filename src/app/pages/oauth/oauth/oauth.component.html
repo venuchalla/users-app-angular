@@ -1,68 +1,55 @@
 <main class="oauth-page">
-  <section class="auth-card" aria-labelledby="welcome-title">
-    <div class="welcome-panel">
-      <p class="eyebrow">
-        <span class="eyebrow-mark" aria-hidden="true">✓</span>
-        CUSTOMER PORTAL <span aria-hidden="true">/</span> SECURE SIGN-IN
-      </p>
+  <mat-card class="oauth-layout" appearance="outlined">
+    <section class="oauth-overview">
+      <mat-card-header>
+        <mat-icon mat-card-avatar aria-hidden="true">verified_user</mat-icon>
+        <mat-card-title>CUSTOMER PORTAL</mat-card-title>
+        <mat-card-subtitle>SECURE SIGN-IN</mat-card-subtitle>
+      </mat-card-header>
 
-      <h1 id="welcome-title">Your customer information, all in one place.</h1>
-      <p class="welcome-copy">
-        Sign in to view the profile details connected to your account and continue
-        to protected customer resources.
-      </p>
+      <mat-card-content>
+        <h1>Your customer information, all in one place.</h1>
+        <p>Sign in to view the profile details connected to your account and continue to protected customer resources.</p>
 
-      <ul class="benefits" aria-label="What you can access">
-        <li>
-          <span class="benefit-mark" aria-hidden="true">01</span>
-          <span>
-            <strong>Your profile</strong>
-            <small>See the customer details shared with this app.</small>
-          </span>
-        </li>
-        <li>
-          <span class="benefit-mark" aria-hidden="true">02</span>
-          <span>
-            <strong>A secure sign-in</strong>
-            <small>Authentication is handled by your identity provider.</small>
-          </span>
-        </li>
-      </ul>
+        <mat-list aria-label="What you can access">
+          <mat-list-item>
+            <mat-icon matListItemIcon aria-hidden="true">person</mat-icon>
+            <span matListItemTitle>Your profile</span>
+            <span matListItemLine>See the customer details shared with this app.</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon aria-hidden="true">security</mat-icon>
+            <span matListItemTitle>A secure sign-in</span>
+            <span matListItemLine>OAuth 2.0 with PKCE helps protect your sign-in flow.</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </section>
 
-      <p class="security-note">
-        OAuth 2.0 with PKCE helps protect your sign-in flow.
-      </p>
-    </div>
+    <section class="oauth-content">
+      <mat-card-header>
+        <mat-icon mat-card-avatar aria-hidden="true">login</mat-icon>
+        <mat-card-title>Sign in to continue</mat-card-title>
+        <mat-card-subtitle>WELCOME</mat-card-subtitle>
+      </mat-card-header>
 
-    <div class="signin-panel">
-      <div class="signin-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none">
-          <path d="M12 3 19 6v5c0 4.7-2.9 8.2-7 10-4.1-1.8-7-5.3-7-10V6l7-3Z"
-            stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
-          <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7"
-            stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
+      <mat-card-content>
+        <p>Continue to your account. After you approve access, you’ll return here to view your customer information.</p>
+        <mat-list aria-label="Sign-in status">
+          <mat-list-item>
+            <mat-icon matListItemIcon aria-hidden="true">lock</mat-icon>
+            <span matListItemTitle>Secure redirect</span>
+            <span matListItemLine>You’ll be securely redirected to sign in.</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
 
-      <p class="panel-eyebrow">WELCOME</p>
-      <h2>Sign in to continue</h2>
-      <p class="signin-copy">
-        Continue to your account. Once you approve access, you’ll return here to
-        see your customer information.
-      </p>
-
-      <button class="sign-in-button" type="button" (click)="login()">
-        <span>Continue to sign in</span>
-        <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
-          <path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor"
-            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </button>
-
-      <p class="redirect-note">
-        <span class="status-dot" aria-hidden="true"></span>
-        You’ll be securely redirected to sign in.
-      </p>
-    </div>
-  </section>
+      <mat-card-actions align="end">
+        <button mat-flat-button color="primary" type="button" (click)="login()">
+          Continue to sign in
+          <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    </section>
+  </mat-card>
 </main>

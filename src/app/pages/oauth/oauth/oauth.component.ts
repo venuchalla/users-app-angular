@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-oauth',
   standalone: true,
+  imports: [MatCardModule, MatButtonModule, MatIconModule, MatListModule],
   templateUrl: './oauth.component.html',
   styleUrl: './oauth.component.scss',
 })

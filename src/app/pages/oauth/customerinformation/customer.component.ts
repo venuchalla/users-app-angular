@@ -3,21 +3,30 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
   standalone: true,
   templateUrl: './customer.component.html',
-  imports: [MatCardModule, MatButtonModule, MatProgressSpinnerModule, MatDividerModule]
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatDividerModule,
+    MatIconModule,
+    MatListModule,
+  ]
 })
 export class CustomerComponent implements OnInit {
 
   private httpClient = inject(HttpClient);
-  private  router = inject(Router);
-  private route =inject(ActivatedRoute)
+  private router = inject(Router);
+  private route = inject(ActivatedRoute)
   private token: string | null;
 
 
@@ -37,7 +46,7 @@ export class CustomerComponent implements OnInit {
       this.getFetchInfo(this.token);
     } else {
       console.error('ID token not found in session storage');
-     this.navigateToOauthPage();
+      this.navigateToOauthPage();
 
     }
   }
@@ -47,7 +56,7 @@ export class CustomerComponent implements OnInit {
       this.callRevokeTokenEndpoint(this.token);
     } else {
       console.error('Access token not found in session storage');
-       this.navigateToOauthPage();
+      this.navigateToOauthPage();
     }
 
   }
@@ -103,10 +112,33 @@ export class CustomerComponent implements OnInit {
     });
   }
 
-  navigateToOauthPage(){
-     this.router.navigate(['../oauth']);
+  navigateToOauthPage() {
+    this.router.navigate(['../oauth']);
+  }
+  endsession() {
+   this.logout();
   }
 
+  logout(): void {
+    const idToken = sessionStorage.getItem('id_token');
+    const endSessionUrl = environment.oauth.endSessionEndpoint;
+    const postLogoutRedirectUri = window.location.origin + '/home'; // Must be pre-registered in ZITADEL Console
+
+    const params = new URLSearchParams({
+      client_id: environment.oauth.clientId,
+      post_logout_redirect_uri: postLogoutRedirectUri
+    });
+
+    if (idToken) {
+      params.append('id_token_hint', idToken);
+    }
+
+    // Clear local storage/state before redirecting
+    localStorage.clear();
+
+    // Redirect browser to end session endpoint
+    window.location.href = `${endSessionUrl}?${params.toString()}`;
+  }
 }
 export interface UserProfile {
   firstName: string;

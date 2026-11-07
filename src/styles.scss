@@ -18,14 +18,129 @@ html {
 body {
   height: 100%;
   width: 100%;
-  min-width: 374px;
   margin: 0;
+   min-width: 374px;
   //need to remove
   padding: 0px;
   font-family: vars.$font-body;
   background-color: vars.$clr-bg;
   color: vars.$clr-text;
   -webkit-font-smoothing: antialiased;
+}
+
+.oauth-page {
+  box-sizing: border-box;
+  display: grid;
+  min-height: 100vh;
+  padding: clamp(1.5rem, 5vw, 4rem) 1rem;
+  place-items: center;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(119, 88, 190, 0.1), transparent 28rem),
+    #f7f5fa;
+}
+
+.oauth-layout {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+  width: min(100%, 62rem);
+  overflow: hidden;
+  border-color: #e8e4ef;
+  box-shadow: 0 1.5rem 4rem rgba(42, 30, 70, 0.12);
+}
+
+.oauth-overview,
+.oauth-content {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.oauth-overview {
+  color: #fff;
+  background: linear-gradient(145deg, #302052, #493276);
+  --mdc-list-list-item-label-text-color: #fff;
+  --mdc-list-list-item-supporting-text-color: #d3c9e6;
+  --mdc-list-list-item-leading-icon-color: #e2d8fa;
+}
+
+.oauth-overview mat-card-title,
+.oauth-overview mat-card-subtitle {
+  color: #e2d8fa;
+}
+
+.oauth-overview h1 {
+  margin: 1.5rem 0 1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.oauth-overview p {
+  color: #e3dcef;
+  line-height: 1.7;
+}
+
+.oauth-overview mat-list {
+  background: transparent;
+}
+
+.oauth-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.oauth-content mat-card-content {
+  line-height: 1.7;
+}
+
+.oauth-content mat-card-actions {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.oauth-layout mat-card-actions button {
+  min-height: 2.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.oauth-layout mat-card-actions button mat-icon {
+  margin-inline: 0;
+}
+
+.oauth-layout mat-card-actions button[mat-flat-button] {
+  box-shadow: 0 0.25rem 0.75rem rgba(101, 67, 180, 0.2);
+}
+
+.oauth-layout mat-card-actions button[mat-flat-button]:hover {
+  box-shadow: 0 0.4rem 1rem rgba(101, 67, 180, 0.28);
+}
+
+.oauth-layout mat-card-actions button:focus-visible {
+  outline: 3px solid #bca9e6;
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .oauth-page {
+    padding: 1rem;
+  }
+
+  .oauth-layout {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 36rem;
+  }
+
+  .oauth-overview,
+  .oauth-content {
+    padding: clamp(1.5rem, 6vw, 2.5rem);
+  }
 }
 
 .page {
