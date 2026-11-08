@@ -1,0 +1,121 @@
+.course-app-container {
+  display: grid;
+  min-height: 65vh;
+  width: min(100% - 2rem, 68rem);
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 5rem) 0;
+  place-items: start center;
+}
+
+.course-app-card {
+  width: min(100%, 42rem);
+  padding: 0.5rem;
+  border-color: #e4deed;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2.5rem rgba(42, 30, 70, 0.1);
+}
+
+.course-app-card mat-card-header {
+  padding: 1.25rem 1.5rem 1rem;
+}
+
+.course-app-card mat-card-header mat-icon[mat-card-avatar] {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border-radius: 0.85rem;
+  color: #5e35b1;
+  background: #f0ebfa;
+}
+
+.course-app-card mat-card-title {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 650;
+}
+
+.course-app-card mat-card-subtitle {
+  margin-top: 0.45rem;
+  line-height: 1.5;
+}
+
+.course-app-card mat-card-content {
+  padding: 0.5rem 1.25rem 1rem;
+}
+
+.course-app-card mat-nav-list {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.course-app-card mat-nav-list a[mat-list-item] {
+  min-height: 4.5rem;
+  border: 1px solid #eeeaf4;
+  border-radius: 0.75rem;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.course-app-card mat-nav-list a[mat-list-item]:hover {
+  transform: translateY(-1px);
+  border-color: #c9b9e8;
+  background: #f8f5fc;
+}
+
+.course-app-card mat-nav-list a.active-link {
+  border-color: #bca9e6;
+  background: #f0ebfa;
+  --mdc-list-list-item-label-text-color: #4b2b8a;
+  --mdc-list-list-item-supporting-text-color: #625d6b;
+  --mdc-list-list-item-leading-icon-color: #5e35b1;
+}
+
+.course-app-card mat-nav-list a:focus-visible {
+  outline: 3px solid #8e70cb;
+  outline-offset: 2px;
+}
+
+.course-app-card mat-card-footer {
+  border-top: 1px solid #eeeaf4;
+}
+
+.course-app-card mat-card-actions {
+  padding: 0.75rem 1.25rem;
+}
+
+.course-app-card mat-card-actions button {
+  min-height: 3rem;
+  padding-inline: 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .course-app-container {
+    width: min(100% - 1.5rem, 42rem);
+    min-height: 60vh;
+  }
+
+  .course-app-card mat-card-header {
+    padding: 1rem 1rem 0.75rem;
+  }
+
+  .course-app-card mat-card-content {
+    padding: 0.25rem 0.75rem 0.75rem;
+  }
+
+  .course-app-card mat-card-actions {
+    padding: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .course-app-card mat-nav-list a[mat-list-item] {
+    transition: none;
+  }
+
+  .course-app-card mat-nav-list a[mat-list-item]:hover {
+    transform: none;
+  }
+}
