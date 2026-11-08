@@ -25,22 +25,22 @@
 
     <div class="application-grid">
       @for (app of applications; track app.route) {
-        <mat-card appearance="outlined" class="application-card">
-          <mat-card-header>
-            <mat-icon mat-card-avatar aria-hidden="true">{{ app.icon }}</mat-icon>
-            <mat-card-title>{{ app.title }}</mat-card-title>
-            <mat-card-subtitle>{{ app.category }}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>{{ app.description }}</p>
-          </mat-card-content>
-          <mat-card-actions align="end">
-            <a mat-button [routerLink]="app.route" [attr.aria-label]="'Open ' + app.title">
-              Open
-              <mat-icon aria-hidden="true">arrow_forward</mat-icon>
-            </a>
-          </mat-card-actions>
-        </mat-card>
+      <mat-card appearance="outlined" class="application-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar aria-hidden="true">{{ app.icon }}</mat-icon>
+          <mat-card-title>{{ app.title }}</mat-card-title>
+          <mat-card-subtitle>{{ app.category }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ app.description }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <a mat-button [routerLink]="app.route" [attr.aria-label]="'Open ' + app.title">
+            Open
+            <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
       }
     </div>
   </section>
@@ -60,10 +60,16 @@
           <mat-card-title>Modal and dialog</mat-card-title>
           <mat-card-subtitle>Open a component in a modal or dialog.</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions align="end">
-          <button mat-button type="button" (click)="openModal()">Open modal</button>
-          <button mat-flat-button color="primary" type="button" (click)="openDialog()">Open dialog</button>
-        </mat-card-actions>
+        <mat-card-content>
+          <p>Click the buttons below to open a modal or dialog.</p>
+        </mat-card-content>
+        <mat-card-footer>
+          <mat-card-actions align="end">
+            <button mat-button type="button" (click)="openModal()">Open modal</button>
+            <button mat-flat-button color="primary" type="button" (click)="openDialog()">Open dialog</button>
+          </mat-card-actions>
+        </mat-card-footer>
+
       </mat-card>
 
       <mat-card appearance="outlined">
@@ -73,11 +79,8 @@
           <mat-card-subtitle>Try the Material input and tooltip behavior.</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <app-input-with-tooltip
-            label="Username"
-            placeholder="Enter your username"
-            tooltipText="This is a tooltip for the username field"
-            tooltipPosition="above">
+          <app-input-with-tooltip label="Username" placeholder="Enter your username"
+            tooltipText="This is a tooltip for the username field" tooltipPosition="above">
           </app-input-with-tooltip>
         </mat-card-content>
       </mat-card>
