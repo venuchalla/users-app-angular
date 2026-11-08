@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,7 +7,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer',
@@ -26,7 +26,6 @@ export class CustomerComponent implements OnInit {
 
   private httpClient = inject(HttpClient);
   private router = inject(Router);
-  private route = inject(ActivatedRoute)
   private token: string | null;
 
 
@@ -48,6 +47,14 @@ export class CustomerComponent implements OnInit {
       console.error('ID token not found in session storage');
       this.navigateToOauthPage();
 
+    }
+  }
+
+  @HostListener('window:pageshow', ['$event'])
+  onPageShow(event: PageTransitionEvent): void {
+    if (event.persisted && !sessionStorage.getItem('access_token')) {
+      this.userProfile.set(null);
+      this.navigateToOauthPage();
     }
   }
 
@@ -113,7 +120,9 @@ export class CustomerComponent implements OnInit {
   }
 
   navigateToOauthPage() {
-    this.router.navigate(['../oauth']);
+    this.router.navigate(['/oauth'], {
+      replaceUrl: true
+    });
   }
   endsession() {
    this.logout();
@@ -135,6 +144,7 @@ export class CustomerComponent implements OnInit {
 
     // Clear local storage/state before redirecting
     localStorage.clear();
+    sessionStorage.clear();
 
     // Redirect browser to end session endpoint
     window.location.href = `${endSessionUrl}?${params.toString()}`;

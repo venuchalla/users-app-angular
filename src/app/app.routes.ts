@@ -23,7 +23,7 @@ import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { PortalexampleComponent } from './pages/portalexample/portalexample.component';
 import { ModalpageRouteComponent } from './pages/modalpage/modalpage-route.component';
 import { OauthComponent } from './pages/oauth/oauth/oauth.component';
-import { CallbackComponent } from './pages/oauth/callback/callback.compnent';
+import { CallbackComponent } from './pages/oauth/callback/callback.component';
 import { CustomerComponent } from './pages/oauth/customerinformation/customer.component';
 
 export const routes: Routes = [
