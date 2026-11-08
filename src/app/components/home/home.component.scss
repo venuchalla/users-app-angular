@@ -75,18 +75,33 @@
 
 .application-card {
   display: flex;
-  min-height: 13rem;
+  min-height: 14rem;
   flex-direction: column;
+}
+
+.application-card mat-card-header,
+.tools-grid mat-card-header,
+.data-demo-card mat-card-header {
+  padding: 1.25rem 1.25rem 0;
+}
+
+.application-card mat-card-subtitle,
+.tools-grid mat-card-subtitle,
+.data-demo-card mat-card-subtitle {
+  margin-top: 0.5rem;
+  line-height: 1.5;
 }
 
 .application-card mat-card-content {
   flex: 1;
+  padding: 1rem 1.25rem 0.75rem;
   color: #625d6b;
   line-height: 1.6;
 }
 
-.application-card mat-card-actions {
-  padding: 0 1rem 1rem;
+.application-card mat-card-actions,
+.tools-grid mat-card-actions {
+  padding: 0 1.25rem 1.25rem;
 }
 
 .tools-section {
@@ -106,10 +121,11 @@
 }
 
 .tools-grid mat-card-content {
-  padding-top: 1rem;
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 .data-demo-card mat-card-content {
+  padding: 1rem 1.25rem 1.25rem;
   overflow-wrap: anywhere;
 }
 
@@ -132,6 +148,23 @@
   .home-hero-content {
     align-items: flex-start;
     padding: 1.5rem;
+  }
+
+  .application-card mat-card-header,
+  .tools-grid mat-card-header,
+  .data-demo-card mat-card-header {
+    padding: 1rem 1rem 0;
+  }
+
+  .application-card mat-card-content,
+  .tools-grid mat-card-content,
+  .data-demo-card mat-card-content {
+    padding-inline: 1rem;
+  }
+
+  .application-card mat-card-actions,
+  .tools-grid mat-card-actions {
+    padding: 0 1rem 1rem;
   }
 
   .hero-icon {

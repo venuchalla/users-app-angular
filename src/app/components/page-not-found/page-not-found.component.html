@@ -1,4 +1,3 @@
-<p>page-not-found works!</p>
 @if(showGrid){
   <section class="grid-test" >
   <div class="row">
@@ -32,4 +31,24 @@
 </section>
 
 }
+<main class="not-found-page">
+  <mat-card appearance="outlined" class="not-found-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar aria-hidden="true">search_off</mat-icon>
+      <mat-card-title>Page not found</mat-card-title>
+      <mat-card-subtitle>Error 404</mat-card-subtitle>
+    </mat-card-header>
 
+    <mat-card-content>
+      <p>The page you’re looking for may have moved, been removed, or the address may be incorrect.</p>
+      <p>Check the URL, or return to the home page to explore the available applications.</p>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <a mat-flat-button color="primary" routerLink="/home">
+        <mat-icon aria-hidden="true">home</mat-icon>
+        Go to home
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</main>

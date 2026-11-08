@@ -36,9 +36,12 @@ export class HomeComponent {
     { title: 'Card Application', category: 'Material', description: 'See a card-based Material example.', route: '/app', icon: 'credit_card' },
     { title: 'Books List', category: 'Data', description: 'Browse the books list example.', route: '/bookslist', icon: 'menu_book' },
     { title: 'Radio Button', category: 'Material', description: 'Try a radio-option selection example.', route: '/radiooptionselector', icon: 'radio_button_checked' },
+    { title: 'Radio Button Demo', category: 'Material', description: 'Explore the radio button selector demo.', route: '/radiobuttondemo', icon: 'radio_button_checked' },
+    { title: 'Dialog Demo', category: 'Material', description: 'Open the generic Material dialog example.', route: '/dialogdemo', icon: 'forum' },
     { title: 'Onboarding Application', category: 'Application', description: 'Walk through the onboarding experience.', route: '/onboarding', icon: 'how_to_reg' },
     { title: 'Portal Example', category: 'Angular', description: 'Explore content rendered through a portal.', route: '/portalexample', icon: 'dashboard_customize' },
     { title: 'Modal Page', category: 'Components', description: 'Open the modal page example.', route: '/modalpage', icon: 'open_in_new' },
+    {title : "Oauth Application Example", category: "Oauth", description: "Explore the Oauth application example using zitadel.", route: "/oauth", icon: "lock"}
   ];
 
   constructor(
