@@ -1,8 +1,16 @@
-<div class="container header-container">
+<!--<div class="container header-container">
   <img aria-hidden="true" alt="" [src]="logoUrl" class="logo img-section" />
   <div class="text-section">
     @for (pName of prdocutNames; track $index) {
       <div class="content">{{ pName }}</div>
     }
   </div>
-</div>
+</div>-->
+<mat-toolbar color="primary" class="app-toolbar">
+  <a mat-button routerLink="/" class="brand-link" aria-label="Users App home">
+    <mat-icon aria-hidden="true">dashboard</mat-icon>
+    <span>Users App</span>
+  </a>
+  <span class="toolbar-spacer"></span>
+  <span class="toolbar-caption">Angular examples and tools</span>
+</mat-toolbar>

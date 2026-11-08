@@ -1,52 +1,97 @@
-<div class="homeHeader">
-    <h1>Welcome to Home</h1>
-</div>
+<main class="home-page">
+  <mat-card class="home-hero" appearance="outlined" aria-labelledby="home-title">
+    <mat-card-content class="home-hero-content">
+      <div>
+        <p class="home-eyebrow">WELCOME TO YOUR WORKSPACE</p>
+        <h1 id="home-title">Explore the applications</h1>
+        <p class="home-intro">
+          A collection of Angular examples and tools. Choose an application to get started.
+        </p>
+      </div>
+      <mat-icon class="hero-icon" aria-hidden="true">dashboard</mat-icon>
+    </mat-card-content>
+  </mat-card>
 
-<div class="homeBody">
-<ul>
-    <li>
-        <a routerLink="/csscourseapp">CSS Course App</a> 
-    </li>
-    <li>
-        <a routerLink="/user">User App</a>
-    </li>
-    <li>
-        <a routerLink="/counter">Counter App</a>
-    </li>
-    <li>
-        <a routerLink="/lifecycleMethods"> Life Cycle Methods</a>
-    </li>
-    <li>
-        <a routerLink="/app"> card application</a>
-    </li>
-     <li>
-        <a routerLink="/bookslist"> Books List</a>
-    </li>
-     <li>
-        <a routerLink="/radiooptionselector"> Radio Button</a>
-    </li>
-     <li>
-        <a routerLink="/onboarding"> On Boarding Application</a>
-    </li>
-    <li>
-        <a routerLink="/portalexample"> Portal Example</a>
-    </li>
-    <li>
-        <a routerLink="/modalpage"> Modal Page</a>
-    </li>
-    <li>
-      <button type="button" (click)="openModal()">Open modal page with a child component</button>
-    </li>
-    <li>
-      <button type="button" (click)="openDialog()">Open generic dialog</button>
-    </li>
-    <!--<app-bookslist/>-->
-    <app-parent name = "passing data from home"></app-parent>
-</ul>
+  <section aria-labelledby="apps-title">
+    <div class="section-heading">
+      <div>
+        <h2 id="apps-title">Applications</h2>
+        <p>Browse the demos and features available in this workspace.</p>
+      </div>
+      <mat-chip-set aria-label="Application count">
+        <mat-chip>{{ applications.length }} apps</mat-chip>
+      </mat-chip-set>
+    </div>
 
-<div>
-    <h2> Input field with Tooltip</h2>
-    <app-input-with-tooltip label="Username" placeholder="Enter your username" tooltipText="This is a tooltip for the username field" tooltipPosition="above"></app-input-with-tooltip> 
-</div>
-</div>
+    <div class="application-grid">
+      @for (app of applications; track app.route) {
+        <mat-card appearance="outlined" class="application-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar aria-hidden="true">{{ app.icon }}</mat-icon>
+            <mat-card-title>{{ app.title }}</mat-card-title>
+            <mat-card-subtitle>{{ app.category }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ app.description }}</p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <a mat-button [routerLink]="app.route" [attr.aria-label]="'Open ' + app.title">
+              Open
+              <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  </section>
 
+  <section class="tools-section" aria-labelledby="tools-title">
+    <div class="section-heading">
+      <div>
+        <h2 id="tools-title">Component playground</h2>
+        <p>Try the interactive components and dialog examples.</p>
+      </div>
+    </div>
+
+    <div class="tools-grid">
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-icon mat-card-avatar aria-hidden="true">touch_app</mat-icon>
+          <mat-card-title>Modal and dialog</mat-card-title>
+          <mat-card-subtitle>Open a component in a modal or dialog.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-button type="button" (click)="openModal()">Open modal</button>
+          <button mat-flat-button color="primary" type="button" (click)="openDialog()">Open dialog</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-icon mat-card-avatar aria-hidden="true">tune</mat-icon>
+          <mat-card-title>Input with tooltip</mat-card-title>
+          <mat-card-subtitle>Try the Material input and tooltip behavior.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <app-input-with-tooltip
+            label="Username"
+            placeholder="Enter your username"
+            tooltipText="This is a tooltip for the username field"
+            tooltipPosition="above">
+          </app-input-with-tooltip>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+
+  <mat-card appearance="outlined" class="data-demo-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar aria-hidden="true">account_tree</mat-icon>
+      <mat-card-title>Component data flow</mat-card-title>
+      <mat-card-subtitle>Parent and child component interaction demo.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <app-parent name="passing data from home"></app-parent>
+    </mat-card-content>
+  </mat-card>
+</main>

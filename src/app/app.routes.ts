@@ -29,14 +29,16 @@ import { CustomerComponent } from './pages/oauth/customerinformation/customer.co
 export const routes: Routes = [
   {
     path: '',
-    component: MainLayoutComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: HomeComponent,
-      },
-    ],
+    redirectTo: 'home',
+    pathMatch: 'full',
+   // component: MainLayoutComponent,
+    //children: [
+    //  {
+    //    path: '',
+    //    pathMatch: 'full',
+    //    component: HomeComponent,
+     // },
+   // ],
   },
   {
     path: 'app',

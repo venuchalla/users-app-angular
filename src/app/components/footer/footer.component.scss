@@ -1,43 +1,35 @@
-@use "../../scss/abstracts/variables" as *;
-@use "sass:color" as color;
-
 :host {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: $size-xxsmall;
-  background-color: $color-white;
-  border-top: 1px solid color.adjust($color-grey, $lightness: 30%);
+  display: block;
+}
 
-  a {
-    color: $color-blue;
-    font-size: $font-size-xsmall;
-    padding-right: $spacing-small;
-    text-decoration: underline;
-    &.focus {
-      outline: 2px solid $color-cerulean;
-    }
+.app-footer {
+  min-height: 4rem;
+  border-top: 1px solid #e8e4ef;
+  background: #fff;
+  color: #625d6b;
+  font-size: 0.875rem;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: min(100%, 76rem);
+  margin: 0 auto;
+}
+
+.footer-spacer {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .app-footer {
+    min-height: 3.5rem;
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
   }
-  .footer-container {
-    max-width: $main-section-content-max-width - 2 * $size-small;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .links {
-    display: flex;
-    align-self: flex-start;
-    height: $size-small;
-    margin: $spacing-xxxsmall 0px;
-    span {
-      display: flex;
-    }
-  }
-  .footer-section {
-    display: flex;
-    &.flex-column {
-      flex-direction: column;
-    }
+
+  .footer-content {
+    gap: 0.5rem;
   }
 }

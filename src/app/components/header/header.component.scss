@@ -1,32 +1,35 @@
-@use "../../scss/abstracts/variables" as *;
-
 :host {
-  background: $color-blue;
-  display: flex;
-  //flex: 2 1 auto;
-  justify-content: center;
-  align-items: center;
-  height: $size-large;
-  padding: 0 $size-small;
-  .logo {
-    display: flex;
-    height: $size-small;
-  }
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .img-section {
-  //  background-color: $color-white;
-  }
-  .text-section {
-    color: $color-white;
-  }
+  display: block;
 }
 
-@media only screen and (min-width: $md-screen-min) {
-  :host {
-    padding: 0;
+.app-toolbar {
+  min-height: 4rem;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+.toolbar-caption {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+@media (max-width: 480px) {
+  .app-toolbar {
+    padding: 0 0.5rem;
+  }
+
+  .toolbar-caption {
+    font-size: 0.75rem;
   }
 }
