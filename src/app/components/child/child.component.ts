@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output, input, output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { AdobeDirectiveDirective } from '@app/directives/adobe-directive.directive';
 
 
@@ -7,7 +10,7 @@ import { AdobeDirectiveDirective } from '@app/directives/adobe-directive.directi
 @Component({
   selector: 'app-child',
   standalone: true,
-  imports: [FormsModule, AdobeDirectiveDirective],
+  imports: [FormsModule, AdobeDirectiveDirective, FormsModule,MatInputModule,MatFormFieldModule,ReactiveFormsModule,MatDividerModule],
   templateUrl: './child.component.html',
   styleUrl: './child.component.scss',
 })

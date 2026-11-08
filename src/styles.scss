@@ -6,15 +6,16 @@
 //@import './app/scss/layouts/grid';
 //@import './app/scss/components/composition';
 //html, body {
- // height: 100%;
- // font-family: var(--font-body);
- // background: var(--clr-bg);
- // color: var(--clr-text);
- 
+// height: 100%;
+// font-family: var(--font-body);
+// background: var(--clr-bg);
+// color: var(--clr-text);
+
 //}
 html {
   height: 100%;
 }
+
 body {
   height: 100%;
   width: 100%;
@@ -56,8 +57,8 @@ body {
   padding: clamp(1.75rem, 4vw, 3.5rem);
 }
 
-.oauth-overview > mat-card-header,
-.oauth-content > mat-card-header {
+.oauth-overview>mat-card-header,
+.oauth-content>mat-card-header {
   padding: 0 0 1rem;
 }
 
@@ -66,8 +67,8 @@ body {
   line-height: 1.5;
 }
 
-.oauth-overview > mat-card-content,
-.oauth-content > mat-card-content {
+.oauth-overview>mat-card-content,
+.oauth-content>mat-card-content {
   padding: 0.75rem 0;
 }
 
@@ -165,7 +166,7 @@ mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):active {
     min-width: 6rem;
     min-height: 3rem;
     padding-inline: 1rem;
-    font-size: 1rem !important;
+    font-size: 1rem; //!important;
   }
 }
 
@@ -225,7 +226,11 @@ mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):active {
 }
 
 /* ── Form Fields ── */
-.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
 
 .field-label {
   font-size: 0.8rem;
@@ -254,7 +259,10 @@ mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):active {
   box-shadow: 0 0 0 3px color-mix(in srgb, vars.$clr-accent 15%, transparent);
 }
 
-.field-input::placeholder { color: var(--clr-muted); opacity: 0.7; }
+.field-input::placeholder {
+  color: var(--clr-muted);
+  opacity: 0.7;
+}
 
 /* ── Buttons ── */
 .actions {
@@ -280,7 +288,10 @@ mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):active {
   outline: none;
 }
 
-.btn svg { width: 1rem; height: 1rem; }
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+}
 
 .btn-primary {
   background: vars.$clr-accent;
@@ -299,7 +310,7 @@ mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):active {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
-   background: vars.$clr-accent;
+  background: vars.$clr-accent;
 }
 
 .btn-ghost {
@@ -312,4 +323,65 @@ mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):active {
   background: vars.$clr-surface;
   color: vars.$clr-text;
   border-color: vars.$clr-text;
+}
+
+.component-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid vars.$clr-border;
+  margin-bottom: 1.5rem;
+  border-radius: 0.75rem;
+  background: vars.$clr-surface;
+   width: 100%;
+  min-width: 0;
+
+
+}
+
+.component-container h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  align-self: center;
+  background: linear-gradient(125deg, #302052, #6543b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.15;
+}
+.component-container p {
+  margin: 0;
+  line-height: 1.65;
+}
+.field-input-value {
+  font-size: vars.$font-size-medium;
+  font-weight: 600;
+  color: vars.$clr-text;
+}
+
+.input-value-summary {
+  font-size: vars.$font-size-small;
+  font-weight: 500;
+  border: 1px solid vars.$clr-border;
+  border-radius: 0.5rem;
+  padding:1rem;
+  background: vars.$color-grey;
+}
+.data-passed-container{
+  border-radius: 0.5rem;
+  padding:1rem;
+ 
+}
+mat-form-field.full-width {
+  display: block;
+  width: 100%;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }

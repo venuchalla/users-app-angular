@@ -1,23 +1,24 @@
-<div>
-  <h2>Parent Component</h2>
+<div class="parent-container">
+  <div class="component-container">
+    <h2>Parent Component</h2>
+    <fieldset>
+      <legend></legend>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Enter some information</mat-label>
+        <input matInput placeholder="Enter some information" [(ngModel)]="inputValue" (input)="onInputChange()" />
 
-  <section>
-    <div>
-      <p>Name: {{ inputValue}}</p>
-      <fieldset>
-        <legend></legend>
-        parent input field : <input type="text" [(ngModel)]="inputValue" (input)="onInputChange()"/>
-      </fieldset>
-      <p>data passed to child:{{childData}} </p>
-      <p>data passed to child output():{{ppData}} </p>
+      </mat-form-field>
+      <!--<input type="text" [(ngModel)]="inputValue" (input)="onInputChange()" />-->
+    </fieldset>
+    <p class="input-value-summary"> Input field value in the parent component : <span class="field-input-value">{{
+        inputValue}}</span></p>
+    <!-- <mat-divider></mat-divider>-->
+    <div class="data-passed-container">
+      <p>Data passed to parent from child : <span class="field-input-value">{{childData}}</span></p>
+      <p>Data passed to parent using child output() : <span class="field-input-value">{{ppData}}</span> </p>
     </div>
-  </section>
+  </div>
+  <app-child [name]="inputValue" [cdata]="inputValue" (pdata)="onChildDataReceived($event)"
+    (pout)="onChildOutputReceived($event)"></app-child>
 
-  <section>
-    <div>
-       <app-child [name]="inputValue" [cdata]="inputValue" (pdata)="onChildDataReceived($event)" (pout)="onChildOutputReceived($event)"></app-child>
-    </div>
-  </section>
-
- 
 </div>

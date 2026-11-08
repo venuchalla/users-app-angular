@@ -1,15 +1,20 @@
-<div>
+<div class="component-container">
   <h2>Child Component</h2>
-
-
-  <div>
-    <p> data passed from parent: {{ name }}</p>
-    <p> data passed from parent: input() {{ cdata() }}</p>
-  </div>
   <fieldset>
     <legend></legend>
-    child input field : <input type="text" [(ngModel)]="childData" appAdobeDirective fieldName="adobeChildInput" (input)="onInputChange($event)"/>    
-      
-    <p> child input value: {{ childData }}</p>
+    <!-- child input field : <input type="text" [(ngModel)]="childData" appAdobeDirective fieldName="adobeChildInput"
+      (input)="onInputChange($event)" />-->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Enter some information</mat-label>
+      <input matInput placeholder="Enter some information" fieldName="adobeChildInput" [(ngModel)]="childData"
+        appAdobeDirective (input)="onInputChange($event)" />
+    </mat-form-field>
   </fieldset>
+  <p class="input-value-summary"> Input field value in the child component: <span class="field-input-value">{{ childData
+      }}</span></p>
+  <!--<mat-divider></mat-divider>  -->
+  <div class="data-passed-container">
+    <p>Data passed from parent : <span class=" field-input-value">{{ name }}</span></p>
+    <p>Data passed from parent using input() : <span class="field-input-value">{{ cdata() }}</span></p>
+  </div>
 </div>

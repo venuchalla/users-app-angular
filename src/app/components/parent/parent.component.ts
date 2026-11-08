@@ -1,13 +1,16 @@
 import { on } from '@ngrx/store';
 import { Component, Input, Output, input, EventEmitter } from '@angular/core';
 import { ChildComponent } from '../child/child.component';
-import { FormsModule } from "@angular/forms";
-import e from 'express';
-
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
 @Component({
   selector: 'app-parent',
   standalone: true,
-  imports: [ChildComponent, FormsModule],
+  imports: [ChildComponent, FormsModule,MatInputModule,MatFormFieldModule,ReactiveFormsModule,MatDividerModule
+    
+  ],
   templateUrl: './parent.component.html',
   styleUrl: './parent.component.scss',
 })
