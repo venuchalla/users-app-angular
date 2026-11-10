@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -79,6 +79,27 @@ export class SamlProfileComponent {
   }
 
   signOut(): void {
-    window.location.assign('/saml/logout');
+    this.clearProfileFromHistory();
+    window.location.replace('/saml/logout');
+  }
+
+  @HostListener('window:pagehide')
+  onPageHide(): void {
+    this.clearProfileFromHistory();
+  }
+
+  @HostListener('window:pageshow', ['$event'])
+  onPageShow(event: PageTransitionEvent): void {
+    if (event.persisted) {
+      this.clearProfileFromHistory();
+    }
+  }
+
+  private clearProfileFromHistory(): void {
+    this.profile.set(null);
+    this.loading.set(false);
+    this.errorMessage.set(
+      'Your profile is no longer available. Please sign in again.',
+    );
   }
 }

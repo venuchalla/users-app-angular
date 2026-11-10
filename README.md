@@ -65,8 +65,12 @@ and re-upload the metadata after changing it. The backend uses signed HTTP-POST
 LogoutRequests because the current Zitadel SLO endpoint rejects Redirect
 LogoutRequests during DEFLATE decoding. It backdates the LogoutRequest
 `IssueInstant` by 30 seconds to tolerate Zitadel clock skew during request
-validation. The local backend keeps session state in memory, so this flow is
-for local development only, not production hosting.
+validation. Zitadel currently returns an unsigned LogoutResponse, so the
+backend accepts it only when its one-use RelayState cookie, request ID, issuer,
+callback destination, timestamp, and success status match. The UI labels this
+remote logout unverified; configure Zitadel to sign LogoutResponses for
+cryptographic confirmation. The local backend keeps session state in memory,
+so this flow is for local development only, not production hosting.
 
 ## Running unit tests
 

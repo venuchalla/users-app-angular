@@ -3,7 +3,12 @@ import express from 'express';
 import { randomBytes, timingSafeEqual } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { signXml } from '@node-saml/node-saml/lib/xml.js';
+import {
+  parseDomFromString,
+  parseXml2JsFromString,
+  signXml,
+  xpath,
+} from '@node-saml/node-saml/lib/xml.js';
 
 const router = express.Router();
 const zitadelSsoUrl =
@@ -17,6 +22,8 @@ const logoutCallbackUrl =
   'https://localhost:4200/saml/logout/callback';
 const zitadelSloUrl =
   'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/saml/v2/SLO';
+const zitadelIssuer =
+  'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/saml/v2/metadata';
 const localPrivateKeyPath = join(
   import.meta.dirname,
   '../../../.local/saml/sp-private-key.pem',
@@ -37,6 +44,7 @@ const samlOptions = {
   callbackUrl,
   logoutCallbackUrl,
   idpCert: idpCertificate,
+  idpIssuer: zitadelIssuer,
   privateKey,
   signatureAlgorithm: 'sha256',
   digestAlgorithm: 'sha256',
@@ -57,6 +65,7 @@ const sessionTtlMs = 8 * 60 * 60 * 1000;
 const logoutIssueInstantSkewMs = 30 * 1000;
 const pendingStates = new Map();
 const pendingLogoutStates = new Map();
+const pendingLogoutRequestIds = new Map();
 const profileTickets = new Map();
 const sessions = new Map();
 
@@ -102,6 +111,101 @@ function validLogoutState(relayState, cookieState, now = Date.now()) {
 
 function redirectHomeAfterLogout(res, status = 'local') {
   res.redirect(303, `/home?logout=${status}`);
+}
+
+async function parseLogoutResponse(samlResponse) {
+  if (
+    typeof samlResponse !== 'string' ||
+    samlResponse.length === 0 ||
+    samlResponse.length > 1_400_000 ||
+    !/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(
+      samlResponse,
+    )
+  ) {
+    throw new Error('Invalid base64 SAML LogoutResponse.');
+  }
+
+  const xmlBytes = Buffer.from(samlResponse, 'base64');
+  if (xmlBytes.toString('base64') !== samlResponse) {
+    throw new Error('Non-canonical base64 SAML LogoutResponse.');
+  }
+  const xml = new TextDecoder('utf-8', { fatal: true }).decode(xmlBytes);
+  const document = await parseDomFromString(xml);
+  const roots = xpath.selectElements(
+    document,
+    "/*[local-name()='LogoutResponse' and namespace-uri()='urn:oasis:names:tc:SAML:2.0:protocol']",
+  );
+  if (roots.length !== 1) {
+    throw new Error('Expected one SAML 2.0 LogoutResponse root element.');
+  }
+
+  const signatures = xpath.selectElements(
+    roots[0],
+    ".//*[local-name()='Signature' and namespace-uri()='http://www.w3.org/2000/09/xmldsig#']",
+  );
+  const parsed = await parseXml2JsFromString(xml);
+  const response = parsed.LogoutResponse;
+  if (!response) {
+    throw new Error('Unable to parse the SAML LogoutResponse.');
+  }
+
+  return { response, signed: signatures.length > 0 };
+}
+
+function validateLogoutResponseFields(
+  response,
+  expectedRequestId,
+  now = Date.now(),
+) {
+  const attributes = response.$;
+  const issuerValue = response.Issuer?.[0]?._?.trim();
+  const status = response.Status?.[0];
+  const statusCode = status?.StatusCode?.[0]?.$?.Value;
+  const issueInstant = Date.parse(attributes?.IssueInstant);
+  const responseAgeMs = now - issueInstant;
+
+  if (
+    attributes?.Version !== '2.0' ||
+    typeof attributes.ID !== 'string' ||
+    !attributes.ID ||
+    attributes.InResponseTo !== expectedRequestId
+  ) {
+    throw new Error('SAML LogoutResponse does not match the logout request.');
+  }
+  if (issuerValue !== zitadelIssuer) {
+    throw new Error('SAML LogoutResponse issuer did not match Zitadel.');
+  }
+  if (
+    !Number.isFinite(issueInstant) ||
+    responseAgeMs < -30_000 ||
+    responseAgeMs > 5 * 60_000
+  ) {
+    throw new Error('SAML LogoutResponse IssueInstant is outside the allowed window.');
+  }
+  if (
+    attributes.Destination &&
+    attributes.Destination !== logoutCallbackUrl
+  ) {
+    throw new Error('SAML LogoutResponse destination did not match this service.');
+  }
+  if (statusCode !== 'urn:oasis:names:tc:SAML:2.0:status:Success') {
+    const statusMessage = status?.StatusMessage?.[0]?._?.trim().slice(0, 300);
+    throw new Error(
+      `Zitadel did not report a successful SAML logout (status: ${statusCode ?? 'missing'}${statusMessage ? `; ${statusMessage}` : ''}).`,
+    );
+  }
+}
+
+export async function validateUnsignedLogoutResponse(
+  samlResponse,
+  expectedRequestId,
+  now = Date.now(),
+) {
+  const { response, signed } = await parseLogoutResponse(samlResponse);
+  if (signed) {
+    throw new Error('Refusing to bypass validation of a signed LogoutResponse.');
+  }
+  validateLogoutResponseFields(response, expectedRequestId, now);
 }
 
 function cleanExpiredTickets(now) {
@@ -292,6 +396,11 @@ router.get('/logout', async (req, res, next) => {
 
   try {
     cleanExpiredEntries(pendingLogoutStates, Date.now());
+    for (const relayState of pendingLogoutRequestIds.keys()) {
+      if (!pendingLogoutStates.has(relayState)) {
+        pendingLogoutRequestIds.delete(relayState);
+      }
+    }
     const relayState = randomBytes(32).toString('base64url');
     pendingLogoutStates.set(relayState, Date.now() + stateTtlMs);
     res.append(
@@ -309,6 +418,12 @@ router.get('/logout', async (req, res, next) => {
     if (timestampedRequestXml === requestXml) {
       throw new Error('Generated SAML LogoutRequest is missing IssueInstant.');
     }
+    const requestId = timestampedRequestXml.match(
+      /<samlp:LogoutRequest\b[^>]*\bID="([^"]+)"/,
+    )?.[1];
+    if (!requestId) {
+      throw new Error('Generated SAML LogoutRequest is missing its ID.');
+    }
     const logoutRequestXPath =
       "/*[local-name(.)='LogoutRequest' and namespace-uri(.)='urn:oasis:names:tc:SAML:2.0:protocol']";
     const signedRequest = signXml(
@@ -317,6 +432,7 @@ router.get('/logout', async (req, res, next) => {
       { reference: logoutRequestXPath, action: 'append' },
       saml.options,
     );
+    pendingLogoutRequestIds.set(relayState, requestId);
     const samlRequest = Buffer.from(signedRequest, 'utf8').toString('base64');
     res.setHeader('Cache-Control', 'no-store');
     res.setHeader(
@@ -334,6 +450,7 @@ router.get('/logout', async (req, res, next) => {
   } catch (error) {
     console.error('Unable to generate the SAML logout request.', error);
     pendingLogoutStates.delete(relayState);
+    pendingLogoutRequestIds.delete(relayState);
     res.append(
       'Set-Cookie',
       `${logoutStateCookieName}=; HttpOnly; Secure; SameSite=None; Path=/saml/logout/callback; Max-Age=0`,
@@ -367,27 +484,39 @@ router.post(
       return;
     }
 
-    try {
-      const result = await saml.validatePostResponseAsync({
-        SAMLResponse: response,
-      });
+    const expectedRequestId = pendingLogoutRequestIds.get(relayState);
+    pendingLogoutStates.delete(relayState);
+    pendingLogoutRequestIds.delete(relayState);
+    if (!expectedRequestId) {
+      redirectHomeAfterLogout(res);
+      return;
+    }
 
-      pendingLogoutStates.delete(relayState);
-      res.redirect(
-        303,
-        result.loggedOut ? '/home?logout=complete' : '/home?logout=local',
-      );
-    } catch (error) {
-      if (
-        error instanceof Error &&
-        error.message === 'Invalid document signature'
-      ) {
-        console.warn(
-          'Zitadel returned an unsigned or unverifiable SAML LogoutResponse. The local session was cleared, but the Zitadel session may still be active.',
-        );
-      } else {
-        console.error('SAML POST logout response validation failed.', error);
+    try {
+      const { response: parsedResponse, signed } =
+        await parseLogoutResponse(response);
+      validateLogoutResponseFields(parsedResponse, expectedRequestId);
+
+      if (signed) {
+        const result = await saml.validatePostResponseAsync({
+          SAMLResponse: response,
+        });
+        if (!result.loggedOut) {
+          throw new Error('Zitadel did not complete the SAML logout.');
+        }
+        res.redirect(303, '/home?logout=complete');
+        return;
       }
+
+      await validateUnsignedLogoutResponse(response, expectedRequestId);
+      await saml.cacheProvider.removeAsync(expectedRequestId);
+      console.warn(
+        'Zitadel returned a correlated, unsigned LogoutResponse. Local logout is complete; Zitadel logout cannot be cryptographically verified.',
+      );
+      res.redirect(303, '/home?logout=unverified');
+    } catch (error) {
+      await saml.cacheProvider.removeAsync(expectedRequestId);
+      console.error('SAML POST logout response validation failed.', error);
       redirectHomeAfterLogout(res);
     }
   },

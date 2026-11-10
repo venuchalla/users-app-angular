@@ -33,12 +33,17 @@ export class HomeComponent {
     if (this.logoutStatus === 'complete') {
       return 'You are signed out of this application.';
     }
+    if (this.logoutStatus === 'unverified') {
+      return 'You are signed out of this app. Zitadel returned a success response, but it was unsigned, so the remote sign-out could not be verified.';
+    }
     if (this.logoutStatus === 'local') {
       return 'Your app session has been cleared. Zitadel did not return a verifiable logout confirmation, so its session may still be active.';
     }
     return null;
   })();
-  readonly logoutWarning = this.logoutStatus === 'local';
+  readonly logoutWarning = ['local', 'unverified'].includes(
+    this.logoutStatus ?? '',
+  );
 
   readonly applications = [
     { title: 'CSS Course App', category: 'Learning', description: 'Explore CSS lessons and examples.', route: '/csscourseapp', icon: 'school' },
