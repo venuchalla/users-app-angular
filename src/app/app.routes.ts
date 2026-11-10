@@ -25,6 +25,8 @@ import { ModalpageRouteComponent } from './pages/modalpage/modalpage-route.compo
 import { OauthComponent } from './pages/oauth/oauth/oauth.component';
 import { CallbackComponent } from './pages/oauth/callback/callback.component';
 import { CustomerComponent } from './pages/oauth/customerinformation/customer.component';
+import { SamlHomeComponent } from './pages/saml/home/home.component';
+import { SamlProfileComponent } from './pages/saml/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -142,6 +144,12 @@ export const routes: Routes = [
         path: 'customer',
         component: CustomerComponent
       },
+    ],
+  },
+  { path: 'saml', component: EmptyPageLayoutComponent,
+    children: [
+      { path: '', pathMatch: 'full', component: SamlHomeComponent },
+      { path: 'profile', component: SamlProfileComponent },
     ],
   },
 

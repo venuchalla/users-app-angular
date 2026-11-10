@@ -15,7 +15,10 @@ export const environment = {
     revokeEndpoint:
       'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/oauth/v2/revoke',
     endSessionEndpoint:
-      'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/oidc/v1/end_session'
+      'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/oidc/v1/end_session',
+      samlEndpoint: 'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/saml/v2/SSO',
+      samlSloEndpoint: 'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/saml/v2/SLO',
+
   },
   providers: [
     provideStoreDevtools({

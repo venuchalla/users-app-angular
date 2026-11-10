@@ -1,4 +1,12 @@
 <div class="home-page">
+  @if (logoutNotice; as message) {
+    <p
+      class="logout-notice"
+      [class.logout-notice-warning]="logoutWarning"
+      role="status"
+    >{{ message }}</p>
+  }
+
   <mat-card class="home-hero" appearance="outlined" aria-labelledby="home-title">
     <mat-card-content class="home-hero-content">
       <div>

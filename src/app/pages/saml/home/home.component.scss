@@ -1,0 +1,57 @@
+.saml-page {
+  display: grid;
+  min-height: 70vh;
+  place-items: center;
+  padding: 2rem 1rem;
+  background: #f5f7fb;
+}
+
+.saml-card {
+  width: min(100%, 42rem);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2.5rem rgb(24 39 75 / 10%);
+}
+
+.saml-card mat-icon[mat-card-avatar] {
+  display: grid;
+  place-items: center;
+  color: #3559a8;
+}
+
+.saml-card mat-card-content {
+  padding-top: 1.25rem;
+  color: #4b5565;
+  line-height: 1.6;
+}
+
+.saml-error {
+  color: #b42318;
+}
+
+.saml-status {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: #edf8f0;
+  color: #1d5e32;
+}
+
+.saml-status-warning {
+  background: #fff4e5;
+  color: #8a4b08;
+}
+
+.saml-note {
+  font-size: 0.9rem;
+  color: #667085;
+}
+
+.saml-card mat-card-actions {
+  padding: 0;
+}
+
+@media (max-width: 36rem) {
+  .saml-card {
+    padding: 1.25rem;
+  }
+}

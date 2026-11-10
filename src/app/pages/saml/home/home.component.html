@@ -1,0 +1,37 @@
+<main class="saml-page">
+    <mat-card class="saml-card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar aria-hidden="true">verified_user</mat-icon>
+            <mat-card-title>Secure sign-in</mat-card-title>
+            <mat-card-subtitle>Continue with your organization account</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            @if (errorMessage(); as message) {
+                <p class="saml-error" role="alert">{{ message }}</p>
+            }
+            @if (statusMessage(); as message) {
+                <p
+                    class="saml-status"
+                    [class.saml-status-warning]="statusIsWarning()"
+                    role="status"
+                >{{ message }}</p>
+            }
+            <p>
+                Sign in through Zitadel to view a profile built from your verified SAML identity.
+                Your credentials are entered on Zitadel, not in this app.
+            </p>
+            <p class="saml-note">
+                This SAML integration uses a local development backend and is not intended for production.
+            </p>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+            <a mat-button routerLink="/home">Back to home</a>
+            <button mat-flat-button color="primary" type="button" (click)="login()">
+                <mat-icon aria-hidden="true">login</mat-icon>
+                Continue to sign in
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</main>

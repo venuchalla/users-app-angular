@@ -1,0 +1,22 @@
+{
+  "/saml/login": {
+    "target": "http://localhost:3001",
+    "secure": false
+  },
+  "/saml/callback": {
+    "target": "http://localhost:3001",
+    "secure": false
+  },
+  "/saml/profile-data": {
+    "target": "http://localhost:3001",
+    "secure": false
+  },
+  "/saml/logout": {
+    "target": "http://localhost:3001",
+    "secure": false
+  },
+  "/saml/logout/callback": {
+    "target": "http://localhost:3001",
+    "secure": false
+  }
+}

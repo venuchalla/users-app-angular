@@ -6,6 +6,22 @@
   padding: clamp(1.5rem, 4vw, 3rem) 0;
 }
 
+.logout-notice {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid #b7dfc3;
+  border-radius: 0.75rem;
+  background: #edf8f0;
+  color: #1d5e32;
+  line-height: 1.5;
+}
+
+.logout-notice-warning {
+  border-color: #f0c36d;
+  background: #fff4e5;
+  color: #8a4b08;
+}
+
 .home-hero {
   border-radius: 1.5rem;
   color: #fff;

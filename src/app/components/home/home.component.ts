@@ -1,6 +1,6 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ParentComponent } from "../parent/parent.component";
 import { ModalpageChildComponent } from '@pages/modalpage/modalpage-child.component';
 import { ModalpageService } from '@app/services/modalpage.service';
@@ -28,6 +28,18 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  private readonly logoutStatus = inject(ActivatedRoute).snapshot.queryParamMap.get('logout');
+  readonly logoutNotice = (() => {
+    if (this.logoutStatus === 'complete') {
+      return 'You are signed out of this application.';
+    }
+    if (this.logoutStatus === 'local') {
+      return 'Your app session has been cleared. Zitadel did not return a verifiable logout confirmation, so its session may still be active.';
+    }
+    return null;
+  })();
+  readonly logoutWarning = this.logoutStatus === 'local';
+
   readonly applications = [
     { title: 'CSS Course App', category: 'Learning', description: 'Explore CSS lessons and examples.', route: '/csscourseapp', icon: 'school' },
     { title: 'User App', category: 'Application', description: 'Browse and manage user information.', route: '/user', icon: 'group' },
@@ -41,7 +53,8 @@ export class HomeComponent {
     { title: 'Onboarding Application', category: 'Application', description: 'Walk through the onboarding experience.', route: '/onboarding', icon: 'how_to_reg' },
     { title: 'Portal Example', category: 'Angular', description: 'Explore content rendered through a portal.', route: '/portalexample', icon: 'dashboard_customize' },
     { title: 'Modal Page', category: 'Components', description: 'Open the modal page example.', route: '/modalpage', icon: 'open_in_new' },
-    {title : "Oauth Application Example", category: "Oauth", description: "Explore the Oauth application example using zitadel.", route: "/oauth", icon: "lock"}
+    {title : "Oauth Application Example", category: "Oauth", description: "Explore the Oauth application example using zitadel.", route: "/oauth", icon: "lock"},
+    { title: 'SAML Sign-in', category: 'Authentication', description: 'Sign in with Zitadel using SAML and view your verified profile.', route: '/saml', icon: 'verified_user' },
   ];
 
   constructor(
