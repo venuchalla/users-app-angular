@@ -18,9 +18,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 OAuth client IDs and URLs are configured in `src/environments/environment.local.ts`,
 `environment.development.ts`, `environment.qa.ts`, and `environment.production.ts`.
-Update the OAuth settings in the appropriate file before using that environment.
-The development, QA, and production files contain empty OAuth settings until their
-environment-specific values are provided.
+Update the OAuth and SAML settings in the appropriate file before using that
+environment. `environment.local.ts` points the SAML UI at the local backend on
+`http://localhost:3001`. The mock SAML backend is for local development only;
+production SAML requires a separately deployed backend.
 
 Use the matching Angular configuration to select an environment:
 
@@ -38,7 +39,8 @@ be treated as secrets.
 
 ## SAML sign-in
 
-The sign-in button calls `/saml/login`. During local development, the mock
+The sign-in button navigates to the backend URL configured by
+`saml.backendUrl` and `saml.loginPath`. During local development, the mock
 Express backend generates a signed SAML AuthnRequest and redirects to the
 Zitadel SSO URL configured in `mock-backend/routes/saml/index.mjs`. A
 development-only SP key pair is stored under `.local/saml/`; the private key is
@@ -55,7 +57,20 @@ these URLs change. Register `.local/saml/sp-public-cert.pem` with Zitadel and
 re-upload the metadata after changing the ACS URL.
 
 The Angular development server proxies the SAML endpoints to the mock backend
-on port 3001. Run `npm run start:dev` to start both. After the callback validates
+on port 3001. Run `npm run start:dev` to start both. Set `PORT` if the backend
+needs to listen on another port, and update the environment's `saml.backendUrl`
+accordingly. For a separately hosted backend, allow the frontend origin in
+`SAML_ALLOWED_ORIGINS`, and set `SAML_SP_CALLBACK_URL`,
+`SAML_SP_LOGOUT_CALLBACK_URL`, and `SAML_SP_FRONTEND_URL`. Register the backend
+callback URLs with Zitadel when deploying a real backend. For production, the
+callback URLs must point to that backend, and `SAML_SP_FRONTEND_URL` must be the
+app base URL (including `/users-app-angular` for GitHub Pages). Set
+`SAML_ALLOWED_ORIGINS` to the frontend origin, such as
+`https://venuchalla.github.io` (without a path).
+
+The production frontend and backend should be deployed on the same site where
+possible (for example, `app.example.com` and `api.example.com`), since SAML
+profile/logout flows use a secure session cookie. After the callback validates
 the response, the app redirects to `/saml/profile`, where the profile screen
 displays verified identity attributes and a Material spinner while loading.
 The profile's **Sign out** button clears the local session, starts Zitadel

@@ -16,6 +16,10 @@ export const environment = {
   saml: {
     endpoint: '',
     sloEndpoint: '',
+    backendUrl: '',
+    loginPath: '/saml/login',
+    profilePath: '/saml/profile-data',
+    logoutPath: '/saml/logout',
   },
   providers: [
     provideStoreDevtools({

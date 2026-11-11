@@ -20,6 +20,8 @@ const callbackUrl =
 const logoutCallbackUrl =
   process.env.SAML_SP_LOGOUT_CALLBACK_URL ||
   'https://localhost:4200/saml/logout/callback';
+const frontendBaseUrl =
+  process.env.SAML_SP_FRONTEND_URL || 'https://localhost:4200';
 const zitadelSloUrl =
   'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/saml/v2/SLO';
 const zitadelIssuer =
@@ -70,6 +72,11 @@ const pendingLogoutRequestIds = new Map();
 const profileTickets = new Map();
 const sessions = new Map();
 
+function getFrontendUrl(path) {
+  const baseUrl = `${frontendBaseUrl.replace(/\/+$/, '')}/`;
+  return new URL(path.replace(/^\/+/, ''), baseUrl).toString();
+}
+
 function getCookie(req, name) {
   const cookie = req.headers.cookie
     ?.split(';')
@@ -111,7 +118,7 @@ function validLogoutState(relayState, cookieState, now = Date.now()) {
 }
 
 function redirectHomeAfterLogout(res, status = 'local') {
-  res.redirect(303, `/home?logout=${status}`);
+  res.redirect(303, getFrontendUrl(`home?logout=${status}`));
 }
 
 async function parseLogoutResponse(samlResponse) {
@@ -298,7 +305,7 @@ router.post(
       if (typeof relayState === 'string') {
         pendingStates.delete(relayState);
       }
-      res.redirect(303, '/saml?error=saml_callback');
+      res.redirect(303, getFrontendUrl('saml?error=saml_callback'));
       return;
     }
 
@@ -310,7 +317,7 @@ router.post(
       });
 
       if (!profile || loggedOut) {
-        res.redirect(303, '/saml?error=saml_callback');
+        res.redirect(303, getFrontendUrl('saml?error=saml_callback'));
         return;
       }
 
@@ -336,14 +343,13 @@ router.post(
         }
       }
 
-      const callbackOrigin = new URL(callbackUrl).origin;
       res.redirect(
         303,
-        `${callbackOrigin}/saml/profile?ticket=${encodeURIComponent(ticket)}`,
+        getFrontendUrl(`saml/profile?ticket=${encodeURIComponent(ticket)}`),
       );
     } catch (error) {
       console.error('SAML response validation failed.', error);
-      res.redirect(303, '/saml?error=saml_callback');
+      res.redirect(303, getFrontendUrl('saml?error=saml_callback'));
     }
   },
 );
@@ -370,7 +376,7 @@ router.get('/profile-data', (req, res) => {
   });
   res.setHeader(
     'Set-Cookie',
-    `${sessionCookieName}=${sessionId}; HttpOnly; Secure; SameSite=Lax; Path=/saml; Max-Age=${sessionTtlMs / 1000}`,
+    `${sessionCookieName}=${sessionId}; HttpOnly; Secure; SameSite=None; Path=/saml; Max-Age=${sessionTtlMs / 1000}`,
   );
   res.setHeader('Cache-Control', 'no-store');
   res.json(result.profile);
@@ -505,7 +511,7 @@ router.post(
         if (!result.loggedOut) {
           throw new Error('Zitadel did not complete the SAML logout.');
         }
-        res.redirect(303, '/home?logout=complete');
+        res.redirect(303, getFrontendUrl('home?logout=complete'));
         return;
       }
 
@@ -514,7 +520,7 @@ router.post(
       console.warn(
         'Zitadel returned a correlated, unsigned LogoutResponse. Local logout is complete; Zitadel logout cannot be cryptographically verified.',
       );
-      res.redirect(303, '/home?logout=unverified');
+      res.redirect(303, getFrontendUrl('home?logout=unverified'));
     } catch (error) {
       await saml.cacheProvider.removeAsync(expectedRequestId);
       console.error('SAML POST logout response validation failed.', error);
@@ -548,7 +554,7 @@ router.get('/logout/callback', async (req, res) => {
       return;
     }
 
-    res.redirect(303, '/home?logout=complete');
+    res.redirect(303, getFrontendUrl('home?logout=complete'));
   } catch (error) {
     console.error('SAML logout response validation failed.', error);
     redirectHomeAfterLogout(res);
