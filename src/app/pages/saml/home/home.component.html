@@ -1,0 +1,115 @@
+<main class="saml-page">
+  <mat-card class="saml-shell" appearance="outlined">
+    <section class="saml-intro" aria-labelledby="saml-title">
+      <a class="brand" routerLink="/home" aria-label="UsersApp home">
+        <span class="brand-mark">
+          <mat-icon aria-hidden="true">grid_view</mat-icon>
+        </span>
+        <span>UsersApp</span>
+      </a>
+
+      <div class="intro-copy">
+        <p class="eyebrow">YOUR WORKSPACE, ONE SIGN-IN AWAY</p>
+        <h1 id="saml-title">One trusted sign-in.<br />Your work, ready.</h1>
+        <p class="intro-description">
+          Use your organization account to securely access your profile and
+          continue where you left off.
+        </p>
+      </div>
+
+      <div class="trust-list" aria-label="Sign-in details">
+        <div class="trust-item">
+          <span class="trust-icon"><mat-icon aria-hidden="true">verified_user</mat-icon></span>
+          <span>
+            <strong>Identity verified by Zitadel</strong>
+            <small>Your organization handles authentication</small>
+          </span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon"><mat-icon aria-hidden="true">lock</mat-icon></span>
+          <span>
+            <strong>Your password stays private</strong>
+            <small>Credentials are entered on your identity provider</small>
+          </span>
+        </div>
+      </div>
+
+      <div class="intro-footer">
+        <mat-icon aria-hidden="true">shield</mat-icon>
+        <span>Secure authentication with SAML 2.0</span>
+      </div>
+    </section>
+
+    <section class="saml-panel" aria-labelledby="signin-title">
+      <div class="panel-topline">
+        <span class="connection-indicator" aria-hidden="true"></span>
+        <span>Organization sign-in</span>
+      </div>
+
+      <div class="panel-heading">
+        <div class="panel-icon">
+          <mat-icon aria-hidden="true">account_circle</mat-icon>
+        </div>
+        <h2 id="signin-title">Welcome back</h2>
+        <p>Continue with your organization account.</p>
+      </div>
+
+      @if (errorMessage(); as message) {
+        <p class="saml-message saml-error" role="alert">
+          <mat-icon aria-hidden="true">error_outline</mat-icon>
+          <span>{{ message }}</span>
+        </p>
+      }
+      @if (statusMessage(); as message) {
+        <p
+          class="saml-message saml-status"
+          [class.saml-status-warning]="statusIsWarning()"
+          role="status"
+        >
+          <mat-icon aria-hidden="true">{{ statusIsWarning() ? 'info' : 'check_circle' }}</mat-icon>
+          <span>{{ message }}</span>
+        </p>
+      }
+
+      <p class="sign-in-prompt">
+        You’ll be securely redirected to Zitadel to complete sign-in.
+      </p>
+
+      <button class="signin-button" mat-flat-button color="primary" type="button" (click)="login()">
+        <mat-icon aria-hidden="true">login</mat-icon>
+        Continue to sign in
+        <mat-icon class="button-arrow" aria-hidden="true">arrow_forward</mat-icon>
+      </button>
+
+      <div class="redirect-note">
+        <mat-icon aria-hidden="true">open_in_new</mat-icon>
+        <span>You’ll return here after authentication.</span>
+      </div>
+
+      <div class="divider"><span>HOW IT WORKS</span></div>
+      <ol class="sign-in-steps">
+        <li>
+          <span class="step-number">1</span>
+          <span><strong>Continue to Zitadel</strong><small>Your organization’s secure identity provider</small></span>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <span><strong>Verify your identity</strong><small>Sign in using your organization credentials</small></span>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <span><strong>Return to your profile</strong><small>Your verified profile opens in this app</small></span>
+        </li>
+      </ol>
+
+      <a class="back-link" routerLink="/home">
+        <mat-icon aria-hidden="true">arrow_back</mat-icon>
+        Back to applications
+      </a>
+
+      <p class="development-note">
+        Development environment · This SAML integration uses a local backend and is not intended for production.
+      </p>
+    </section>
+  </mat-card>
+</main>

@@ -1,0 +1,62 @@
+<main class="saml-page">
+  <mat-card class="saml-card">
+    @if (loading()) {
+      <mat-card-content class="saml-loading" role="status">
+        <mat-spinner diameter="48" aria-label="Verifying your sign-in"></mat-spinner>
+        <p>Verifying your sign-in and loading your profile...</p>
+      </mat-card-content>
+    } @else if (errorMessage(); as message) {
+      <mat-card-header>
+        <mat-icon mat-card-avatar class="saml-error-icon" aria-hidden="true">error</mat-icon>
+        <mat-card-title>Profile unavailable</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="saml-error" role="alert">{{ message }}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button color="primary" type="button" (click)="signInAgain()">
+          <mat-icon aria-hidden="true">login</mat-icon>
+          Return to sign in
+        </button>
+      </mat-card-actions>
+    } @else if (profile(); as user) {
+      <mat-card-header>
+        <mat-icon mat-card-avatar aria-hidden="true">account_circle</mat-icon>
+        <mat-card-title>Signed in successfully</mat-card-title>
+        <mat-card-subtitle>Your verified SAML profile</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <dl class="profile-details">
+          <dt>Name ID</dt>
+          <dd>{{ user.nameID }}</dd>
+
+          <dt>Identity provider</dt>
+          <dd>{{ user.issuer }}</dd>
+
+          @if (user.nameIDFormat) {
+            <dt>Name ID format</dt>
+            <dd>{{ user.nameIDFormat }}</dd>
+          }
+
+          @if (user.sessionIndex) {
+            <dt>Session index</dt>
+            <dd>{{ user.sessionIndex }}</dd>
+          }
+
+          @for (attribute of profileAttributes(); track attribute.name) {
+            <dt>{{ attribute.name }}</dt>
+            <dd>{{ attribute.value }}</dd>
+          }
+        </dl>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-stroked-button type="button" (click)="signOut()">
+          <mat-icon aria-hidden="true">logout</mat-icon>
+          Sign out
+        </button>
+      </mat-card-actions>
+    }
+  </mat-card>
+</main>

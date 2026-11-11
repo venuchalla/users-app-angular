@@ -1,0 +1,446 @@
+:host {
+  display: block;
+}
+
+.saml-page {
+  box-sizing: border-box;
+  display: grid;
+  min-height: calc(100vh - 4rem);
+  padding: clamp(1.25rem, 4vw, 3.5rem);
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 12% 8%, rgb(101 67 180 / 9%), transparent 32rem),
+    #f6f7fb;
+}
+
+.saml-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(21rem, 0.88fr);
+  width: min(100%, 66rem);
+  overflow: hidden;
+  border: 1px solid #e8e7ef;
+  border-radius: 1.5rem;
+  background: #fff;
+  box-shadow: 0 2rem 5rem rgb(35 28 62 / 13%);
+}
+
+.saml-intro,
+.saml-panel {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: clamp(2rem, 5vw, 4rem);
+}
+
+.saml-intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  background:
+    radial-gradient(circle at 100% 0%, rgb(255 255 255 / 13%), transparent 19rem),
+    linear-gradient(145deg, #302052 0%, #493276 54%, #5d4193 100%);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: fit-content;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.brand-mark,
+.panel-icon,
+.trust-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.brand-mark {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 0.75rem;
+  background: rgb(255 255 255 / 12%);
+}
+
+.brand-mark mat-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 1.25rem;
+}
+
+.intro-copy {
+  margin: auto 0;
+  padding: 4.5rem 0 3rem;
+}
+
+.eyebrow {
+  margin: 0 0 1.15rem;
+  color: #d3c4f2;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.intro-copy h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.2rem, 4.5vw, 3.35rem);
+  font-weight: 650;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+}
+
+.intro-description {
+  max-width: 27rem;
+  margin: 1.25rem 0 0;
+  color: #e4dcef;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.trust-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.trust-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 0.8rem;
+  background: rgb(255 255 255 / 9%);
+  color: #e7dcff;
+}
+
+.trust-icon mat-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.trust-item strong,
+.trust-item small {
+  display: block;
+}
+
+.trust-item strong {
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.trust-item small {
+  margin-top: 0.2rem;
+  color: #d3c9e6;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.intro-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+  color: #d3c9e6;
+  font-size: 0.76rem;
+}
+
+.intro-footer mat-icon {
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+}
+
+.saml-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.panel-topline {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #667085;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.connection-indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #35a66f;
+  box-shadow: 0 0 0 0.22rem #e5f5ec;
+}
+
+.panel-heading {
+  margin: 2rem 0 1.25rem;
+}
+
+.panel-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.25rem;
+  border-radius: 1rem;
+  background: #f0ebfa;
+  color: #60449a;
+}
+
+.panel-icon mat-icon {
+  width: 1.7rem;
+  height: 1.7rem;
+  font-size: 1.7rem;
+}
+
+.panel-heading h2 {
+  margin: 0;
+  color: #252238;
+  font-size: 1.75rem;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
+.panel-heading p,
+.sign-in-prompt {
+  color: #697083;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.panel-heading p {
+  margin: 0.45rem 0 0;
+}
+
+.saml-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 0 0 1rem;
+  padding: 0.85rem;
+  border-radius: 0.75rem;
+  font-size: 0.83rem;
+  line-height: 1.5;
+}
+
+.saml-message mat-icon {
+  flex: 0 0 auto;
+  width: 1.15rem;
+  height: 1.15rem;
+  font-size: 1.15rem;
+}
+
+.saml-error {
+  border: 1px solid #f5c7c3;
+  background: #fff4f2;
+  color: #a52b23;
+}
+
+.saml-status {
+  border: 1px solid #ccebd7;
+  background: #effaf3;
+  color: #21653d;
+}
+
+.saml-status-warning {
+  border-color: #f3d9ae;
+  background: #fff8eb;
+  color: #8a4b08;
+}
+
+.sign-in-prompt {
+  margin: 0 0 1rem;
+}
+
+.signin-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 3.25rem;
+  border-radius: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 0.45rem 1rem rgb(72 49 121 / 19%);
+}
+
+.signin-button mat-icon {
+  margin-inline: 0;
+}
+
+.signin-button .button-arrow {
+  margin-left: auto;
+}
+
+.redirect-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  color: #747b8b;
+  font-size: 0.72rem;
+}
+
+.redirect-note mat-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  font-size: 0.9rem;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.6rem 0 1rem;
+  color: #8a8e9b;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.divider::before,
+.divider::after {
+  height: 1px;
+  flex: 1;
+  background: #ececf1;
+  content: "";
+}
+
+.sign-in-steps {
+  display: grid;
+  gap: 0.95rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sign-in-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.step-number {
+  display: grid;
+  flex: 0 0 auto;
+  width: 1.55rem;
+  height: 1.55rem;
+  place-items: center;
+  border-radius: 50%;
+  background: #f1eef8;
+  color: #60449a;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.sign-in-steps strong,
+.sign-in-steps small {
+  display: block;
+}
+
+.sign-in-steps strong {
+  color: #343247;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.sign-in-steps small {
+  margin-top: 0.15rem;
+  color: #777d8c;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  margin-top: 1.6rem;
+  color: #594180;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #302052;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.back-link mat-icon {
+  width: 1rem;
+  height: 1rem;
+  font-size: 1rem;
+}
+
+.development-note {
+  margin: 1.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid #ececf1;
+  color: #888d9a;
+  font-size: 0.68rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .saml-page {
+    min-height: 100vh;
+    padding: 1rem;
+  }
+
+  .saml-shell {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 34rem;
+  }
+
+  .saml-intro {
+    min-height: 24rem;
+    padding: 1.75rem;
+  }
+
+  .intro-copy {
+    padding: 3rem 0 2rem;
+  }
+
+  .intro-copy h1 {
+    font-size: clamp(2rem, 8vw, 2.7rem);
+  }
+
+  .saml-panel {
+    padding: 2rem clamp(1.5rem, 7vw, 2.5rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .saml-page {
+    padding: 0.5rem;
+  }
+
+  .saml-shell {
+    border-radius: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}

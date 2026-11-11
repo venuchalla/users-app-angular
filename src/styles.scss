@@ -6,26 +6,194 @@
 //@import './app/scss/layouts/grid';
 //@import './app/scss/components/composition';
 //html, body {
- // height: 100%;
- // font-family: var(--font-body);
- // background: var(--clr-bg);
- // color: var(--clr-text);
- 
+// height: 100%;
+// font-family: var(--font-body);
+// background: var(--clr-bg);
+// color: var(--clr-text);
+
 //}
 html {
   height: 100%;
 }
+
 body {
   height: 100%;
   width: 100%;
-  min-width: 374px;
   margin: 0;
+  min-width: 0;
   //need to remove
   padding: 0px;
   font-family: vars.$font-body;
   background-color: vars.$clr-bg;
   color: vars.$clr-text;
   -webkit-font-smoothing: antialiased;
+}
+
+.oauth-page {
+  box-sizing: border-box;
+  display: grid;
+  min-height: 100vh;
+  padding: clamp(1.5rem, 5vw, 4rem) 1rem;
+  place-items: center;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(119, 88, 190, 0.1), transparent 28rem),
+    #f7f5fa;
+}
+
+.oauth-layout {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+  width: min(100%, 62rem);
+  overflow: hidden;
+  border-color: #e8e4ef;
+  box-shadow: 0 1.5rem 4rem rgba(42, 30, 70, 0.12);
+}
+
+.oauth-overview,
+.oauth-content {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.oauth-overview>mat-card-header,
+.oauth-content>mat-card-header {
+  padding: 0 0 1rem;
+}
+
+.oauth-layout mat-card-subtitle {
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.oauth-overview>mat-card-content,
+.oauth-content>mat-card-content {
+  padding: 0.75rem 0;
+}
+
+.oauth-overview {
+  color: #fff;
+  background: linear-gradient(145deg, #302052, #493276);
+  --mdc-list-list-item-label-text-color: #fff;
+  --mdc-list-list-item-supporting-text-color: #d3c9e6;
+  --mdc-list-list-item-leading-icon-color: #e2d8fa;
+}
+
+.oauth-overview mat-card-title,
+.oauth-overview mat-card-subtitle {
+  color: #e2d8fa;
+}
+
+.oauth-overview h1 {
+  margin: 1.5rem 0 1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.oauth-overview p {
+  color: #e3dcef;
+  line-height: 1.7;
+}
+
+.oauth-overview mat-list {
+  background: transparent;
+}
+
+.oauth-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.oauth-content mat-card-content {
+  line-height: 1.7;
+}
+
+.oauth-content mat-card-actions {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem 0 0;
+}
+
+mat-card mat-card-actions .mat-mdc-button-base {
+  min-width: 6rem;
+  min-height: 3rem;
+  padding-inline: 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 1.5rem; //!important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    filter 160ms ease;
+}
+
+mat-card mat-card-actions .mat-mdc-button-base .mdc-button__label {
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+mat-card mat-card-actions .mat-mdc-button-base mat-icon {
+  margin-inline: 0;
+}
+
+mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):hover {
+  transform: translateY(-1px);
+  filter: brightness(0.96);
+  box-shadow: 0 0.35rem 0.9rem rgba(42, 30, 70, 0.18);
+}
+
+mat-card mat-card-actions .mat-mdc-button-base:focus-visible {
+  outline: 3px solid #8e70cb;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):active {
+  transform: translateY(0);
+  filter: brightness(0.9);
+  box-shadow: none;
+}
+
+@media (max-width: 600px) {
+  mat-card mat-card-actions .mat-mdc-button-base {
+    min-width: 6rem;
+    min-height: 3rem;
+    padding-inline: 1rem;
+    font-size: 1rem; //!important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  mat-card mat-card-actions .mat-mdc-button-base {
+    transition: none;
+  }
+
+  mat-card mat-card-actions .mat-mdc-button-base:not(:disabled):hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .oauth-page {
+    padding: 1rem;
+  }
+
+  .oauth-layout {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 36rem;
+  }
+
+  .oauth-overview,
+  .oauth-content {
+    padding: clamp(1.5rem, 6vw, 2.5rem);
+  }
 }
 
 .page {
@@ -58,7 +226,11 @@ body {
 }
 
 /* ── Form Fields ── */
-.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
 
 .field-label {
   font-size: 0.8rem;
@@ -87,7 +259,10 @@ body {
   box-shadow: 0 0 0 3px color-mix(in srgb, vars.$clr-accent 15%, transparent);
 }
 
-.field-input::placeholder { color: var(--clr-muted); opacity: 0.7; }
+.field-input::placeholder {
+  color: var(--clr-muted);
+  opacity: 0.7;
+}
 
 /* ── Buttons ── */
 .actions {
@@ -113,7 +288,10 @@ body {
   outline: none;
 }
 
-.btn svg { width: 1rem; height: 1rem; }
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+}
 
 .btn-primary {
   background: vars.$clr-accent;
@@ -132,7 +310,7 @@ body {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
-   background: vars.$clr-accent;
+  background: vars.$clr-accent;
 }
 
 .btn-ghost {
@@ -145,4 +323,65 @@ body {
   background: vars.$clr-surface;
   color: vars.$clr-text;
   border-color: vars.$clr-text;
+}
+
+.component-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid vars.$clr-border;
+  margin-bottom: 1.5rem;
+  border-radius: 0.75rem;
+  background: vars.$clr-surface;
+   width: 100%;
+  min-width: 0;
+
+
+}
+
+.component-container h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  align-self: center;
+  background: linear-gradient(125deg, #302052, #6543b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.15;
+}
+.component-container p {
+  margin: 0;
+  line-height: 1.65;
+}
+.field-input-value {
+  font-size: vars.$font-size-medium;
+  font-weight: 600;
+  color: vars.$clr-text;
+}
+
+.input-value-summary {
+  font-size: vars.$font-size-small;
+  font-weight: 500;
+  border: 1px solid vars.$clr-border;
+  border-radius: 0.5rem;
+  padding:1rem;
+  background: vars.$color-grey;
+}
+.data-passed-container{
+  border-radius: 0.5rem;
+  padding:1rem;
+ 
+}
+mat-form-field.full-width {
+  display: block;
+  width: 100%;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }

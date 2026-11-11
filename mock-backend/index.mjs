@@ -1,5 +1,6 @@
 import express from 'express';
 import registerApiRoutes from './routes/index.mjs';
+import samlRouter from './routes/saml/index.mjs';
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
 
 // Mount API routes implemented under ./routes
 app.use('/api', registerApiRoutes());
+app.use('/saml', samlRouter);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

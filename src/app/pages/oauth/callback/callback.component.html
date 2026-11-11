@@ -1,0 +1,59 @@
+<main class="oauth-page">
+  <mat-card class="oauth-layout" appearance="outlined">
+    <section class="oauth-overview">
+      <mat-card-header>
+        <mat-icon mat-card-avatar aria-hidden="true">verified_user</mat-icon>
+        <mat-card-title>CUSTOMER PORTAL</mat-card-title>
+        <mat-card-subtitle>SECURE SIGN-IN</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <h1>Your customer information, all in one place.</h1>
+        <p>We’re securely verifying your sign-in and preparing your account.</p>
+        <mat-list aria-label="Security information">
+          <mat-list-item>
+            <mat-icon matListItemIcon aria-hidden="true">security</mat-icon>
+            <span matListItemTitle>Protected sign-in</span>
+            <span matListItemLine>Your authentication details are handled securely.</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </section>
+
+    <section class="oauth-content">
+      <mat-card-header>
+        <mat-icon mat-card-avatar aria-hidden="true">
+          {{ errorMessage() ? 'error' : 'sync' }}
+        </mat-icon>
+        <mat-card-title>
+          {{ errorMessage() ? 'Sign-in could not be completed' : 'Completing sign-in' }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ errorMessage() || 'Please wait while we securely verify your account.' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        @if (isProcessing()) {
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        } @else if (errorMessage()) {
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon color="warn" aria-hidden="true">info</mat-icon>
+              <span matListItemTitle>Please return to the sign-in page and try again.</span>
+            </mat-list-item>
+          </mat-list>
+        }
+      </mat-card-content>
+
+      @if (errorMessage()) {
+        <mat-card-actions align="end">
+          <button mat-flat-button color="primary" type="button" (click)="returnToSignIn()">
+            <mat-icon aria-hidden="true">login</mat-icon>
+            Return to sign in
+          </button>
+        </mat-card-actions>
+      }
+    </section>
+  </mat-card>
+</main>

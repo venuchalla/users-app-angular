@@ -8,12 +8,11 @@
     @if (showIframe) {
       <button (click)="closeIframe()">Close Iframe</button>
     }
-    @if (showIframe) {
+    @if (showIframe && trustedUrl) {
       <iframe [src]="trustedUrl" WIDTH = '90%' HEIGHT= '800' >
       </iframe>
     }
   </div>
 }
-
 
 

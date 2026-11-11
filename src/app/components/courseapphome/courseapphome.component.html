@@ -1,9 +1,38 @@
-<p>courseapphome works!</p>
-<div>
-    <ul>
-      <li> <a routerLink="./natours">Natours</a> </li>
-      <li> <a routerLink="./nexter">Nexter</a> </li>
-      <li> <a routerLink="./trillo">Trillo</a> </li>
-    </ul>
-    <button (click) = "gotoHome()">HOME</button>
-    </div>
+<div class="course-app-container">
+  <mat-card appearance="outlined" class="course-app-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar aria-hidden="true">school</mat-icon>
+      <mat-card-title>CSS course projects</mat-card-title>
+      <mat-card-subtitle>Choose a project to explore</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-nav-list>
+        <a mat-list-item routerLink="./natours" routerLinkActive="active-link">
+          <mat-icon matListItemIcon aria-hidden="true">landscape</mat-icon>
+          <span matListItemTitle>Natours</span>
+          <span matListItemLine>Travel and nature tour landing page</span>
+        </a>
+        <a mat-list-item routerLink="./nexter" routerLinkActive="active-link">
+          <mat-icon matListItemIcon aria-hidden="true">home_work</mat-icon>
+          <span matListItemTitle>Nexter</span>
+          <span matListItemLine>Modern real estate layout</span>
+        </a>
+        <a mat-list-item routerLink="./trillo" routerLinkActive="active-link">
+          <mat-icon matListItemIcon aria-hidden="true">hotel</mat-icon>
+          <span matListItemTitle>Trillo</span>
+          <span matListItemLine>All-in-one travel booking interface</span>
+        </a>
+      </mat-nav-list>
+    </mat-card-content>
+
+    <mat-card-footer class="example-card-footer">
+      <mat-card-actions align="end">
+        <button mat-button type="button" (click)="gotoHome()">
+          <mat-icon aria-hidden="true">arrow_back</mat-icon>
+          Back to home
+        </button>
+      </mat-card-actions>
+    </mat-card-footer>
+  </mat-card>
+</div>

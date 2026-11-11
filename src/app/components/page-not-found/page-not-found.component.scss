@@ -1,1 +1,52 @@
-@use "../../scss/layouts/grid" as grid;
+.not-found-page {
+  display: grid;
+  min-height: 60vh;
+  padding: clamp(1.5rem, 5vw, 4rem) 1rem;
+  place-items: center;
+}
+
+.not-found-card {
+  width: min(100%, 36rem);
+  padding: 0.5rem;
+}
+
+.not-found-card mat-card-header {
+  padding: 1.25rem 1.5rem 0.75rem;
+}
+
+.not-found-card mat-card-subtitle {
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.not-found-card mat-card-content {
+  padding: 0 1.5rem 1rem;
+  color: #625d6b;
+  line-height: 1.65;
+}
+
+.not-found-card mat-card-content p {
+  margin: 0;
+}
+
+.not-found-card mat-card-content p + p {
+  margin-top: 0.9rem;
+}
+
+.not-found-card mat-card-actions {
+  padding: 0 1.5rem 1.25rem;
+}
+
+@media (max-width: 480px) {
+  .not-found-card mat-card-header {
+    padding: 1rem 1rem 0.5rem;
+  }
+
+  .not-found-card mat-card-content {
+    padding: 0 1rem 1rem;
+  }
+
+  .not-found-card mat-card-actions {
+    padding: 0 1rem 1rem;
+  }
+}

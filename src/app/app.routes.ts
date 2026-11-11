@@ -22,18 +22,25 @@ import { CssCourseAppGuard } from './pages/csscourseapp/csscourseapp.gurard';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { PortalexampleComponent } from './pages/portalexample/portalexample.component';
 import { ModalpageRouteComponent } from './pages/modalpage/modalpage-route.component';
+import { OauthComponent } from './pages/oauth/oauth/oauth.component';
+import { CallbackComponent } from './pages/oauth/callback/callback.component';
+import { CustomerComponent } from './pages/oauth/customerinformation/customer.component';
+import { SamlHomeComponent } from './pages/saml/home/home.component';
+import { SamlProfileComponent } from './pages/saml/profile/profile.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: MainLayoutComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        component: HomeComponent,
-      },
-    ],
+    redirectTo: 'home',
+    pathMatch: 'full',
+   // component: MainLayoutComponent,
+    //children: [
+    //  {
+    //    path: '',
+    //    pathMatch: 'full',
+    //    component: HomeComponent,
+     // },
+   // ],
   },
   {
     path: 'app',
@@ -61,15 +68,19 @@ export const routes: Routes = [
         return true;
       },
     ],
-    canDeactivate: [function () {
-      console.log('can deactivate guard');
-      return true;  
-    }],
-    canActivateChild: [function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      console.log(route, 'can activate child guard ActivatedRouteSnapshot');
-      console.log(state, 'can activate child guard state');
-      return true;
-    }],
+    canDeactivate: [
+      function () {
+        console.log('can deactivate guard');
+        return true;
+      },
+    ],
+    canActivateChild: [
+      function (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        console.log(route, 'can activate child guard ActivatedRouteSnapshot');
+        console.log(state, 'can activate child guard state');
+        return true;
+      },
+    ],
     canMatch: [CssCourseAppGuard],
     data: {
       title: 'CSS Course App (developer custom data)',
@@ -117,6 +128,31 @@ export const routes: Routes = [
       { path: '', pathMatch: 'full', component: PortalexampleComponent },
     ],
   },
+  {
+    path: 'oauth',
+    component: EmptyPageLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: OauthComponent,
+      },
+      {
+        path: 'callback',
+        component: CallbackComponent
+      },
+      {
+        path: 'customer',
+        component: CustomerComponent
+      },
+    ],
+  },
+  { path: 'saml', component: EmptyPageLayoutComponent,
+    children: [
+      { path: '', pathMatch: 'full', component: SamlHomeComponent },
+      { path: 'profile', component: SamlProfileComponent },
+    ],
+  },
+
   { path: 'modalpage', component: ModalpageRouteComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

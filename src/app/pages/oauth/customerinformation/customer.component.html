@@ -1,0 +1,86 @@
+<main class="oauth-page">
+  <mat-card class="oauth-layout" appearance="outlined">
+    <section class="oauth-overview">
+      <mat-card-header>
+        <mat-icon mat-card-avatar aria-hidden="true">verified_user</mat-icon>
+        <mat-card-title>CUSTOMER PORTAL</mat-card-title>
+        <mat-card-subtitle>SECURE ACCOUNT</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <h1>Your customer information, all in one place.</h1>
+        <p>Your authentication succeeded. Your protected profile is available below.</p>
+        <mat-list aria-label="Account security">
+          <mat-list-item>
+            <mat-icon matListItemIcon aria-hidden="true">security</mat-icon>
+            <span matListItemTitle>Protected account</span>
+            <span matListItemLine>Your profile is available through a secure sign-in.</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </section>
+
+    <section class="oauth-content">
+      <mat-card-header>
+        <mat-icon mat-card-avatar aria-hidden="true">account_circle</mat-icon>
+        <mat-card-title>Customer information</mat-card-title>
+        <mat-card-subtitle>Your profile details</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        @if (isLoading()) {
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          <p>Loading your customer information...</p>
+        } @else if (errorMessage()) {
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon color="warn" aria-hidden="true">error</mat-icon>
+              <span matListItemTitle>Unable to load profile</span>
+              <span matListItemLine>{{ errorMessage() }}</span>
+            </mat-list-item>
+          </mat-list>
+        } @else if (userProfile(); as profile) {
+          <mat-list aria-label="Customer profile">
+            <mat-list-item>
+              <mat-icon matListItemIcon aria-hidden="true">person</mat-icon>
+              <span matListItemTitle>Customer name</span>
+              <span matListItemLine>{{ profile.firstName }} {{ profile.lastName }}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon aria-hidden="true">email</mat-icon>
+              <span matListItemTitle>Email address</span>
+              <span matListItemLine>{{ profile.email }}</span>
+            </mat-list-item>
+            @if (profile.phoneNumber) {
+              <mat-list-item>
+                <mat-icon matListItemIcon aria-hidden="true">phone</mat-icon>
+                <span matListItemTitle>Phone number</span>
+                <span matListItemLine>{{ profile.phoneNumber }}</span>
+              </mat-list-item>
+            }
+          </mat-list>
+        } @else {
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon aria-hidden="true">info</mat-icon>
+              <span matListItemTitle>No customer profile is available.</span>
+            </mat-list-item>
+          </mat-list>
+        }
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-actions align="end">
+        <button mat-stroked-button type="button" (click)="endsession()">
+          <mat-icon aria-hidden="true">logout</mat-icon>
+          Log out
+        </button>
+        <button mat-flat-button color="primary" type="button" (click)="revokeToken()">
+          <mat-icon aria-hidden="true">block</mat-icon>
+          Revoke token
+        </button>
+      </mat-card-actions>
+    </section>
+  </mat-card>
+</main>
