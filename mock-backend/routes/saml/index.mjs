@@ -53,6 +53,7 @@ const samlOptions = {
   wantAssertionsSigned: true,
   validateInResponseTo: 'always',
   rejectReplayedAssertions: true,
+  acceptedClockSkewMs: 2 * 60 * 1000,
 };
 const saml = privateKey ? new SAML(samlOptions) : undefined;
 
