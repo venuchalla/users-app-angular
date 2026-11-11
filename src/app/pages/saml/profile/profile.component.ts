@@ -5,6 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { environment } from '../../../../environments/environment';
+import { getSamlBackendUrl } from '../../../utils/saml-backend-url';
 
 interface SamlProfile {
   issuer: string;
@@ -50,9 +52,17 @@ export class SamlProfileComponent {
       return;
     }
 
+    const profileUrl = getSamlBackendUrl(environment.saml.profilePath);
+    if (!profileUrl) {
+      this.loading.set(false);
+      this.errorMessage.set('SAML is not configured for this environment.');
+      return;
+    }
+
     this.http
       .get<SamlProfile>(
-        `/saml/profile-data?ticket=${encodeURIComponent(ticket)}`,
+        `${profileUrl}?ticket=${encodeURIComponent(ticket)}`,
+        { withCredentials: true },
       )
       .subscribe({
         next: (profile) => this.profile.set(profile),
@@ -75,12 +85,26 @@ export class SamlProfileComponent {
   }
 
   signInAgain(): void {
-    window.location.assign('/saml/login');
+    const loginUrl = getSamlBackendUrl(environment.saml.loginPath);
+    if (loginUrl) {
+      window.location.assign(loginUrl);
+    } else {
+      this.errorMessage.set('SAML sign-in is not configured for this environment.');
+    }
   }
 
   signOut(): void {
     this.clearProfileFromHistory();
-    window.location.replace('/saml/logout');
+    const logoutUrl = getSamlBackendUrl(environment.saml.logoutPath);
+    if (logoutUrl) {
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = logoutUrl;
+      document.body.appendChild(form);
+      form.submit();
+    } else {
+      this.errorMessage.set('SAML sign-out is not configured for this environment.');
+    }
   }
 
   @HostListener('window:pagehide')

@@ -3,6 +3,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../../environments/environment';
+import { getSamlBackendUrl } from '../../../utils/saml-backend-url';
 
 @Component({
 	selector: 'app-saml-home',
@@ -36,6 +38,11 @@ export class SamlHomeComponent {
 
 	login(): void {
 		this.errorMessage.set(null);
-		window.location.assign('/saml/login');
+		const loginUrl = getSamlBackendUrl(environment.saml.loginPath);
+		if (!loginUrl) {
+			this.errorMessage.set('SAML sign-in is not configured for this environment.');
+			return;
+		}
+		window.location.assign(loginUrl);
 	}
 }

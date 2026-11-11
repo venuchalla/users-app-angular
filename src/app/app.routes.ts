@@ -150,6 +150,7 @@ export const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', component: SamlHomeComponent },
       { path: 'profile', component: SamlProfileComponent },
+      { path: 'logout-complete', redirectTo: '/home', pathMatch: 'full' },
     ],
   },
 
