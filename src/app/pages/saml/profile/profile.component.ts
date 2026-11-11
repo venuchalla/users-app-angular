@@ -97,7 +97,11 @@ export class SamlProfileComponent {
     this.clearProfileFromHistory();
     const logoutUrl = getSamlBackendUrl(environment.saml.logoutPath);
     if (logoutUrl) {
-      window.location.replace(logoutUrl);
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = logoutUrl;
+      document.body.appendChild(form);
+      form.submit();
     } else {
       this.errorMessage.set('SAML sign-out is not configured for this environment.');
     }

@@ -1,22 +1,34 @@
 {
-  "/saml/login": {
-    "target": "http://localhost:3001",
-    "secure": false
-  },
   "/saml/callback": {
     "target": "http://localhost:3001",
     "secure": false
   },
   "/saml/profile-data": {
-    "target": "http://localhost:3001",
+    "target": "http://localhost:8082",
+    "secure": false
+  },
+  "/saml/login": {
+    "target": "http://localhost:8082",
+    "secure": false
+  },
+  "/saml2/**": {
+    "target": "http://localhost:8082",
+    "secure": false
+  },
+  "/login/saml2/**": {
+    "target": "http://localhost:8082",
     "secure": false
   },
   "/saml/logout": {
-    "target": "http://localhost:3001",
+    "target": "http://localhost:8082",
     "secure": false
   },
-  "/saml/logout/callback": {
-    "target": "http://localhost:3001",
+  "/saml/slo": {
+    "target": "http://localhost:8082",
+    "secure": false
+  },
+  "/logout/saml2/slo": {
+    "target": "http://localhost:8082",
     "secure": false
   }
 }
