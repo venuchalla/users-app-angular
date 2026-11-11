@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<md:EntityDescriptor
+  xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+  entityID="http://localhost:4200">
+  <md:SPSSODescriptor
+    AuthnRequestsSigned="true"
+    WantAssertionsSigned="true"
+    protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol">
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo>
+        <ds:X509Data>
+          <ds:X509Certificate>
+MIICwjCCAaqgAwIBAgIQZD/z50kFbsS6AfE67ZLwuzANBgkqhkiG9w0BAQsFADAd
+MRswGQYDVQQDDBJ1c2Vycy1hcHAtbG9jYWwtc3AwHhcNMjYxMTA5MDAwMDAwWhcN
+NDYxMTA2MDAwMDAwWjAdMRswGQYDVQQDDBJ1c2Vycy1hcHAtbG9jYWwtc3AwggEi
+MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCwQ1es4i4AMuVQjxWmcLiMXfwV
+qbsGcOFy/nnn4zEi+Y5tblB3eUFXWASxFywcgPgeYXViy2o6EKTEIHqiMbhgQ9An
+2v5fsBYyNoVMtq71ZqNAFKBWqy/yXk1yLF+wWK+TxTaf2l2JHfDM9QvFKUpnuVvh
+H5oO5ZuKy35Ff9A+ORD/b8VFZT9Oy9MhRxsE7NElGA4ifhY8sVY9Ag+D6TQSQ+72
+vAC8YqkepEswe5NnoexJIF2HciS1mg48WcWHkxDIRErygvZnCyVHK6v96AiA9mpQ
+HTuFNldEsqweVnQ/kMjn59S7UWjNOt2HpB6rJfnvGlgU3EOXjQ8VBszLNhm5AgMB
+AAEwDQYJKoZIhvcNAQELBQADggEBAACCfxBqZmKfFr88+LDN7pGxSE0uKy1y4AJH
+pVlCB8agjOIyl9Z5tb4GWMOcEmVuAVixFHqTjteh+KscNM3Nr99zySHLgueB4iPN
+OCYaL7szFKlMUh7Ba0xpMF2TZJRZsXkOP2yWY7l1l7sdJDHK0z+Xs0opTp/iKobK
+5VpMzeC/QMXlLK1G8gVwZpT6Js6qLrcVPIXkba0py7YA+Po5cuEjVbWnMAlNAcky
+glsoCu8yQmHN36FCAsAG3nkuyE4FKt8Aj7Z6DnoIT+ClBDvEq5VFyiX8subCD8Uw
+GSSGJ6kaC/8XoFjS829hrdBEzxETMoXNcDNbZBDZVthQSKFrll8=
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:AssertionConsumerService
+      Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+      Location="https://localhost:4200/saml/callback"
+      index="0"/>
+    <md:SingleLogoutService
+      Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+      Location="https://localhost:4200/saml/logout/callback"/>
+    <md:SingleLogoutService
+      Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+      Location="https://localhost:4200/saml/logout/callback"/>
+  </md:SPSSODescriptor>
+</md:EntityDescriptor>
