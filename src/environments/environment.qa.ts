@@ -2,11 +2,20 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export const environment = {
   production: false,
+  authWidgetUrl: '',
   oauth: {
     clientId: '',
-    redirectUri: '',
+    redirectPath: 'oauth/callback',
+    postLogoutRedirectPath: 'home',
     authorizationEndpoint: '',
     tokenEndpoint: '',
+    userInfoEndpoint: '',
+    revokeEndpoint: '',
+    endSessionEndpoint: '',
+  },
+  saml: {
+    endpoint: '',
+    sloEndpoint: '',
   },
   providers: [
     provideStoreDevtools({

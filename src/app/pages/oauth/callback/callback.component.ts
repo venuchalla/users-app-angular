@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
 import { environment } from '../../../../environments/environment';
+import { getAppUrl } from '../../../utils/app-url';
 
 @Component({
   selector: 'app-callback',
@@ -128,7 +129,7 @@ export class CallbackComponent implements OnInit {
 
     body.set(
       'redirect_uri',
-      environment.oauth.redirectUri
+      getAppUrl(environment.oauth.redirectPath)
     );
 
     body.set(

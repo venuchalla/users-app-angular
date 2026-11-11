@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { environment } from '../../../../environments/environment';
+import { getAppUrl } from '../../../utils/app-url';
 
 @Component({
   selector: 'app-oauth',
@@ -42,7 +43,7 @@ export class OauthComponent {
     const params = new URLSearchParams({
       client_id: environment.oauth.clientId,
       response_type: 'code',
-      redirect_uri: environment.oauth.redirectUri,
+      redirect_uri: getAppUrl(environment.oauth.redirectPath),
       scope: 'openid profile email',
       //'full_access',
       state: state,

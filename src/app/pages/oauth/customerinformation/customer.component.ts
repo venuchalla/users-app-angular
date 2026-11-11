@@ -8,6 +8,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
+import { getAppUrl } from '../../../utils/app-url';
 
 @Component({
   selector: 'app-customer',
@@ -131,7 +132,7 @@ export class CustomerComponent implements OnInit {
   logout(): void {
     const idToken = sessionStorage.getItem('id_token');
     const endSessionUrl = environment.oauth.endSessionEndpoint;
-    const postLogoutRedirectUri = window.location.origin + '/home'; // Must be pre-registered in ZITADEL Console
+    const postLogoutRedirectUri = getAppUrl(environment.oauth.postLogoutRedirectPath);
 
     const params = new URLSearchParams({
       client_id: environment.oauth.clientId,
