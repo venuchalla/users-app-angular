@@ -99,10 +99,10 @@ export class SamlProfileComponent {
     console.log('logoutUrl', logoutUrl);
     if (logoutUrl) {
       const form = document.createElement('form');
-     form.method = 'POST';
+      form.method = 'POST';
       form.action = logoutUrl;
-       document.body.appendChild(form);
-     form.submit();
+      document.body.appendChild(form);
+      form.submit();
     } else {
       this.errorMessage.set('SAML sign-out is not configured for this environment.');
     }
