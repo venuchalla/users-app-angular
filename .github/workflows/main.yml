@@ -29,10 +29,10 @@ jobs:
       - name: Build Angular
         run: npm run build:ghpages
 
-      - name: Prepare GitHub Pages entry points
-        run: |
-          cp dist/users-app/browser/index.csr.html dist/users-app/browser/index.html
-          cp dist/users-app/browser/index.html dist/users-app/browser/404.html
+     # - name: Prepare GitHub Pages entry points
+     #   run: |
+     #     cp dist/users-app/browser/index.csr.html dist/users-app/browser/index.html
+     #    cp dist/users-app/browser/index.html dist/users-app/browser/404.html
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
