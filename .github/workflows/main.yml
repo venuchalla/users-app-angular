@@ -27,8 +27,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular
-        run: |
-          npm run build -- --configuration production --base-href /users-app-angular/
+        run: npm run build:ghpages
 
       - name: Prepare GitHub Pages entry points
         run: |

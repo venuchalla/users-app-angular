@@ -65,6 +65,18 @@
               ],
               "outputHashing": "all"
             },
+            "csr": {
+              "server": false,
+              "ssr": false,
+              "outputMode": "static"
+            },
+            "ssr": {
+              "server": "src/main.server.ts",
+              "ssr": {
+                "entry": "src/server.ts"
+              },
+              "outputMode": "server"
+            },
             "development": {
               "fileReplacements": [
                 {
@@ -118,6 +130,18 @@
             },
             "qa": {
               "buildTarget": "users-app:build:qa"
+            },
+            "local-csr": {
+              "buildTarget": "users-app:build:local,csr"
+            },
+            "local-ssr": {
+              "buildTarget": "users-app:build:local,ssr"
+            },
+            "production-csr": {
+              "buildTarget": "users-app:build:production,csr"
+            },
+            "production-ssr": {
+              "buildTarget": "users-app:build:production,ssr"
             }
           },
           "defaultConfiguration": "local"
