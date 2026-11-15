@@ -17,12 +17,11 @@ export const environment = {
       'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/oidc/v1/end_session',
   },
   saml: {
-    endpoint: 'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/saml/v2/SSO',
-    sloEndpoint: 'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/saml/v2/SLO',
     backendUrl: 'https://user-api-766984687989.us-central1.run.app',
     loginPath: '/saml/login',
     profilePath: '/saml/profile-data',
     logoutPath: '/saml/logout',
+    appName: "userapp"
   },
   providers: [],
 };
