@@ -21,7 +21,7 @@ export const environment = {
     loginPath: '/saml/login',
     profilePath: '/saml/profile-data',
     logoutPath: '/saml/logout',
-    appName: "user"
+    appName: "github"
   },
   providers: [],
 };
