@@ -39,10 +39,11 @@ export class SamlHomeComponent {
 	login(): void {
 		this.errorMessage.set(null);
 		const loginUrl = getSamlBackendUrl(environment.saml.loginPath);
+		const loginUrlWithAppId = loginUrl +"?appId=" + (environment.saml.appName || "");
 		if (!loginUrl) {
 			this.errorMessage.set('SAML sign-in is not configured for this environment.');
 			return;
 		}
-		window.location.assign(loginUrl);
+		window.location.assign(loginUrlWithAppId);
 	}
 }

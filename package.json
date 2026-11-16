@@ -27,6 +27,7 @@
     "build:csr": "npm run build:production:csr",
     "build:ssr": "npm run build:production:ssr",
     "build:ghpages": "npm run build:production:csr",
+    "build:firebase": "ng build --configuration firebase,csr --output-path=dist/users-app",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:users-app": "node dist/users-app/server/server.mjs",
@@ -56,6 +57,7 @@
     "@node-saml/node-saml": "^5.2.0",
     "bootstrap": "^5.3.3",
     "express": "^5.1.0",
+    "firebase": "^13.3.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.1"
