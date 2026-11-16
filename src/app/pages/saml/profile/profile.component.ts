@@ -94,14 +94,20 @@ export class SamlProfileComponent {
   }
 
   signOut(): void {
-    this.clearProfileFromHistory();
+   
     const logoutUrl = getSamlBackendUrl(environment.saml.logoutPath);
-    console.log('logoutUrl', logoutUrl);
+      console.log('logoutUrl', logoutUrl);
     if (logoutUrl) {
+       this.clearProfileFromHistory();
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = logoutUrl;
+      const appId = document.createElement("input");
+      appId.type = "hidden";
+      appId.name = "appId";
+      appId.value = environment.saml.appName || "";
+      form.appendChild(appId);
       document.body.appendChild(form);
+      form.action = logoutUrl;
       form.submit();
     } else {
       this.errorMessage.set('SAML sign-out is not configured for this environment.');
@@ -122,7 +128,7 @@ export class SamlProfileComponent {
 
   private clearProfileFromHistory(): void {
     this.profile.set(null);
-    this.loading.set(false);
+    this.loading.set(true);
     this.errorMessage.set(
       'Your profile is no longer available. Please sign in again.',
     );

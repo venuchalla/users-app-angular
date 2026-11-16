@@ -24,7 +24,7 @@ export const environment = {
     loginPath: '/saml/login',
     profilePath: '/saml/profile-data',
     logoutPath: '/saml/logout',
-    appName: "userapp"
+    appName: "user"
   },
   providers: [
     provideStoreDevtools({
