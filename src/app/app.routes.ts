@@ -27,20 +27,26 @@ import { CallbackComponent } from './pages/oauth/callback/callback.component';
 import { CustomerComponent } from './pages/oauth/customerinformation/customer.component';
 import { SamlHomeComponent } from './pages/saml/home/home.component';
 import { SamlProfileComponent } from './pages/saml/profile/profile.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-   // component: MainLayoutComponent,
+    // component: MainLayoutComponent,
     //children: [
     //  {
     //    path: '',
     //    pathMatch: 'full',
     //    component: HomeComponent,
-     // },
-   // ],
+    // },
+    // ],
+  },
+  {
+    path: 'login',
+    title :"login",
+    component: LoginComponent
   },
   {
     path: 'app',
@@ -146,7 +152,8 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: 'saml', component: EmptyPageLayoutComponent,
+  {
+    path: 'saml', component: EmptyPageLayoutComponent,
     children: [
       { path: '', pathMatch: 'full', component: SamlHomeComponent },
       { path: 'profile', component: SamlProfileComponent },
