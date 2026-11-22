@@ -1,7 +1,7 @@
 import { environment } from '../../environments/environment';
 
 export function getSamlBackendUrl(path: string): string | null {
-  const backendUrl = environment.saml.backendUrl.trim();
+  const backendUrl = environment.backendUrl.trim();
   if (!backendUrl) {
     return null;
   }

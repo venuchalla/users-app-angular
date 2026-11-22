@@ -28,11 +28,12 @@ import { CustomerComponent } from './pages/oauth/customerinformation/customer.co
 import { SamlHomeComponent } from './pages/saml/home/home.component';
 import { SamlProfileComponent } from './pages/saml/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
     // component: MainLayoutComponent,
     //children: [
@@ -42,6 +43,10 @@ export const routes: Routes = [
     //    component: HomeComponent,
     // },
     // ],
+  },
+  {
+    path:'signup',
+    component:SignupComponent
   },
   {
     path: 'login',

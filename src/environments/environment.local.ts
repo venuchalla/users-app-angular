@@ -3,6 +3,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 export const environment = {
   production: false,
   authWidgetUrl: 'http://localhost:3000/auth',
+  backendUrl: 'http://localhost:8082',
   oauth: {
     clientId: '388061232445373142',
     clientSecret: 'rwk9f8fTiTIgP03Ca9RzSHEaBuymsKg1RLyqPtfEt9PKFmt4ct11a7UzR0u31yvr',
@@ -20,7 +21,6 @@ export const environment = {
       'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/oidc/v1/end_session',
   },
   saml: {
-    backendUrl: 'http://localhost:8082',
     loginPath: '/saml/login',
     profilePath: '/saml/profile-data',
     logoutPath: '/saml/logout',

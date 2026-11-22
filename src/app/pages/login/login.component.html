@@ -1,4 +1,3 @@
-
 <div class="login-page">
   <mat-card class="login-card">
     <mat-card-content>
@@ -12,73 +11,68 @@
           <span>Secure account management</span>
         </div>
       </div>
+      @if (registrationSuccess) {
+      <div class="success-message">
+        <p> Account created successfully. Please sign in.</p>
+
+      </div>
+      }
 
       <div class="heading">
         <h1>Welcome back</h1>
         <p>Sign in to access your account</p>
       </div>
 
-      <form [formGroup]="loginForm"
-            (ngSubmit)="signIn()">
+      <form [formGroup]="loginForm" (ngSubmit)="signIn()">
 
-        <mat-form-field appearance="outline"
-                        class="full-width">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Username</mat-label>
           <mat-icon matPrefix>person_outline</mat-icon>
-          <input matInput
-                 formControlName="username"
-                 autocomplete="username">
+          <input matInput formControlName="username" autocomplete="username">
 
           @if (loginForm.controls.username.hasError('required')) {
-            <mat-error>Username is required</mat-error>
+          <mat-error>Username is required</mat-error>
           }
         </mat-form-field>
 
-        <mat-form-field appearance="outline"
-                        class="full-width">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Password</mat-label>
           <mat-icon matPrefix>lock_outline</mat-icon>
 
-          <input matInput
-                 formControlName="password"
-                 autocomplete="current-password"
-                 [type]="hidePassword() ? 'password' : 'text'">
+          <input matInput formControlName="password" autocomplete="current-password"
+            [type]="hidePassword() ? 'password' : 'text'">
 
-          <button mat-icon-button
-                  matSuffix
-                  type="button"
-                  aria-label="Toggle password visibility"
-                  (click)="hidePassword.set(!hidePassword())">
+          <button mat-icon-button matSuffix type="button" aria-label="Toggle password visibility"
+            (click)="hidePassword.set(!hidePassword())">
             <mat-icon>
               {{ hidePassword() ? 'visibility' : 'visibility_off' }}
             </mat-icon>
           </button>
 
           @if (loginForm.controls.password.hasError('required')) {
-            <mat-error>Password is required</mat-error>
+          <mat-error>Password is required</mat-error>
           }
         </mat-form-field>
-
+        @if(showForgotPassword()){
         <div class="forgot-link">
           <a routerLink="/forgot-password">
             Forgot password?
           </a>
         </div>
-
-        @if (errorMessage()) {
-          <p class="error-message" role="alert">
-            {{ errorMessage() }}
-          </p>
         }
 
-        <button mat-flat-button
-                class="sign-in-btn"
-                type="submit"
-                [disabled]="loginForm.invalid || loading()">
+
+        @if (errorMessage()) {
+        <p class="error-message" role="alert">
+          {{ errorMessage() }}
+        </p>
+        }
+
+        <button mat-flat-button class="sign-in-btn" type="submit" [disabled]="loginForm.invalid || loading()">
           @if (loading()) {
-            <mat-spinner diameter="20"></mat-spinner>
+          <mat-spinner diameter="20"></mat-spinner>
           } @else {
-            Sign In
+          Sign In
           }
         </button>
       </form>
@@ -88,16 +82,12 @@
       </div>
 
       <div class="social-buttons">
-        <button mat-stroked-button
-                type="button"
-                (click)="signInWithOAuth()">
+        <button mat-stroked-button type="button" (click)="signInWithOAuth()">
           <mat-icon>verified_user</mat-icon>
           OAuth 2.0
         </button>
 
-        <button mat-stroked-button
-                type="button"
-                (click)="signInWithSSO()">
+        <button mat-stroked-button type="button" (click)="signInWithSSO()">
           <mat-icon>business</mat-icon>
           Enterprise SSO
         </button>

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   authWidgetUrl: '',
+  backendUrl: 'https://user-api-766984687989.us-central1.run.app',
   oauth: {
     clientId: '388061232445373142',
     redirectPath: 'oauth/callback',
@@ -17,7 +18,6 @@ export const environment = {
       'https://my-dev-authentication-server-dsealt.us1.zitadel.cloud/oidc/v1/end_session',
   },
   saml: {
-    backendUrl: 'https://user-api-766984687989.us-central1.run.app',
     loginPath: '/saml/login',
     profilePath: '/saml/profile-data',
     logoutPath: '/saml/logout',

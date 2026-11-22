@@ -1,9 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
 
 export interface loginRequest {
-    email: string;
+    username: string;
     password: string;
 }
 
@@ -15,30 +17,50 @@ export interface loginResponse {
     scope: string;
 }
 
+export interface SignupRequest {
+  email: string;
+  username: string;
+  password: string;
+  role: string[];
+}
+
+export interface SignupResponse {
+  email: string;
+  username: string;
+  password: string;
+  roles: string[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {  
     private readonly http = inject(HttpClient);
+    private readonly router = inject(Router)
+
+    private readonly backendUrl = environment.backendUrl
    
      login(request: loginRequest): Observable<loginResponse> {
     return this.http.post<loginResponse>(
-      `/api/auth/login`,
+     this.backendUrl+ `/auth/signin`,
       request,
       { withCredentials: true }
     );
   }
 
   startOAuth(): void {
-    window.location.assign(
-      `/oauth2/authorization/google`
-    );
+    this.router.navigate(["/oauth"])
   }
 
   startSso(): void {
-    window.location.assign(
-      `/saml2/authenticate/zitadel`
-    );
+     this.router.navigate(["/saml"])
   }
+
+  signup(request: SignupRequest): Observable<SignupResponse> {
+  return this.http.post<SignupResponse>(
+    `${this.backendUrl}/auth/signup`,
+    request
+  );
+}
 
 }

@@ -8,9 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
-import { Router } from 'express';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -33,10 +32,12 @@ export class LoginComponent {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-
+  readonly registrationSuccess =
+    history.state?.registrationSuccess === true;
   readonly loading = signal(false);
   readonly hidePassword = signal(true);
   readonly errorMessage = signal('');
+  readonly showForgotPassword = signal(false)
 
   readonly loginForm = this.fb.nonNullable.group({
     username: ['', Validators.required],
@@ -57,14 +58,15 @@ export class LoginComponent {
 
     this.authService.login(
       {
-        email: email,
+        username: email,
         password: password
       }
 
     ).pipe(
       finalize(() => this.loading.set(false))
     ).subscribe({
-      next: () => {
+      next: (res) => {
+        console.log("Res :", res)
         // Backend authentication/session must be established.
         void this.router.navigate(['/home']);
       },
